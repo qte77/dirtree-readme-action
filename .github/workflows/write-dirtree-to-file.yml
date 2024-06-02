@@ -30,10 +30,11 @@ jobs:
             mkdir -p "$FILE_PATH"       
           fi
           date -u +"%H:%M:%S %Z" > "$OUT_FILE"
-          echo >> "$OUT_FILE"
+          echo sed piped to stdout >> "$OUT_FILE"
           ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/' >> "$OUT_FILE"
-          echo >> "$OUT_FILE"
+          echo sed direct output >> "$OUT_FILE"
           ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/' "$OUT_FILE"
+          echo ... >> "$OUT_FILE"
       - name: push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
