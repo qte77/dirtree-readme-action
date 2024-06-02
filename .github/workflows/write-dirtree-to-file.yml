@@ -6,7 +6,7 @@ on:
     #- cron: "0 0 * * *"
   workflow_dispatch:
 env:
-  PATH: data
+  FILE_PATH: data
   FILE: dummy-dirtree.md
   #COMMAND: "ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/'"
 jobs:
@@ -17,20 +17,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       #  with:
-      #    sparse-checkout: $OUT_FILE
+      #    sparse-checkout: $FILE
       #    sparse-checkout-cone-mode: false
       - name: Save dirtree to file
         run: |
-          if [[ ! -d "$PATH" ]]; then
-            mkdir -p $PATH                      
+          if [[ ! -d "$FILE_PATH" ]]; then
+            mkdir -p $FILE_PATH                      
           fi
-          date -u +"%H:%M:%S %Z" > $PATH/$FILE
-          ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/' >> $PATH/$FILE
+          date -u +"%H:%M:%S %Z" > $FILE_PATH/$FILE
+          ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/' >> $FILE_PATH/$FILE
       - name: push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add $PATH/$FILE
-          git commit -m "Updated $PATH/$FILE"
+          git add $FILE_PATH/$FILE
+          git commit -m "Updated $FILE_PATH/$FILE"
           git push origin main
 ...
