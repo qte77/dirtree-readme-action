@@ -6,7 +6,8 @@ on:
     #- cron: "0 0 * * *"
   workflow_dispatch:
 env:
-  OUT_FILE: data/dummy-dirtree.md
+  PATH: data
+  FILE: dummy-dirtree.md
   #COMMAND: "ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/'"
 jobs:
   writeDirtreeToFile:
@@ -20,13 +21,16 @@ jobs:
       #    sparse-checkout-cone-mode: false
       - name: Save dirtree to file
         run: |
-          date -u +"%H:%M:%S %Z" > $OUT_FILE
-          echo   #COMMAND: "ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/'" >> $OUT_FILE
+          if [[ ! -d "$PATH" ]]; then
+            mkdir -p $PATH                      
+          fi
+          date -u +"%H:%M:%S %Z" > $PATH/$FILE
+          ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/' >> $PATH/$FILE
       - name: push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add $CSV_FILE
-          git commit -m "Updated $OUT_FILE"
+          git add $PATH/$FILE
+          git commit -m "Updated $PATH/$FILE"
           git push origin main
 ...
