@@ -30,7 +30,9 @@ jobs:
             mkdir -p "$FILE_PATH"       
           fi
           date -u +"%H:%M:%S %Z" > $OUT_FILE
-          echo "$COMMAND" >> $OUT_FILE
+          echo $COMMAND >> $OUT_FILE
+          echo >> $OUT_FILE
+          echo "{COMMAND}" >> $OUT_FILE
       - name: push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
