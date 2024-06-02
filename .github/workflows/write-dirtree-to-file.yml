@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 env:
   OUT_FILE: data/dummy-dirtree.md
-  COMMAND: "ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/'"
+  #COMMAND: "ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/'"
 jobs:
   writeDirtreeToFile:
     runs-on: ubuntu-latest
@@ -21,13 +21,7 @@ jobs:
       - name: Save dirtree to file
         run: |
           date -u +"%H:%M:%S %Z" > $OUT_FILE
-          echo "$COMMAND" >> $OUT_FILE
-          echo >> $OUT_FILE
-          ${{ env.COMMAND }} >> $OUT_FILE
-          echo >> $OUT_FILE
-          $COMMAND >> $OUT_FILE
-          echo >> $OUT_FILE
-          $($COMMAND) >> $OUT_FILE
+          echo   #COMMAND: "ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/'" >> $OUT_FILE
       - name: push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
