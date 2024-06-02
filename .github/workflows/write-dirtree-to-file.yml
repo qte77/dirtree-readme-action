@@ -1,5 +1,5 @@
 ---
-name: Write directory tree to file, e.g. README.md
+name: write-dirtree-to-file
 on:
   #schedule:
     # https://crontab.guru/every-day
@@ -15,7 +15,7 @@ jobs:
     permissions:
       contents: write
     env:
-      OUT_FILE: $FILE_PATH/$FILE
+      OUT_FILE: "${{ env.FILE_PATH }}/${{ env.FILE }}"
     steps:
       - uses: actions/checkout@v4
       #  with:
