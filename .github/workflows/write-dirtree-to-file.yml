@@ -23,7 +23,7 @@ jobs:
       # Variables in the env map cannot be defined in terms of other variables in the map.
       # or use 'GITHUB_ENV'
       - name: Set set path and name for output file
-        run: echo "OUT_FILE=${FILE_PATH}/${FILE}" >> $GITHUB_EN
+        run: echo "OUT_FILE=${FILE_PATH}/${FILE}" >> $GITHUB_ENV
       - name: Save dirtree to file
         run: |
           if [[ ! -d "$FILE_PATH" ]]; then
