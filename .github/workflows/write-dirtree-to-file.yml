@@ -21,23 +21,24 @@ jobs:
       # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#env
       # Variables in the env map cannot be defined in terms of other variables in the map.
       # or use 'GITHUB_ENV'
-      - name: Set output file and get dir tree
+      - name: Set output file env variable
         run: |
           echo "OUT_FILE=${FILE_PATH}/${FILE}" >> $GITHUB_ENV
-          echo "DIRTREE=$(ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/')" >> $GITHUB_ENV
       - name: Save dirtree to file
         run: |
           if [[ ! -d "$FILE_PATH" ]]; then
             mkdir -p "$FILE_PATH"       
           fi
-          date -u +"%H:%M:%S %Z" > $OUT_FILE
-          echo >> $OUT_FILE
-          echo "${{ env.DIRTREE }}" >> $OUT_FILE
+          date -u +"%H:%M:%S %Z" > "$OUT_FILE"
+          echo >> "$OUT_FILE"
+          ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/' >> "$OUT_FILE"
+          echo >> "$OUT_FILE"
+          ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/' "$OUT_FILE"
       - name: push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add $OUT_FILE
+          git add "$OUT_FILE"
           git commit -m "Updated $OUT_FILE"
           git push origin main
 ...
