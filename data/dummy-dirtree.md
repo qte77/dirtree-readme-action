@@ -1,5 +1,6 @@
-23:50:21 UTC
-
+23:53:19 UTC
+sed piped to stdout
 .
 └─data
-
+sed direct output
+...
