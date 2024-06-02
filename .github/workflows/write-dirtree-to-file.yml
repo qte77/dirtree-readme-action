@@ -8,7 +8,6 @@ on:
 env:
   FILE_PATH: data
   FILE: dummy-dirtree.md
-  COMMAND: $(ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/')
 jobs:
   writeDirtreeToFile:
     runs-on: ubuntu-latest
@@ -22,17 +21,18 @@ jobs:
       # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#env
       # Variables in the env map cannot be defined in terms of other variables in the map.
       # or use 'GITHUB_ENV'
-      - name: Set set path and name for output file
-        run: echo "OUT_FILE=${FILE_PATH}/${FILE}" >> $GITHUB_ENV
+      - name: Set output file and get dir tree
+        run: |
+          echo "OUT_FILE=${FILE_PATH}/${FILE}" >> $GITHUB_ENV
+          echo "DIRTREE=$(ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/')" >> $GITHUB_ENV
       - name: Save dirtree to file
         run: |
           if [[ ! -d "$FILE_PATH" ]]; then
             mkdir -p "$FILE_PATH"       
           fi
           date -u +"%H:%M:%S %Z" > $OUT_FILE
-          echo $COMMAND >> $OUT_FILE
           echo >> $OUT_FILE
-          echo "{COMMAND}" >> $OUT_FILE
+          echo "${{ env.DIRTREE }}" >> $OUT_FILE
       - name: push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
