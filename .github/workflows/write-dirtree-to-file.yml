@@ -8,29 +8,31 @@ on:
 env:
   FILE_PATH: data
   FILE: dummy-dirtree.md
-  #COMMAND: "ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/'"
+  COMMAND: $(ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/')
 jobs:
   writeDirtreeToFile:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      OUT_FILE: $FILE_PATH/$FILE
     steps:
       - uses: actions/checkout@v4
       #  with:
-      #    sparse-checkout: $FILE
+      #    sparse-checkout: $OUT_FILE
       #    sparse-checkout-cone-mode: false
       - name: Save dirtree to file
         run: |
-          if [[ ! -d "$FILE_PATH" ]]; then
-            mkdir -p $FILE_PATH                      
+          if [[ ! -d "$OUT_FILE" ]]; then
+            mkdir -p $OUT_FILE                      
           fi
-          date -u +"%H:%M:%S %Z" > $FILE_PATH/$FILE
-          ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//──/g' -e 's/─/├/' -e '$s/├/└/' >> $FILE_PATH/$FILE
+          date -u +"%H:%M:%S %Z" > $OUT_FILE
+          echo $COMMAND" >> $OUT_FILE
       - name: push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add $FILE_PATH/$FILE
-          git commit -m "Updated $FILE_PATH/$FILE"
+          git add $OUT_FILE
+          git commit -m "Updated $OUT_FILE"
           git push origin main
 ...
