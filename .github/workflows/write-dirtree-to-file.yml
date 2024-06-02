@@ -23,8 +23,8 @@ jobs:
       #    sparse-checkout-cone-mode: false
       - name: Save dirtree to file
         run: |
-          if [[ ! -d "$OUT_FILE" ]]; then
-            mkdir -p $OUT_FILE                      
+          if [[ ! -d "$FILE_PATH" ]]; then
+            mkdir -p $FILE_PATH                      
           fi
           date -u +"%H:%M:%S %Z" > $OUT_FILE
           echo $COMMAND" >> $OUT_FILE
