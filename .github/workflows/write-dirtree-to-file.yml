@@ -14,20 +14,23 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    env:
-      OUT_FILE: "$(FILE_PATH)/$(FILE)"
     steps:
       - uses: actions/checkout@v4
       #  with:
       #    sparse-checkout: $OUT_FILE
       #    sparse-checkout-cone-mode: false
+      # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#env
+      # Variables in the env map cannot be defined in terms of other variables in the map.
+      # or use 'GITHUB_ENV'
+      - name: Set set path and name for output file
+        run: echo "OUT_FILE=${FILE_PATH}/${FILE}" >> $GITHUB_EN
       - name: Save dirtree to file
         run: |
           if [[ ! -d "$FILE_PATH" ]]; then
-            mkdir -p $FILE_PATH                      
+            mkdir -p "$FILE_PATH"       
           fi
           date -u +"%H:%M:%S %Z" > $OUT_FILE
-          echo $COMMAND" >> $OUT_FILE
+          echo "$COMMAND" >> $OUT_FILE
       - name: push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
