@@ -6,3 +6,11 @@
 	./data/dummy-dirtree.md
 ./.github/workflows
 	./.github/workflows/write-dirtree-to-file.yml
+ ./data
+ ./.github
+  ./README.md
+  ./LICENSE
+  ./data/dummy-dirtree-python.md
+  ./data/dummy-dirtree.md
+ ./.github/workflows
+  ./.github/workflows/write-dirtree-to-file.yml
