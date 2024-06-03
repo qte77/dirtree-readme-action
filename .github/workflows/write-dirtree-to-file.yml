@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 env:
   FILE_PATH: data
-  FILE: dummy-dirtree.md
+  FILE: dummy-dirtree-python.md
 jobs:
   writeDirtreeToFile:
     runs-on: ubuntu-latest
@@ -15,7 +15,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      #  with:
+        with:
+          ref: dev-refactor-to-python
       #    sparse-checkout: $OUT_FILE
       #    sparse-checkout-cone-mode: false
       # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#env
