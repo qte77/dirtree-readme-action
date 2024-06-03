@@ -30,7 +30,7 @@ jobs:
           import os
           k = 0
           exclude = ".git"
-          with open(OUT_FILE, 'a', newline='') as f: # encoding='UTF8'
+          with open(${{ env.OUT_FILE }}, 'a', newline='') as f: # encoding='UTF8'
             for dirname, dirnames, filenames in os.walk('.'):
               if exclude in dirnames:
                 dirnames.remove(exclude)
