@@ -36,10 +36,10 @@ jobs:
                 dirnames.remove(exclude)
               for subdirname in dirnames:
                 dir = os.path.join(dirname, subdirname)
-                file.write("\t" * k + dir + "\n")
+                f.write("\t" * k + dir + "\n")
               for filename in filenames:
                 files = os.path.join(dirname, filename)
-                file.write("\t" * (k+1) + files + "\n")
+                f.write("\t" * (k+1) + files + "\n")
       - name: push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
