@@ -31,17 +31,18 @@ jobs:
           import os
           k = 0
           exclude = ".git"
-          with open("${{ env.OUT_FILE }}", 'a', encoding='UTF8') as f: # newline=''
-            for dirname, dirnames, filenames in os.walk('.'):
-              indent = " " * (k+1)
-              indent_f = " " * (k+2)
-              if exclude in dirnames:
-                dirnames.remove(exclude)
-              for subdirname in dirnames:
-                dir = os.path.join(dirname, subdirname)
+          for dirname, dirnames, filenames in os.walk('.'):
+            indent = " " * (k+1)
+            indent_f = " " * (k+2)
+            if exclude in dirnames:
+              dirnames.remove(exclude)
+            for subdirname in dirnames:
+              dir = os.path.join(dirname, subdirname)
+              with open("${{ env.OUT_FILE }}", 'a', encoding='UTF8') as f: # newline=''
                 f.write(indent + dir + u"\r\n")
-              for filename in filenames:
-                file = os.path.join(dirname, filename)
+            for filename in filenames:
+              file = os.path.join(dirname, filename)
+              with open("${{ env.OUT_FILE }}", 'a', encoding='UTF8') as f: # newline=''
                 f.write(indent_f + file + u"\r\n")
       - name: push updated file back to main branch
         run: |
