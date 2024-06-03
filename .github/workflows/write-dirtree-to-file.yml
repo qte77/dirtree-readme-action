@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: dev-refactor-to-python
-      #    sparse-checkout: $OUT_FILE
+      #    sparse-checkout: ${{ env.OUT_FILE }}
       #    sparse-checkout-cone-mode: false
       # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#env
       # Variables in the env map cannot be defined in terms of other variables in the map.
@@ -47,5 +47,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git add "$OUT_FILE"
           git commit -m "Updated $OUT_FILE"
-          git push origin main
+          git push
 ...
