@@ -7,9 +7,8 @@ on:
   workflow_dispatch:
 env:
   OUT_FILE: 'data/dummy-dirtree-python.md'
-  EXCLUDE: '.git' # separated by |
-  CMD_HIGHLIGHT: 'sh'
   PY_VER: '3.10'
+  APP_DIR: 'app'
 jobs:
   writeDirtreeToFile:
     runs-on: ubuntu-latest
@@ -19,13 +18,12 @@ jobs:
       - name: Checkout file sparse mode
         uses: actions/checkout@v4
         with:
-          ref: dev-refactor-to-python
           sparse-checkout: ${{ env.OUT_FILE }}             
       - name: Setup python ${{ env.PY_VER }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PY_VER }}
-      - run: python app.py
+      - run: python ${{ env.APP_DIR }}/app.py
       - name: Push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
