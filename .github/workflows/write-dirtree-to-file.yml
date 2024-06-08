@@ -34,7 +34,7 @@ jobs:
             os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
             with open(OUT_FILE, 'w+', newline='', encoding='UTF8') as f:
               writer = csv.writer(f)
-              writer.writerow(rf'{datetime.now(timezone.utc)}')
+              writer.writerow([str(datetime.now(timezone.utc))])
           for dirname, dirnames, filenames in os.walk('.'):
             indent = " " * (k+1)
             indent_f = " " * (k+2)
@@ -43,11 +43,11 @@ jobs:
             for subdirname in dirnames:
               dir = os.path.join(dirname, subdirname)
               print(f"{dir=}")
-              out.append(f"{indent}{dir}")
+              out.append([f"{indent}{dir}"])
             for filename in filenames:
               file = os.path.join(dirname, filename)
               print(f"{file=}")
-              out.append(f"{indent_f}{file}\n")
+              out.append([f"{indent_f}{file}\n"])
           with open(OUT_FILE, 'a+', newline='', encoding='UTF8') as f:
             writer = csv.writer(f)
             for o in out:
