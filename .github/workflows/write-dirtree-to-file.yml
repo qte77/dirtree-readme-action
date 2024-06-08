@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 env:
   OUT_FILE: 'data/dummy-dirtree-python.md'
-  # EXCLUDE: ['.git'] # array
+  EXCLUDE: '.git' # separated by |
 jobs:
   writeDirtreeToFile:
     runs-on: ubuntu-latest
@@ -26,15 +26,15 @@ jobs:
           import csv
           from datetime import datetime, timezone
           OUT_FILE = str(os.getenv("OUT_FILE", 'data/dummy-data.md'))
-          EXCLUDE = os.getenv("EXCLUDE", [])
-          assert isinstance(EXCLUDE, list), "EXCLUDE not of type list"
+          EXCLUDE = os.getenv("EXCLUDE")
           k = 0
           out = []
-          exclude = ".git"
+          if EXCLUDE is not None:
+            EXCLUDE = EXCLUDE.split('|')
           if not os.path.exists(OUT_FILE):
             # folder needs to exist before open() context
             os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
-            with open(OUT_FILE, 'w+', newline='\n', encoding='UTF8') as f:
+            with open(OUT_FILE, 'w+', newline='', encoding='UTF8') as f:
               writer = csv.writer(f)
               writer.writerow([str(datetime.now(timezone.utc))])
           for dirname, dirnames, filenames in os.walk('.'):
@@ -47,9 +47,9 @@ jobs:
               out.append([f"{indent}{dir}"])
             for filename in filenames:
               file = os.path.join(dirname, filename)
-              out.append([f"{indent_f}{file}\n"])
+              out.append([f"{indent_f}{file}"])
           print(f"{out=}")
-          with open(OUT_FILE, 'a+', newline='\n', encoding='UTF8') as f:
+          with open(CSV_FILE, 'a+', newline='', encoding='UTF8') as f:
             writer = csv.writer(f)
             for o in out:
               writer.writerow(o)
