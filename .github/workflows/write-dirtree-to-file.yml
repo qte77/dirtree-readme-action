@@ -23,6 +23,8 @@ jobs:
         shell: python
         run: |
           import os
+          import csv
+          from datetime import datetime, timezone
           OUT_FILE = str(os.getenv("OUT_FILE"))
           k = 0
           exclude = ".git"
@@ -30,7 +32,8 @@ jobs:
             # folder needs to exist before open() context
             os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
             with open(OUT_FILE, 'w+', newline='', encoding='UTF8') as f:
-                f.write("")
+              writer = csv.writer(f)
+              writer.writerow(datetime.now(timezone.utc))
           for dirname, dirnames, filenames in os.walk('.'):
             indent = " " * (k+1)
             indent_f = " " * (k+2)
@@ -38,12 +41,14 @@ jobs:
               dirnames.remove(exclude)
             for subdirname in dirnames:
               dir = os.path.join(dirname, subdirname)
-              with open(OUT_FILE, 'a', encoding='UTF8', newline='\n') as f:
-                f.write(f"{indent}{dir}\n")
+              with open(OUT_FILE, 'a+', newline='', encoding='UTF8') as f:
+                writer = csv.writer(f)
+                writer.writerow(f"{indent}{dir}")
             for filename in filenames:
               file = os.path.join(dirname, filename)
-              with open(OUT_FILE, 'a', encoding='UTF8', newline='\n') as f:
-                f.write(f"{indent_f}{file}\n")
+              with open(OUT_FILE, 'a+', newline='', encoding='UTF8') as f:
+                writer = csv.writer(f)
+                writer.writerow(f"{indent_f}{file}\n")
       - name: Push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
