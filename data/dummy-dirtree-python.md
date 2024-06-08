@@ -19,3 +19,9 @@
   ./app.py
   ./data/dummy-dirtree-python.md
 ```
+```sh		./data/dummy-dirtree-python.md
+		./app.py
+		./LICENSE
+		./README.md
+	./data
+```
