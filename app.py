@@ -14,7 +14,8 @@ if EXCLUDE is not None:
 if not os.path.exists(OUT_FILE):
   # folder needs to exist before open() context
   os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
-  out.append(str(datetime.now(timezone.utc)))
+
+out.append(f"\n{datetime.now(timezone.utc)}")
 
 for dirname, dirnames, filenames in os.walk('.'):
   indent = "\t" * k
@@ -31,6 +32,6 @@ for dirname, dirnames, filenames in os.walk('.'):
 
 with open(OUT_FILE, 'a+', newline=None, encoding='UTF8') as f:
   f.write("\n```sh")
-  for o in reversed(out):
+  for o in out: # reversed(out):
     f.write(f"{o}\n")
   f.write("```\n")
