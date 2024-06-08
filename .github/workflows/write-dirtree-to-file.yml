@@ -23,7 +23,7 @@ jobs:
         shell: python
         run: |
           import os
-          OUT_FILE = str(getenv("OUT_FILE"))
+          OUT_FILE = str(os.getenv("OUT_FILE"))
           k = 0
           exclude = ".git"
           if not os.path.exists(OUT_FILE):
