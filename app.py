@@ -17,8 +17,8 @@ if not os.path.exists(OUT_FILE):
   out.append(str(datetime.now(timezone.utc)))
 
 for dirname, dirnames, filenames in os.walk('.'):
-  indent = " " * (k+1)
-  indent_f = " " * (k+2)
+  indent = "\t" * (k+1)
+  indent_f = "\t" * (k+2)
   for ex in EXCLUDE:
     if ex in dirnames:
       dirnames.remove(ex)
@@ -30,7 +30,7 @@ for dirname, dirnames, filenames in os.walk('.'):
     out.append(f"{indent_f}{file}")
 
 with open(OUT_FILE, 'a+', newline=None, encoding='UTF8') as f:
-  f.write("```sh")
-  for o in out:
+  f.write("\n```sh")
+  for o in reversed(out):
     f.write(f"{o}\n")
-  f.write("```")
+  f.write("```\n")
