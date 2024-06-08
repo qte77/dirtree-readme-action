@@ -1,4 +1,5 @@
 ---
+# TODO add indent per depth level
 name: write-dirtree-to-file
 on:
   #schedule:
@@ -7,7 +8,7 @@ on:
   workflow_dispatch:
 env:
   OUT_FILE: 'data/dummy-dirtree-python.md'
-  EXCLUDE: '.git'
+  # EXCLUDE: ['.git'] # array
 jobs:
   writeDirtreeToFile:
     runs-on: ubuntu-latest
@@ -18,7 +19,6 @@ jobs:
         with:
           ref: dev-refactor-to-python
           sparse-checkout: ${{ env.OUT_FILE }}
-      #    sparse-checkout-cone-mode: false
       - name: Save dirtree to file
         shell: python
         run: |
@@ -32,23 +32,22 @@ jobs:
           if not os.path.exists(OUT_FILE):
             # folder needs to exist before open() context
             os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
-            with open(OUT_FILE, 'w+', newline='', encoding='UTF8') as f:
+            with open(OUT_FILE, 'w+', newline='\n', encoding='UTF8') as f:
               writer = csv.writer(f)
               writer.writerow([str(datetime.now(timezone.utc))])
           for dirname, dirnames, filenames in os.walk('.'):
             indent = " " * (k+1)
             indent_f = " " * (k+2)
-            if exclude in dirnames:
-              dirnames.remove(exclude)
+            for ex in ${{ env.EXCLUDE }}:
+              if ex in dirnames: dirnames.remove(ex)
             for subdirname in dirnames:
               dir = os.path.join(dirname, subdirname)
-              print(f"{dir=}")
               out.append([f"{indent}{dir}"])
             for filename in filenames:
               file = os.path.join(dirname, filename)
-              print(f"{file=}")
               out.append([f"{indent_f}{file}\n"])
-          with open(OUT_FILE, 'a+', newline='', encoding='UTF8') as f:
+          print(f"{out=}")
+          with open(OUT_FILE, 'a+', newline='\n', encoding='UTF8') as f:
             writer = csv.writer(f)
             for o in out:
               writer.writerow(o)
