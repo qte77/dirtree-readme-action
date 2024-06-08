@@ -28,6 +28,11 @@ jobs:
           import os
           k = 0
           exclude = ".git"
+          if not exists(CSV_FILE):
+            # folder needs to exist before open() context
+            os.makedirs(os.path.dirname("${{ env.OUT_FILE }}"), exist_ok=True)
+            with open("${{ env.OUT_FILE }}", 'w+', newline='', encoding='UTF8') as f:
+                f.write("")
           for dirname, dirnames, filenames in os.walk('.'):
             indent = " " * (k+1)
             indent_f = " " * (k+2)
