@@ -32,3 +32,12 @@
 	./README.md
 ./data
 ```
+
+```sh
+2024-06-08 21:51:34.701434+00:00
+./data
+	./README.md
+	./LICENSE
+	./app.py
+	./data/dummy-dirtree-python.md
+```
