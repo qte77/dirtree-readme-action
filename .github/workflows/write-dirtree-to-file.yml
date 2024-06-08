@@ -10,6 +10,7 @@ on:
 env:
   OUT_FILE: 'data/dummy-dirtree-python.md'
   EXCLUDE: '.git' # separated by |
+  CMD_HIGHLIGHT: 'sh'
   PY_VER: '3.10'
 jobs:
   writeDirtreeToFile:
