@@ -13,4 +13,9 @@
 ['  ./LICENSE']
 ['  ./app.py']
 ['  ./data/dummy-dirtree-python.md']
+``````sh ./data
+  ./README.md
+  ./LICENSE
+  ./app.py
+  ./data/dummy-dirtree-python.md
 ```
