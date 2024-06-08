@@ -14,17 +14,14 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: dev-refactor-to-python
-      #    sparse-checkout: ${{ env.OUT_FILE }}
-      #    sparse-checkout-cone-mode: false
-      # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#env
-      # Variables in the env map cannot be defined in terms of other variables in the map.
-      # or use 'GITHUB_ENV'
       - name: Set output file env variable
         run: |
           echo "OUT_FILE=${FILE_PATH}/${FILE}" >> $GITHUB_ENV
+      - uses: actions/checkout@v4
+        with:
+          ref: dev-refactor-to-python
+          sparse-checkout: ${{ env.OUT_FILE }}
+      #    sparse-checkout-cone-mode: false
       - name: Save dirtree to file
         shell: python
         run: |
@@ -44,7 +41,7 @@ jobs:
               file = os.path.join(dirname, filename)
               with open("${{ env.OUT_FILE }}", 'a', encoding='UTF8', newline='\n') as f:
                 f.write(f"{indent_f}{file}\n")
-      - name: push updated file back to main branch
+      - name: Push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
