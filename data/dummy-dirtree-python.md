@@ -8,3 +8,9 @@
 "
 "  ./app.py
 "
+```sh[' ./data']
+['  ./README.md']
+['  ./LICENSE']
+['  ./app.py']
+['  ./data/dummy-dirtree-python.md']
+```
