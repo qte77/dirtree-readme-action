@@ -26,7 +26,7 @@ jobs:
           import csv
           from datetime import datetime, timezone
           OUT_FILE = str(os.getenv("OUT_FILE", 'data/dummy-data.md'))
-          EXCLUDE = os.getenv("EXCLUDE")
+          EXCLUDE = str(os.getenv("EXCLUDE"))
           k = 0
           out = []
           if EXCLUDE is not None:
@@ -34,9 +34,7 @@ jobs:
           if not os.path.exists(OUT_FILE):
             # folder needs to exist before open() context
             os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
-            with open(OUT_FILE, 'w+', newline='', encoding='UTF8') as f:
-              writer = csv.writer(f)
-              writer.writerow([str(datetime.now(timezone.utc))])
+            out.append([str(datetime.now(timezone.utc))])
           for dirname, dirnames, filenames in os.walk('.'):
             indent = " " * (k+1)
             indent_f = " " * (k+2)
@@ -49,7 +47,7 @@ jobs:
               file = os.path.join(dirname, filename)
               out.append([f"{indent_f}{file}"])
           print(f"{out=}")
-          with open(CSV_FILE, 'a+', newline='', encoding='UTF8') as f:
+          with open(OUT_FILE, 'a+', newline='', encoding='UTF8') as f:
             writer = csv.writer(f)
             for o in out:
               writer.writerow(o)
