@@ -25,7 +25,8 @@ jobs:
           import os
           import csv
           from datetime import datetime, timezone
-          OUT_FILE = str(os.getenv("OUT_FILE"))
+          OUT_FILE = str(os.getenv("OUT_FILE"), 'data/dummy-data.md')
+          EXCLUDE = str(os.getenv("EXCLUDE"), [])
           k = 0
           out = []
           exclude = ".git"
@@ -38,8 +39,9 @@ jobs:
           for dirname, dirnames, filenames in os.walk('.'):
             indent = " " * (k+1)
             indent_f = " " * (k+2)
-            for ex in ${{ env.EXCLUDE }}:
-              if ex in dirnames: dirnames.remove(ex)
+            if isinstance(EXCLUDE, list):
+              for ex in EXCLUDE:
+                if ex in dirnames: dirnames.remove(ex)
             for subdirname in dirnames:
               dir = os.path.join(dirname, subdirname)
               out.append([f"{indent}{dir}"])
