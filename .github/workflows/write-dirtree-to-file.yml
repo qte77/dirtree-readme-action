@@ -28,7 +28,7 @@ jobs:
           import os
           k = 0
           exclude = ".git"
-          if not exists(CSV_FILE):
+          if not os.path.exists(OUT_FILE):
             # folder needs to exist before open() context
             os.makedirs(os.path.dirname("${{ env.OUT_FILE }}"), exist_ok=True)
             with open("${{ env.OUT_FILE }}", 'w+', newline='', encoding='UTF8') as f:
