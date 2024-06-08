@@ -2,7 +2,7 @@ import os
 from datetime import datetime, timezone
 
 OUT_FILE = str(os.getenv("OUT_FILE", 'data/dummy-data.md'))
-EXCLUDE = str(os.getenv("EXCLUDE"))
+EXCLUDE = str(os.getenv("EXCLUDE"), '.git')
 CMD_HIGHLIGHT = str(os.getenv("CMD_HIGHLIGHT", 'sh'))
 
 k = 0
