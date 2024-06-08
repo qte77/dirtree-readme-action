@@ -17,8 +17,8 @@ if not os.path.exists(OUT_FILE):
   out.append(str(datetime.now(timezone.utc)))
 
 for dirname, dirnames, filenames in os.walk('.'):
-  indent = "\t" * (k+1)
-  indent_f = "\t" * (k+2)
+  indent = "\t" * k
+  indent_f = "\t" * (k+1)
   for ex in EXCLUDE:
     if ex in dirnames:
       dirnames.remove(ex)
