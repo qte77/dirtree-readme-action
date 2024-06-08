@@ -1,6 +1,4 @@
 ---
-# TODO add indent per depth level
-# TODO add context check if other branch than main is given
 name: write-dirtree-to-file
 on:
   #schedule:
@@ -27,8 +25,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PY_VER }}
-      #    cache: 'pip'
-      #- run: pip install -qqr requirements.txt
       - run: python app.py
       - name: Push updated file back to main branch
         run: |
