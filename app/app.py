@@ -8,8 +8,12 @@ CMD_HIGHLIGHT = str(os.getenv("CMD_HIGHLIGHT", 'sh'))
 out = []
 startpath = '.'
 
-if EXCLUDE is not None:
-  EXCLUDE = EXCLUDE.split('|')
+space =  '    '
+branch = '│   '
+tee =    '├── '
+last =   '└── '
+
+exclude_list = EXCLUDE.split('|')
 
 if not os.path.exists(OUT_FILE):
   # folder needs to exist before open() context
@@ -18,13 +22,16 @@ if not os.path.exists(OUT_FILE):
 out.append(f"\n{datetime.now(timezone.utc)}")
 
 # https://stackoverflow.com/a/9728478/list-directory-tree-structure-in-python
+# https://stackoverflow.com/a/59109706/list-directory-tree-structure-in-python
 for root, dirs, files in os.walk(startpath):
     level = root.replace(startpath, '').count(os.sep)
-    indent = ' ' * 4 * (level)
-    out.append(f'{indent}{os.path.basename(root)}/')
-    subindent = ' ' * 4 * (level + 1)
-    for f in files:
-        out.append(f'{subindent}{f}')
+    for ex in EXCLUDE:
+      if ex not in dirs:
+        indent = space * level
+        out.append(f'{indent}{os.path.basename(root)}/')
+        subindent = space * (level + 1)
+        for f in files:
+            out.append(f'{subindent}{f}')
 
 with open(OUT_FILE, 'a+', newline=None, encoding='UTF8') as f:
   f.write("\n```sh")
