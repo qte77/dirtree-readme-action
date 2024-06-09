@@ -8,7 +8,7 @@ on:
 env:
   OUT_FILE: 'data/dummy-dirtree-python.md'
   PY_VER: '3.10'
-  APP: 'app/app.py'
+  APP: '../app/app.py'
 jobs:
   writeDirtreeToFile:
     runs-on: ubuntu-latest
