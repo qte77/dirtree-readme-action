@@ -24,17 +24,18 @@ out.append(f"\n{datetime.now(timezone.utc)}")
 for root, dirs, files in os.walk(startpath):
     print(root)
     for ex in EXCLUDE.split('|'):
-      if ex in root.split('/'):
+      rex = root.split('/')
+      print(rex)
+      if ex in rex:
         continue
     level = root.replace(startpath, '').count(os.sep)
-    print(level)
     num_dirs = len(dirs)
     num_files = len(files)
-    indent = branch * level
+    indent = branch * (level-1)
     indent_d = indent if level < 1 else indent + ( tee if num_dirs > 1 else last )
-    out.append(f'{indent_d}{os.path.basename(root)}/')
+    out.append(f'{indent_d}{os.path.basename(root)}/ # DEBUG::{num_dirs=}{num_files=}')
     for i, f in enumerate(files):
-      indent_f = indent + space + ( tee if num_files > i else last )
+      indent_f = indent + space + ( last if num_files < i else tee )
       out.append(f'{indent_f}{f}')
 
 with open(OUT_FILE, 'a+', newline=None, encoding='UTF8') as f:
