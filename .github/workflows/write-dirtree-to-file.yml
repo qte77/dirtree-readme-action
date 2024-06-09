@@ -24,7 +24,12 @@ jobs:
         with:
           python-version: ${{ env.PY_VER }}
       - name: Run ${{ env.APP }}
-        run: python ${{ env.APP }}
+        run: |
+          ls -a
+          ls .. -a
+          ls ${{ env.APP }}
+          which python
+          # python ${{ env.APP }}
       - name: Push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
