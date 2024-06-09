@@ -13,8 +13,6 @@ branch = '│   '
 tee =    '├── '
 last =   '└── '
 
-exclude_list = EXCLUDE.split('|')
-
 if not os.path.exists(OUT_FILE):
   # folder needs to exist before open() context
   os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
@@ -26,8 +24,8 @@ out.append(f"\n{datetime.now(timezone.utc)}")
 print(exclude_list)
 for root, dirs, files in os.walk(startpath):
     print(root)
-    for ex in EXCLUDE:
-      if ex in root:
+    for ex in EXCLUDE.split('|'):
+      if ex in root.split('/'):
         continue
     level = root.replace(startpath, '').count(os.sep)
     print(level)
