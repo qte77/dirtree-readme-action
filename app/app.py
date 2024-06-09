@@ -21,7 +21,6 @@ out.append(f"\n{datetime.now(timezone.utc)}")
 
 # https://stackoverflow.com/a/9728478/list-directory-tree-structure-in-python
 # https://stackoverflow.com/a/59109706/list-directory-tree-structure-in-python
-print(exclude_list)
 for root, dirs, files in os.walk(startpath):
     print(root)
     for ex in EXCLUDE.split('|'):
