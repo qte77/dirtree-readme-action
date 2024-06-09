@@ -25,13 +25,12 @@ out.append(f"\n{datetime.now(timezone.utc)}")
 # https://stackoverflow.com/a/59109706/list-directory-tree-structure-in-python
 for root, dirs, files in os.walk(startpath):
     level = root.replace(startpath, '').count(os.sep)
-    for ex in EXCLUDE:
-      if ex not in dirs:
-        indent = space * level
-        out.append(f'{indent}{os.path.basename(root)}/')
-        subindent = space * (level + 1)
-        for f in files:
-            out.append(f'{subindent}{f}')
+    if root not in EXCLUDE:
+      indent = space * level
+      out.append(f'{indent}{os.path.basename(root)}/')
+      subindent = space * (level + 1)
+      for f in files:
+          out.append(f'{subindent}{f}')
 
 with open(OUT_FILE, 'a+', newline=None, encoding='UTF8') as f:
   f.write("\n```sh")
