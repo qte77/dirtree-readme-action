@@ -41,3 +41,18 @@
 	./app.py
 	./data/dummy-dirtree-python.md
 ```
+
+```sh
+2024-06-09 21:04:55.274448+00:00
+./data
+./app
+./.github
+	./README.md
+	./LICENSE
+	./app.py
+	./data/dummy-dirtree-python.md
+	./app/app.py
+./.github/workflows
+	./.github/workflows/write-dirtree-to-file.yml
+	./.github/workflows/ruff.yml
+```
