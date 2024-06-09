@@ -7,6 +7,7 @@ CMD_HIGHLIGHT = str(os.getenv("CMD_HIGHLIGHT", 'sh'))
 
 out = []
 startpath = '.'
+exclude_list = exclude.split('|')
 
 space =  '    '
 branch = '│   '
@@ -19,15 +20,19 @@ if not os.path.exists(OUT_FILE):
 
 out.append(f"\n{datetime.now(timezone.utc)}")
 
+def find_exclusion_overlap(root: str, exclude_list: list) -> bool:
+  '''Return True if any of exclude in root split by "/", else False'''
+  assert isinstance(root, str) and isinstance(exclude, list)
+  for ex in exclude:
+    if ex in root.split('/'):
+      return True
+  return False  
+
 # https://stackoverflow.com/a/9728478/list-directory-tree-structure-in-python
 # https://stackoverflow.com/a/59109706/list-directory-tree-structure-in-python
 for root, dirs, files in os.walk(startpath):
-    for ex in EXCLUDE.split('|'):
-      rex = root.split('/')
-      print(f"{ex=},{rex=}")
-      if ex in rex:
-        print("ex in rex")
-        continue
+    if find_exclusion_overlap(root, exclude_list):
+      continue
     level = root.replace(startpath, '').count(os.sep)
     num_dirs = len(dirs)
     num_files = len(files)
@@ -35,7 +40,7 @@ for root, dirs, files in os.walk(startpath):
     indent_d = indent if level < 1 else indent + ( tee if num_dirs > 1 else last )
     out.append(f'{indent_d}{os.path.basename(root)}/ # DEBUG::{level=},{num_dirs=},{num_files=}')
     for i, f in enumerate(files):
-      indent_f = indent + space * (level-1) + ( tee if (num_files-1) > i else last )
+      indent_f = indent_d + ( "" if level < 1 else space ) + ( tee if (num_files-1 > i and num_dirs < 1) else last )
       out.append(f'{indent_f}{f}')
 
 with open(OUT_FILE, 'a+', newline=None, encoding='UTF8') as f:
