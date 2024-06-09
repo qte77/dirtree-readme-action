@@ -622,3 +622,86 @@
 │   └── info/
 │       ├── exclude
 ```
+
+```sh
+2024-06-09 22:07:56.428262+00:00
+./
+    ├── README.md
+    ├── LICENSE
+│   └── data/
+│       ├── dummy-dirtree-python.md
+│   └── app/
+│       ├── app.py
+│   └── .github/
+│   │   └── workflows/
+│   │       ├── write-dirtree-to-file.yml
+│   │       ├── ruff.yml
+│   ├── .git/
+│       ├── description
+│       ├── config
+│       ├── index
+│       ├── FETCH_HEAD
+│       ├── config.worktree
+│       ├── HEAD
+│       ├── shallow
+│   │   └── branches/
+│   │   ├── refs/
+│   │   │   └── remotes/
+│   │   │   │   └── origin/
+│   │   │   │       ├── dev-refactor-to-python
+│   │   │   └── tags/
+│   │   │   └── heads/
+│   │   │       ├── dev-refactor-to-python
+│   │   └── hooks/
+│   │       ├── applypatch-msg.sample
+│   │       ├── post-update.sample
+│   │       ├── pre-applypatch.sample
+│   │       ├── update.sample
+│   │       ├── pre-push.sample
+│   │       ├── prepare-commit-msg.sample
+│   │       ├── pre-commit.sample
+│   │       ├── pre-merge-commit.sample
+│   │       ├── sendemail-validate.sample
+│   │       ├── pre-receive.sample
+│   │       ├── push-to-checkout.sample
+│   │       ├── commit-msg.sample
+│   │       ├── fsmonitor-watchman.sample
+│   │       ├── pre-rebase.sample
+│   │   ├── objects/
+│   │   │   └── 32/
+│   │   │       ├── 11e00fcc6bd0e02bbf67ca28dbb0cf5a426d51
+│   │   │   └── 3e/
+│   │   │       ├── 705cbf7e9a4c56e4b473c26d9376f91f74aa80
+│   │   │   └── 82/
+│   │   │       ├── dae2eada06d3a9bb2b12f8305aa98c42b81310
+│   │   │   └── 07/
+│   │   │       ├── 71f4f2665beb5640d124d652c24c7f249fe57e
+│   │   │   └── 5e/
+│   │   │       ├── 3ef9c1f6bee1fe3002f689e351c29c498d2d6f
+│   │   │   └── 1e/
+│   │   │       ├── 42197a6bebfbea1bd8519b5f074bffdcfc3fe0
+│   │   │   └── info/
+│   │   │   └── 5c/
+│   │   │       ├── 3ac6ad0fbcc0afb05f0878c44b0b3ca2d73de6
+│   │   │   └── 73/
+│   │   │       ├── e0ef07094e385ffbfbfdab84c3e6debc514860
+│   │   │   └── 03/
+│   │   │       ├── bd39e387dedaaa8dfe2c5178e99e5c8977a8db
+│   │   │   └── ac/
+│   │   │       ├── 868faf88f512aab5a5399aac555c936ba212ad
+│   │   │   └── 47/
+│   │   │       ├── 10382f9c7c1556d802e3c2d4b2695713127240
+│   │   │   └── pack/
+│   │   │   └── 4f/
+│   │   │       ├── 55bd64a18d4b2be1cbc0f7ec3ea28054e315da
+│   │   └── logs/
+│   │       ├── HEAD
+│   │   │   ├── refs/
+│   │   │   │   └── remotes/
+│   │   │   │   │   └── origin/
+│   │   │   │   │       ├── dev-refactor-to-python
+│   │   │   │   └── heads/
+│   │   │   │       ├── dev-refactor-to-python
+│   │   └── info/
+│   │       ├── exclude
+```
