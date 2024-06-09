@@ -788,3 +788,86 @@
 │   │   └── info/
 │   │       ├── exclude
 ```
+
+```sh
+2024-06-09 22:25:13.067479+00:00
+./ # DEBUG::num_dirs=4num_files=2
+    ├── README.md
+    ├── LICENSE
+└── data/ # DEBUG::num_dirs=0num_files=1
+    ├── dummy-dirtree-python.md
+└── app/ # DEBUG::num_dirs=0num_files=1
+    ├── app.py
+└── .github/ # DEBUG::num_dirs=1num_files=0
+│   └── workflows/ # DEBUG::num_dirs=0num_files=2
+│       ├── write-dirtree-to-file.yml
+│       ├── ruff.yml
+├── .git/ # DEBUG::num_dirs=6num_files=7
+    ├── description
+    ├── config
+    ├── index
+    ├── FETCH_HEAD
+    ├── config.worktree
+    ├── HEAD
+    ├── shallow
+│   └── branches/ # DEBUG::num_dirs=0num_files=0
+│   ├── refs/ # DEBUG::num_dirs=3num_files=0
+│   │   └── remotes/ # DEBUG::num_dirs=1num_files=0
+│   │   │   └── origin/ # DEBUG::num_dirs=0num_files=1
+│   │   │       ├── dev-refactor-to-python
+│   │   └── tags/ # DEBUG::num_dirs=0num_files=0
+│   │   └── heads/ # DEBUG::num_dirs=0num_files=1
+│   │       ├── dev-refactor-to-python
+│   └── hooks/ # DEBUG::num_dirs=0num_files=14
+│       ├── applypatch-msg.sample
+│       ├── post-update.sample
+│       ├── pre-applypatch.sample
+│       ├── update.sample
+│       ├── pre-push.sample
+│       ├── prepare-commit-msg.sample
+│       ├── pre-commit.sample
+│       ├── pre-merge-commit.sample
+│       ├── sendemail-validate.sample
+│       ├── pre-receive.sample
+│       ├── push-to-checkout.sample
+│       ├── commit-msg.sample
+│       ├── fsmonitor-watchman.sample
+│       ├── pre-rebase.sample
+│   ├── objects/ # DEBUG::num_dirs=14num_files=0
+│   │   └── bb/ # DEBUG::num_dirs=0num_files=1
+│   │       ├── 665bf2d52c5c26284085124b21f6b063508e55
+│   │   └── b3/ # DEBUG::num_dirs=0num_files=1
+│   │       ├── a9fdb60eb29ed74a1a01453a13ffae33860749
+│   │   └── 3e/ # DEBUG::num_dirs=0num_files=1
+│   │       ├── 705cbf7e9a4c56e4b473c26d9376f91f74aa80
+│   │   └── 82/ # DEBUG::num_dirs=0num_files=1
+│   │       ├── dae2eada06d3a9bb2b12f8305aa98c42b81310
+│   │   └── 57/ # DEBUG::num_dirs=0num_files=1
+│   │       ├── 2b05ccbef7ceb91ff07de320ec9334df6935a3
+│   │   └── 16/ # DEBUG::num_dirs=0num_files=1
+│   │       ├── 08c208d1797f52ff069349d79c5f32ec03e9ac
+│   │   └── 1e/ # DEBUG::num_dirs=0num_files=1
+│   │       ├── 42197a6bebfbea1bd8519b5f074bffdcfc3fe0
+│   │   └── 35/ # DEBUG::num_dirs=0num_files=1
+│   │       ├── 762a7882c18bc2c7bc6fd01517a906415c58ea
+│   │   └── info/ # DEBUG::num_dirs=0num_files=0
+│   │   └── 5c/ # DEBUG::num_dirs=0num_files=1
+│   │       ├── 3ac6ad0fbcc0afb05f0878c44b0b3ca2d73de6
+│   │   └── 03/ # DEBUG::num_dirs=0num_files=1
+│   │       ├── bd39e387dedaaa8dfe2c5178e99e5c8977a8db
+│   │   └── 10/ # DEBUG::num_dirs=0num_files=1
+│   │       ├── 5aee08adb982c32901d1d7e8bc09cf32db0b0f
+│   │   └── pack/ # DEBUG::num_dirs=0num_files=0
+│   │   └── 4f/ # DEBUG::num_dirs=0num_files=1
+│   │       ├── 55bd64a18d4b2be1cbc0f7ec3ea28054e315da
+│   └── logs/ # DEBUG::num_dirs=1num_files=1
+│       ├── HEAD
+│   │   ├── refs/ # DEBUG::num_dirs=2num_files=0
+│   │   │   └── remotes/ # DEBUG::num_dirs=1num_files=0
+│   │   │   │   └── origin/ # DEBUG::num_dirs=0num_files=1
+│   │   │   │       ├── dev-refactor-to-python
+│   │   │   └── heads/ # DEBUG::num_dirs=0num_files=1
+│   │   │       ├── dev-refactor-to-python
+│   └── info/ # DEBUG::num_dirs=0num_files=1
+│       ├── exclude
+```
