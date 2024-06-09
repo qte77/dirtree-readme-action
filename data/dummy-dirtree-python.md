@@ -542,3 +542,83 @@
         info/
             exclude
 ```
+
+```sh
+2024-06-09 22:01:29.001060+00:00
+└── data/
+    ├── dummy-dirtree-python.md
+└── app/
+    ├── app.py
+└── .github/
+│   └── workflows/
+│       ├── write-dirtree-to-file.yml
+│       ├── ruff.yml
+├── .git/
+    ├── description
+    ├── config
+    ├── index
+    ├── FETCH_HEAD
+    ├── config.worktree
+    ├── HEAD
+    ├── shallow
+│   └── branches/
+│   ├── refs/
+│   │   └── remotes/
+│   │   │   └── origin/
+│   │   │       ├── dev-refactor-to-python
+│   │   └── tags/
+│   │   └── heads/
+│   │       ├── dev-refactor-to-python
+│   └── hooks/
+│       ├── applypatch-msg.sample
+│       ├── post-update.sample
+│       ├── pre-applypatch.sample
+│       ├── update.sample
+│       ├── pre-push.sample
+│       ├── prepare-commit-msg.sample
+│       ├── pre-commit.sample
+│       ├── pre-merge-commit.sample
+│       ├── sendemail-validate.sample
+│       ├── pre-receive.sample
+│       ├── push-to-checkout.sample
+│       ├── commit-msg.sample
+│       ├── fsmonitor-watchman.sample
+│       ├── pre-rebase.sample
+│   ├── objects/
+│   │   └── f5/
+│   │       ├── 049e87858a2e67b5a1e871b19d7c010029e003
+│   │   └── 3e/
+│   │       ├── 705cbf7e9a4c56e4b473c26d9376f91f74aa80
+│   │   └── 82/
+│   │       ├── dae2eada06d3a9bb2b12f8305aa98c42b81310
+│   │   └── 8b/
+│   │       ├── 69664fd4fbf1f01a8f67a94e347e46b007e8eb
+│   │   └── 1e/
+│   │       ├── 42197a6bebfbea1bd8519b5f074bffdcfc3fe0
+│   │   └── info/
+│   │   └── 5c/
+│   │       ├── 3ac6ad0fbcc0afb05f0878c44b0b3ca2d73de6
+│   │   └── 0c/
+│   │       ├── 4a5660dcb64e167ab3ef8884d8449d3ffe3b88
+│   │   └── 03/
+│   │       ├── bd39e387dedaaa8dfe2c5178e99e5c8977a8db
+│   │   └── 65/
+│   │       ├── 8f5e9e3c523537ff2742618bb98cf7cdf21b34
+│   │   └── d2/
+│   │       ├── fd8dfc7770a70c2a6928a3616bba4f8c2c4a86
+│   │   └── pack/
+│   │   └── a3/
+│   │       ├── 407b0acf31f53b03116c1399b071bfbed0d15f
+│   │   └── 4f/
+│   │       ├── 55bd64a18d4b2be1cbc0f7ec3ea28054e315da
+│   └── logs/
+│       ├── HEAD
+│   │   ├── refs/
+│   │   │   └── remotes/
+│   │   │   │   └── origin/
+│   │   │   │       ├── dev-refactor-to-python
+│   │   │   └── heads/
+│   │   │       ├── dev-refactor-to-python
+│   └── info/
+│       ├── exclude
+```
