@@ -7,7 +7,7 @@ CMD_HIGHLIGHT = str(os.getenv("CMD_HIGHLIGHT", 'sh'))
 
 out = []
 startpath = '.'
-exclude_list = exclude.split('|')
+exclude_list = EXCLUDE.split('|')
 
 space =  '    '
 branch = '│   '
@@ -22,8 +22,8 @@ out.append(f"\n{datetime.now(timezone.utc)}")
 
 def find_exclusion_overlap(root: str, exclude_list: list) -> bool:
   '''Return True if any of exclude in root split by "/", else False'''
-  assert isinstance(root, str) and isinstance(exclude, list)
-  for ex in exclude:
+  assert isinstance(root, str) and isinstance(exclude_list, list)
+  for ex in exclude_list:
     if ex in root.split('/'):
       return True
   return False  
