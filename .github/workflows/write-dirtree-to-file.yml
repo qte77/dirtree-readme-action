@@ -8,7 +8,7 @@ on:
 env:
   OUT_FILE: 'data/dummy-dirtree-python.md'
   PY_VER: '3.10'
-  APP: '../app/app.py'
+  APP: 'app/app.py'
 jobs:
   writeDirtreeToFile:
     runs-on: ubuntu-latest
@@ -18,6 +18,7 @@ jobs:
       - name: Checkout file sparse mode
         uses: actions/checkout@v4
         with:
+          ref: ${{ GITHUB_REF_NAME }}
           sparse-checkout: ${{ env.OUT_FILE }}             
       - name: Setup python ${{ env.PY_VER }}
         uses: actions/setup-python@v5
