@@ -5,8 +5,8 @@ OUT_FILE = str(os.getenv("OUT_FILE", 'data/dummy-data.md'))
 EXCLUDE = str(os.getenv("EXCLUDE", '.git')) # separated by |
 CMD_HIGHLIGHT = str(os.getenv("CMD_HIGHLIGHT", 'sh'))
 
-k = 0
 out = []
+startpath = '.'
 
 if EXCLUDE is not None:
   EXCLUDE = EXCLUDE.split('|')
@@ -17,18 +17,14 @@ if not os.path.exists(OUT_FILE):
 
 out.append(f"\n{datetime.now(timezone.utc)}")
 
-for dirname, dirnames, filenames in os.walk('.'):
-  indent = "\t" * k
-  indent_f = "\t" * (k+1)
-  for ex in EXCLUDE:
-    if ex in dirnames:
-      dirnames.remove(ex)
-  for subdirname in dirnames:
-    dir = os.path.join(dirname, subdirname)
-    out.append(f"{indent}{dir}")
-  for filename in filenames:
-    file = os.path.join(dirname, filename)
-    out.append(f"{indent_f}{file}")
+# https://stackoverflow.com/a/9728478/list-directory-tree-structure-in-python
+for root, dirs, files in os.walk(startpath):
+    level = root.replace(startpath, '').count(os.sep)
+    indent = ' ' * 4 * (level)
+    out.append(f'{indent}{os.path.basename(root)}/')
+    subindent = ' ' * 4 * (level + 1)
+    for f in files:
+        out.append(f'{subindent}{f}')
 
 with open(OUT_FILE, 'a+', newline=None, encoding='UTF8') as f:
   f.write("\n```sh")
