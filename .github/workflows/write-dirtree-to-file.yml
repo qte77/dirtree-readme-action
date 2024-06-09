@@ -18,7 +18,7 @@ jobs:
       - name: Checkout file sparse mode
         uses: actions/checkout@v4
         with:
-          ref: ${{ GITHUB_REF_NAME }}
+          ref: ${{ github.ref_name }}
           sparse-checkout: ${{ env.OUT_FILE }}             
       - name: Setup python ${{ env.PY_VER }}
         uses: actions/setup-python@v5
