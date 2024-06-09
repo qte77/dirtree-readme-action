@@ -705,3 +705,86 @@
 │   │   └── info/
 │   │       ├── exclude
 ```
+
+```sh
+2024-06-09 22:14:33.405499+00:00
+./
+    ├── README.md
+    ├── LICENSE
+│   └── data/
+│       ├── dummy-dirtree-python.md
+│   └── app/
+│       ├── app.py
+│   └── .github/
+│   │   └── workflows/
+│   │       ├── write-dirtree-to-file.yml
+│   │       ├── ruff.yml
+│   ├── .git/
+│       ├── description
+│       ├── config
+│       ├── index
+│       ├── FETCH_HEAD
+│       ├── config.worktree
+│       ├── HEAD
+│       ├── shallow
+│   │   └── branches/
+│   │   ├── refs/
+│   │   │   └── remotes/
+│   │   │   │   └── origin/
+│   │   │   │       ├── dev-refactor-to-python
+│   │   │   └── tags/
+│   │   │   └── heads/
+│   │   │       ├── dev-refactor-to-python
+│   │   └── hooks/
+│   │       ├── applypatch-msg.sample
+│   │       ├── post-update.sample
+│   │       ├── pre-applypatch.sample
+│   │       ├── update.sample
+│   │       ├── pre-push.sample
+│   │       ├── prepare-commit-msg.sample
+│   │       ├── pre-commit.sample
+│   │       ├── pre-merge-commit.sample
+│   │       ├── sendemail-validate.sample
+│   │       ├── pre-receive.sample
+│   │       ├── push-to-checkout.sample
+│   │       ├── commit-msg.sample
+│   │       ├── fsmonitor-watchman.sample
+│   │       ├── pre-rebase.sample
+│   │   ├── objects/
+│   │   │   └── 21/
+│   │   │       ├── d88eb70d62d2617fa1276081ee250e273c6841
+│   │   │   └── 9c/
+│   │   │       ├── 3bd2970e01ed31018b59267521de7e497cfec3
+│   │   │   └── f2/
+│   │   │       ├── 42908e6ce35b0e616a1a1668d96ac251651291
+│   │   │   └── 98/
+│   │   │       ├── d868940334a2aa97a2ea4f845fe5020a7ead95
+│   │   │   └── 3e/
+│   │   │       ├── 705cbf7e9a4c56e4b473c26d9376f91f74aa80
+│   │   │   └── 82/
+│   │   │       ├── dae2eada06d3a9bb2b12f8305aa98c42b81310
+│   │   │   └── 49/
+│   │   │       ├── 858a3cfec219ea8a69e4e1e2fd99698495f0ba
+│   │   │   └── a5/
+│   │   │       ├── 39d98fc969913d7672b38292d29ca80ad090ed
+│   │   │   └── 1e/
+│   │   │       ├── 42197a6bebfbea1bd8519b5f074bffdcfc3fe0
+│   │   │   └── info/
+│   │   │   └── 5c/
+│   │   │       ├── 3ac6ad0fbcc0afb05f0878c44b0b3ca2d73de6
+│   │   │   └── 03/
+│   │   │       ├── bd39e387dedaaa8dfe2c5178e99e5c8977a8db
+│   │   │   └── pack/
+│   │   │   └── 4f/
+│   │   │       ├── 55bd64a18d4b2be1cbc0f7ec3ea28054e315da
+│   │   └── logs/
+│   │       ├── HEAD
+│   │   │   ├── refs/
+│   │   │   │   └── remotes/
+│   │   │   │   │   └── origin/
+│   │   │   │   │       ├── dev-refactor-to-python
+│   │   │   │   └── heads/
+│   │   │   │       ├── dev-refactor-to-python
+│   │   └── info/
+│   │       ├── exclude
+```
