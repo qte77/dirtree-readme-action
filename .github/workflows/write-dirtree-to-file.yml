@@ -23,10 +23,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PY_VER }}
-      - name: Print APP_DIR
-        shell: bash
-        run: echo "debug::${{ env.APP_DIR }}"
-      - run: python ${{ env.APP_DIR }}/app.py
+      - name: Debug APP_DIR
+        run: |
+          app_loc="${{ env.APP_DIR }}/app.py"
+          echo "debug::$app_loc"
+          python $app_loc
       - name: Push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
