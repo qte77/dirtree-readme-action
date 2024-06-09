@@ -954,3 +954,18 @@
 │   └── info/ # DEBUG::level=2,num_dirs=0,num_files=1
 │       └── exclude
 ```
+
+```sh
+2024-06-09 22:54:06.735510+00:00
+./ # DEBUG::level=0,num_dirs=4,num_files=2
+└── README.md
+└── LICENSE
+└── data/ # DEBUG::level=1,num_dirs=0,num_files=1
+└──     └── dummy-dirtree-python.md
+└── app/ # DEBUG::level=1,num_dirs=0,num_files=1
+└──     └── app.py
+└── .github/ # DEBUG::level=1,num_dirs=1,num_files=0
+│   └── workflows/ # DEBUG::level=2,num_dirs=0,num_files=2
+│   └──     ├── write-dirtree-to-file.yml
+│   └──     └── ruff.yml
+```
