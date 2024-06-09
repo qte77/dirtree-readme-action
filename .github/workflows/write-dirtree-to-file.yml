@@ -15,7 +15,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Checkout file sparse mode
+      - name: Checkout full branch
         uses: actions/checkout@v4
        # with:
        #   sparse-checkout: ${{ env.OUT_FILE }}             
@@ -24,12 +24,7 @@ jobs:
         with:
           python-version: ${{ env.PY_VER }}
       - name: Run ${{ env.APP }}
-        run: |
-          git branch -a
-          git status
-          git ls-files
-          ls -la
-          # python ${{ env.APP }}
+        run: python ${{ env.APP }}
       - name: Push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
