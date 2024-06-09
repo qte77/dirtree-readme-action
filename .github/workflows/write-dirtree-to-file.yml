@@ -9,6 +9,7 @@ env:
   OUT_FILE: 'data/dummy-dirtree-python.md'
   PY_VER: '3.10'
   APP: 'app/app.py'
+  GH_REF: ${{ github.ref_name }}
 jobs:
   writeDirtreeToFile:
     runs-on: ubuntu-latest
@@ -18,7 +19,7 @@ jobs:
       - name: Checkout file sparse mode
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ env.GH_REF }}
           sparse-checkout: ${{ env.OUT_FILE }}             
       - name: Setup python ${{ env.PY_VER }}
         uses: actions/setup-python@v5
@@ -27,9 +28,11 @@ jobs:
       - name: Run ${{ env.APP }}
         run: |
           ls -a
-          ls .. -a
-          ls ${{ env.APP }}
           which python
+          git branch -a
+          git checkout ${{ env.GH_REF }}
+          ls -a
+          ls ${{ env.APP }}
           # python ${{ env.APP }}
       - name: Push updated file back to main branch
         run: |
