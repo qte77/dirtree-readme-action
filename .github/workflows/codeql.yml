@@ -1,3 +1,4 @@
+---
 # https://github.blog/changelog/2023-01-18-code-scanning-codeql-action-v1-is-now-deprecated/
 name: "CodeQL"
 on:
@@ -38,3 +39,4 @@ jobs:
       uses: github/codeql-action/analyze@v2
     #- name: sarif
     #  uses: github/codeql-action/upload-sarif@v2
+...
