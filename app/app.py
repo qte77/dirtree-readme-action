@@ -9,10 +9,10 @@ out = []
 startpath = '.'
 exclude_list = EXCLUDE.split('|')
 
-space =  '    '
+space = '    '
 branch = '│   '
-tee =    '├── '
-last =   '└── '
+tee = '├── '
+last = '└── '
 
 if not os.path.exists(OUT_FILE):
   # folder needs to exist before open() context
