@@ -1,5 +1,4 @@
 from os import getenv
-from datetime import datetime, timezone
 from pathlib import Path
 from utils import get_tree_output
 
