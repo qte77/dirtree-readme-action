@@ -3,7 +3,7 @@ from pathlib import Path
 from utils import get_tree_output
 
 OUT_FILE = str(getenv("OUT_FILE", 'data/dummy-data.md'))
-EXCLUDE = str(getenv("EXCLUDE", '.git')) # separated by |
+EXCLUDE = str(getenv("EXCLUDE", '.git')) # string separated by |
 CMD_HIGHLIGHT = str(getenv("CMD_HIGHLIGHT", 'sh'))
 
 startpath = Path('.')
@@ -22,5 +22,5 @@ if not outfpath.parent.exists():
   outfpath.parent.mkdir(parents=True, exist_ok=True)
 
 with open(outfpath, 'a+', newline=None, encoding='UTF8') as f:
-  for o in get_tree_output(startpath):
+  for o in get_tree_output(startpath, EXCLUDE, CMD_HIGHLIGHT):
     f.write(f"{o}\n")
