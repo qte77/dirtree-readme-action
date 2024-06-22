@@ -5,16 +5,15 @@ from pathlib import Path
 
 def is_exclusion_in_path(path: Path, exclude_list: list) -> bool:
   '''Return True if any of exclude_list in path, else False'''
-  assert isinstance(path, Path) and isinstance(exclude_list, list)
-  parts = path.parts
-  print(parts)
-  for ex in exclude_list:
-    if ex in parts:
+  assert isinstance(path, Path)
+  assert isinstance(exclude_list, list)
+  for pt in path.parts:
+    if pt in exclude_list:
       return True
   return False
 
 # https://stackoverflow.com/questions/9727673/list-directory-tree-structure-in-python/59109706
-def generate_tree(path: Path, exclude_list: list, prefix: str=''):
+def generate_tree(path: Path, exclude_list: list, prefix: str = ''):
   '''
   A recursive generator, given a directory Path object
   will yield a visual tree structure line by line
