@@ -1005,3 +1005,96 @@
     └──     ├── write-dirtree-to-file.yml
     └──     └── codeql.yml
 ```
+
+```sh
+
+2024-06-22 22:59:21.817710+00:00
+├── app
+│   └── app.py
+├── data
+│   └── dummy-dirtree-python.md
+├── .git
+│   ├── index
+│   ├── FETCH_HEAD
+│   ├── branches
+│   ├── logs
+│   │   ├── HEAD
+│   │   └── refs
+│   │       ├── heads
+│   │       │   └── dev-fix-indentation
+│   │       └── remotes
+│   │           └── origin
+│   │               └── dev-fix-indentation
+│   ├── hooks
+│   │   ├── pre-commit.sample
+│   │   ├── commit-msg.sample
+│   │   ├── pre-rebase.sample
+│   │   ├── prepare-commit-msg.sample
+│   │   ├── pre-applypatch.sample
+│   │   ├── sendemail-validate.sample
+│   │   ├── applypatch-msg.sample
+│   │   ├── pre-push.sample
+│   │   ├── fsmonitor-watchman.sample
+│   │   ├── push-to-checkout.sample
+│   │   ├── pre-merge-commit.sample
+│   │   ├── post-update.sample
+│   │   ├── pre-receive.sample
+│   │   └── update.sample
+│   ├── shallow
+│   ├── config.worktree
+│   ├── description
+│   ├── objects
+│   │   ├── 5c
+│   │   │   └── 3ac6ad0fbcc0afb05f0878c44b0b3ca2d73de6
+│   │   ├── 82
+│   │   │   └── dae2eada06d3a9bb2b12f8305aa98c42b81310
+│   │   ├── 1e
+│   │   │   └── 42197a6bebfbea1bd8519b5f074bffdcfc3fe0
+│   │   ├── 3e
+│   │   │   └── 705cbf7e9a4c56e4b473c26d9376f91f74aa80
+│   │   ├── fe
+│   │   │   └── d859cf00c824a4b87cd27e2f93d7960db1f2ee
+│   │   ├── 3d
+│   │   │   └── ab69aa5d5b6cfce2126ed36ac98074e426b19c
+│   │   ├── 64
+│   │   │   └── a61e5a9de18697c0a45d4eb0921915581c5f44
+│   │   ├── bb
+│   │   │   └── 55fb78c615843b30ab7e9a0eeb8fed03014564
+│   │   ├── 9d
+│   │   │   └── fc8918d44e552d44f681f1e51f765136a64683
+│   │   ├── 6e
+│   │   │   └── f9af305dc26e5633a58461e0d861e43e093cb0
+│   │   ├── 48
+│   │   │   └── ee3efd4624f7fd06c196061199250a6ad0eb00
+│   │   ├── a5
+│   │   │   └── 2b1ea924bf457428ca39d9969f1fec68ed8b87
+│   │   ├── 79
+│   │   │   └── a2e10b8a8a6c8ef32aa2c19cc6a01c095cd5a3
+│   │   ├── info
+│   │   ├── pack
+│   │   ├── a0
+│   │   │   └── 2690983361ebfffc3b1763f0130a067c774932
+│   │   └── ff
+│   │       └── 7e2f11cf17b6a19c75db44e1fec966a84811db
+│   ├── HEAD
+│   ├── info
+│   │   └── exclude
+│   ├── config
+│   └── refs
+│       ├── tags
+│       ├── heads
+│       │   └── dev-fix-indentation
+│       └── remotes
+│           └── origin
+│               └── dev-fix-indentation
+├── README.md
+├── .gitignore
+├── LICENSE
+└── .github
+    ├── dependabot.yml
+    └── workflows
+        ├── ruff.yml
+        ├── write-dirtree-to-file.yml
+        └── codeql.yml
+```
+
