@@ -1,5 +1,8 @@
 '''Contains utility functions for Github dirtree-readme-action'''
 
+from datetime import datetime, timezone
+from pathlib import Path
+
 def is_exclusion_in_path(path: Path, exclude_list: list) -> bool:
   '''Return True if any of exclude_list in path, else False'''
   assert isinstance(path, Path) and isinstance(exclude_list, list)
