@@ -32,10 +32,10 @@ def generate_tree(path: Path, prefix: str=''):
           prefix += extension
           yield from generate_tree(path, prefix)
 
-def get_tree_output(startpath: Path) -> list:
+def get_tree_output(startpath: Path, cmd_highlight: str) -> list:
   '''Returns a list of startpath and its children'''
   out = []
-  out.append(f"\n```{CMD_HIGHLIGHT}")
+  out.append(f"\n```{cmd_highlight}")
   out.append(f"\n{datetime.now(timezone.utc)}")
   for line in generate_tree(startpath):
       out.append(line)
