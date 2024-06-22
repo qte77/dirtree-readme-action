@@ -18,9 +18,9 @@ last = '└── '
 
 assert exists(startpath), f"{startpath} not found. Aborting"
 
-def find_exclusion_overlap(root: str, exclude_list: list) -> bool:
+def find_exclusion_overlap(path: Path, exclude_list: list) -> bool:
   '''Return True if any of exclude in root split by "/", else False'''
-  assert isinstance(root, str) and isinstance(exclude_list, list)
+  assert isinstance(path, Path) and isinstance(exclude_list, list)
   for ex in exclude_list:
     if ex in root.split('/'):
       return True
