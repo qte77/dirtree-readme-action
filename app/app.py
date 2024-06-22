@@ -1,9 +1,11 @@
-import os
+from os import getenv, makedirs 
+from os.path import dirname, exists
 from datetime import datetime, timezone
+from pathlib import Path
 
-OUT_FILE = str(os.getenv("OUT_FILE", 'data/dummy-data.md'))
-EXCLUDE = str(os.getenv("EXCLUDE", '.git')) # separated by |
-CMD_HIGHLIGHT = str(os.getenv("CMD_HIGHLIGHT", 'sh'))
+OUT_FILE = str(getenv("OUT_FILE", 'data/dummy-data.md'))
+EXCLUDE = str(getenv("EXCLUDE", '.git')) # separated by |
+CMD_HIGHLIGHT = str(getenv("CMD_HIGHLIGHT", 'sh'))
 
 out = []
 startpath = '.'
@@ -14,9 +16,9 @@ branch = '│   '
 tee = '├── '
 last = '└── '
 
-if not os.path.exists(OUT_FILE):
+if not exists(OUT_FILE):
   # folder needs to exist before open() context
-  os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
+  makedirs(dirname(OUT_FILE), exist_ok=True)
 
 out.append(f"\n{datetime.now(timezone.utc)}")
 
