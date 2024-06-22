@@ -33,15 +33,18 @@ def generate_tree(path: Path, exclude_list: list, prefix: str = ''):
       yield prefix + pointer + path.name
       if path.is_dir():
           extension = branch if pointer == tee else space
-          prefix += extension
-          yield from generate_tree(path, exclude_list, prefix)
+          yield from generate_tree(
+            path, exclude_list, prefix + extension
+          )
 
-def get_tree_output(startpath: Path, exclude_list: list, cmd_highlight: str) -> list:
+def get_tree_output(
+  startpath: Path, exclude_list: list, cmd_highlight: str
+) -> list:
   '''Returns a list of startpath and its children'''
   out = []
-  out.append(f"\n```{cmd_highlight}")
-  out.append(f"\n{datetime.now(timezone.utc)}")
+  out.append(f"\n```{cmd_highlight}\n")
+  out.append(f"\n{datetime.now(timezone.utc)}\n")
   for line in generate_tree(startpath, exclude_list):
-      out.append(line)
+      out.append(f"{line}\n")
   out.append("```\n")
   return out
