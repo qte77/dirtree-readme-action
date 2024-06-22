@@ -18,4 +18,4 @@ if not outfpath.parent.exists():
 
 with open(outfpath, 'a+', newline=None, encoding='UTF8') as f:
   for o in get_tree_output(startpath, exclude_list, CMD_HIGHLIGHT):
-    f.write(f"{o}\n")
+    f.write(o)
