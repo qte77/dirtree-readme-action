@@ -969,3 +969,21 @@
 │   └──     ├── write-dirtree-to-file.yml
 │   └──     └── ruff.yml
 ```
+
+```sh
+2024-06-22 21:41:51.385173+00:00
+./ # DEBUG::level=0,num_dirs=4,num_files=3
+└── README.md
+└── .gitignore
+└── LICENSE
+    └── app/ # DEBUG::level=1,num_dirs=0,num_files=1
+    └──     └── app.py
+    └── data/ # DEBUG::level=1,num_dirs=0,num_files=1
+    └──     └── dummy-dirtree-python.md
+    └── .github/ # DEBUG::level=1,num_dirs=1,num_files=1
+    └──     └── dependabot.yml
+    └── workflows/ # DEBUG::level=2,num_dirs=0,num_files=3
+    └──     ├── ruff.yml
+    └──     ├── write-dirtree-to-file.yml
+    └──     └── codeql.yml
+```
