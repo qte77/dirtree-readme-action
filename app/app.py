@@ -21,8 +21,10 @@ assert startpath.exists(), f"{startpath} not found. Aborting"
 def find_exclusion_overlap(path: Path, exclude_list: list) -> bool:
   '''Return True if any of exclude in path split by "/", else False'''
   assert isinstance(path, Path) and isinstance(exclude_list, list)
+  parts = path.parts
+  print(parts)
   for ex in exclude_list:
-    if ex in path.parts:
+    if ex in parts:
       return True
   return False
 
