@@ -1,7 +1,7 @@
 from os import getenv
 from datetime import datetime, timezone
 from pathlib import Path
-import .utils
+from .utils import get_tree_output
 
 OUT_FILE = str(getenv("OUT_FILE", 'data/dummy-data.md'))
 EXCLUDE = str(getenv("EXCLUDE", '.git')) # separated by |
@@ -23,5 +23,5 @@ if not outfpath.parent.exists():
   outfpath.parent.mkdir(parents=True, exist_ok=True)
 
 with open(outfpath, 'a+', newline=None, encoding='UTF8') as f:
-  for o in get_tree(startpath):
+  for o in get_tree_output(startpath):
     f.write(f"{o}\n")
