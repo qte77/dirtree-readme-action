@@ -3,7 +3,7 @@ from pathlib import Path
 from utils import get_tree_output
 
 OUT_FILE = str(getenv("OUT_FILE", 'data/dummy-data.md'))
-EXCLUDE = str(getenv("EXCLUDE", '.git')) # string separated by |
+EXCLUDE = str(getenv("EXCLUDE", '.git|__pycache__')) # string separated by |
 CMD_HIGHLIGHT = str(getenv("CMD_HIGHLIGHT", 'sh'))
 
 startpath = Path('.')
