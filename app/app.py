@@ -36,7 +36,7 @@ for root, dirs, files in os.walk(startpath):
     level = root.replace(startpath, '').count(os.sep)
     num_dirs = len(dirs)
     num_files = len(files)
-    indent = branch * (level-1)
+    indent = branch * (level-1) if if num_dirs > 1 else space
     indent_d = indent if level < 1 else indent + ( tee if num_dirs > 1 else last )
     out.append(f'{indent_d}{os.path.basename(root)}/ # DEBUG::{level=},{num_dirs=},{num_files=}')
     for i, f in enumerate(files):
@@ -44,7 +44,7 @@ for root, dirs, files in os.walk(startpath):
       out.append(f'{indent_f}{f}')
 
 with open(OUT_FILE, 'a+', newline=None, encoding='UTF8') as f:
-  f.write("\n```sh")
+  f.write(f"\n```{CMD_HIGHLIGHT}")
   for o in out: # reversed(out):
     f.write(f"{o}\n")
   f.write("```\n")
