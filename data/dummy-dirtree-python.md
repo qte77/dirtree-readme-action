@@ -1191,3 +1191,23 @@
         └── codeql.yml
 ```
 
+
+```sh
+
+2024-06-22 23:07:37.832145+00:00
+├── app
+│   └── app.py
+├── data
+│   └── dummy-dirtree-python.md
+├── .git
+├── README.md
+├── .gitignore
+├── LICENSE
+└── .github
+    ├── dependabot.yml
+    └── workflows
+        ├── ruff.yml
+        ├── write-dirtree-to-file.yml
+        └── codeql.yml
+```
+
