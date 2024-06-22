@@ -1,5 +1,4 @@
-from os import getenv, makedirs 
-from os.path import dirname
+from os import getenv
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -9,6 +8,7 @@ CMD_HIGHLIGHT = str(getenv("CMD_HIGHLIGHT", 'sh'))
 
 out = []
 startpath = Path('.')
+outfpath = Path(OUT_FILE)
 exclude_list = EXCLUDE.split('|')
 
 space = '    '
@@ -44,9 +44,9 @@ def tree(path: Path, prefix: str=''):
             extension = branch if pointer == tee else space 
             yield from tree(path, prefix=prefix+extension)
 
-if not exists(OUT_FILE):
+if not outfpath.parent.exists():
   # folder needs to exist before open() context
-  makedirs(dirname(OUT_FILE), exist_ok=True)
+  outfpath.parent.mkdir(parents=True, exist_ok=True)
 
 out.append(f"\n```{CMD_HIGHLIGHT}")
 out.append(f"\n{datetime.now(timezone.utc)}")
@@ -54,6 +54,6 @@ for line in tree(startpath):
     out.append(line)
 out.append("```\n")
 
-with open(OUT_FILE, 'a+', newline=None, encoding='UTF8') as f:
+with open(outfpath, 'a+', newline=None, encoding='UTF8') as f:
   for o in out: # reversed(out):
     f.write(f"{o}\n")
