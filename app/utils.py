@@ -29,7 +29,7 @@ def generate_tree(path: Path, prefix: str=''):
           prefix += extension
           yield from generate_tree(path, prefix)
 
-def get_tree(startpath: Path) -> list:
+def get_tree_output(startpath: Path) -> list:
   '''Returns a list of startpath and its children'''
   out = []
   out.append(f"\n```{CMD_HIGHLIGHT}")
