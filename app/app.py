@@ -6,7 +6,6 @@ OUT_FILE = str(getenv("OUT_FILE", 'data/dummy-data.md'))
 EXCLUDE = str(getenv("EXCLUDE", '.git')) # separated by |
 CMD_HIGHLIGHT = str(getenv("CMD_HIGHLIGHT", 'sh'))
 
-out = []
 startpath = Path('.')
 outfpath = Path(OUT_FILE)
 exclude_list = EXCLUDE.split('|')
@@ -34,9 +33,9 @@ def tree(path: Path, prefix: str=''):
     A recursive generator, given a directory Path object
     will yield a visual tree structure line by line
     with each line prefixed by the same characters
-    """    
+    """
     if find_exclusion_overlap(path, exclude_list):
-      pass
+      return None
     contents = list(path.iterdir())
     # contents each get pointers that are ├── with a final └── :
     pointers = [tee] * (len(contents) - 1) + [last]
@@ -46,16 +45,19 @@ def tree(path: Path, prefix: str=''):
             extension = branch if pointer == tee else space 
             yield from tree(path, prefix=prefix+extension)
 
+def get_tree(startpath: Path):
+  out = []
+  out.append(f"\n```{CMD_HIGHLIGHT}")
+  out.append(f"\n{datetime.now(timezone.utc)}")
+  for line in tree(startpath):
+      out.append(line)
+  out.append("```\n")
+  return out
+
 if not outfpath.parent.exists():
   # folder needs to exist before open() context
   outfpath.parent.mkdir(parents=True, exist_ok=True)
 
-out.append(f"\n```{CMD_HIGHLIGHT}")
-out.append(f"\n{datetime.now(timezone.utc)}")
-for line in tree(startpath):
-    out.append(line)
-out.append("```\n")
-
 with open(outfpath, 'a+', newline=None, encoding='UTF8') as f:
-  for o in out: # reversed(out):
+  for o in get_tree(startpath):
     f.write(f"{o}\n")
