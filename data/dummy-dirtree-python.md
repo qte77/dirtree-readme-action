@@ -1298,3 +1298,12 @@
         ├── write-dirtree-to-file.yml
         └── codeql.yml
 ```
+
+```sh
+
+2024-06-23 00:12:16.065573+00:00
+├── app
+│   ├── utils.py
+├── data
+│   └── dummy-dirtree-python.md
+```
