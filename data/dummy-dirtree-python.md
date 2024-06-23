@@ -969,3 +969,360 @@
 │   └──     ├── write-dirtree-to-file.yml
 │   └──     └── ruff.yml
 ```
+
+```sh
+2024-06-22 21:41:51.385173+00:00
+./ # DEBUG::level=0,num_dirs=4,num_files=3
+└── README.md
+└── .gitignore
+└── LICENSE
+    └── app/ # DEBUG::level=1,num_dirs=0,num_files=1
+    └──     └── app.py
+    └── data/ # DEBUG::level=1,num_dirs=0,num_files=1
+    └──     └── dummy-dirtree-python.md
+    └── .github/ # DEBUG::level=1,num_dirs=1,num_files=1
+    └──     └── dependabot.yml
+    └── workflows/ # DEBUG::level=2,num_dirs=0,num_files=3
+    └──     ├── ruff.yml
+    └──     ├── write-dirtree-to-file.yml
+    └──     └── codeql.yml
+```
+
+```sh
+2024-06-22 21:46:08.228828+00:00
+./ # DEBUG::level=0,num_dirs=4,num_files=3
+└── README.md
+└── .gitignore
+└── LICENSE
+└── app/ # DEBUG::level=1,num_dirs=0,num_files=1
+└──     └── app.py
+└── data/ # DEBUG::level=1,num_dirs=0,num_files=1
+└──     └── dummy-dirtree-python.md
+└── .github/ # DEBUG::level=1,num_dirs=1,num_files=1
+└──     └── dependabot.yml
+    └── workflows/ # DEBUG::level=2,num_dirs=0,num_files=3
+    └──     ├── ruff.yml
+    └──     ├── write-dirtree-to-file.yml
+    └──     └── codeql.yml
+```
+
+```sh
+
+2024-06-22 22:59:21.817710+00:00
+├── app
+│   └── app.py
+├── data
+│   └── dummy-dirtree-python.md
+├── .git
+│   ├── index
+│   ├── FETCH_HEAD
+│   ├── branches
+│   ├── logs
+│   │   ├── HEAD
+│   │   └── refs
+│   │       ├── heads
+│   │       │   └── dev-fix-indentation
+│   │       └── remotes
+│   │           └── origin
+│   │               └── dev-fix-indentation
+│   ├── hooks
+│   │   ├── pre-commit.sample
+│   │   ├── commit-msg.sample
+│   │   ├── pre-rebase.sample
+│   │   ├── prepare-commit-msg.sample
+│   │   ├── pre-applypatch.sample
+│   │   ├── sendemail-validate.sample
+│   │   ├── applypatch-msg.sample
+│   │   ├── pre-push.sample
+│   │   ├── fsmonitor-watchman.sample
+│   │   ├── push-to-checkout.sample
+│   │   ├── pre-merge-commit.sample
+│   │   ├── post-update.sample
+│   │   ├── pre-receive.sample
+│   │   └── update.sample
+│   ├── shallow
+│   ├── config.worktree
+│   ├── description
+│   ├── objects
+│   │   ├── 5c
+│   │   │   └── 3ac6ad0fbcc0afb05f0878c44b0b3ca2d73de6
+│   │   ├── 82
+│   │   │   └── dae2eada06d3a9bb2b12f8305aa98c42b81310
+│   │   ├── 1e
+│   │   │   └── 42197a6bebfbea1bd8519b5f074bffdcfc3fe0
+│   │   ├── 3e
+│   │   │   └── 705cbf7e9a4c56e4b473c26d9376f91f74aa80
+│   │   ├── fe
+│   │   │   └── d859cf00c824a4b87cd27e2f93d7960db1f2ee
+│   │   ├── 3d
+│   │   │   └── ab69aa5d5b6cfce2126ed36ac98074e426b19c
+│   │   ├── 64
+│   │   │   └── a61e5a9de18697c0a45d4eb0921915581c5f44
+│   │   ├── bb
+│   │   │   └── 55fb78c615843b30ab7e9a0eeb8fed03014564
+│   │   ├── 9d
+│   │   │   └── fc8918d44e552d44f681f1e51f765136a64683
+│   │   ├── 6e
+│   │   │   └── f9af305dc26e5633a58461e0d861e43e093cb0
+│   │   ├── 48
+│   │   │   └── ee3efd4624f7fd06c196061199250a6ad0eb00
+│   │   ├── a5
+│   │   │   └── 2b1ea924bf457428ca39d9969f1fec68ed8b87
+│   │   ├── 79
+│   │   │   └── a2e10b8a8a6c8ef32aa2c19cc6a01c095cd5a3
+│   │   ├── info
+│   │   ├── pack
+│   │   ├── a0
+│   │   │   └── 2690983361ebfffc3b1763f0130a067c774932
+│   │   └── ff
+│   │       └── 7e2f11cf17b6a19c75db44e1fec966a84811db
+│   ├── HEAD
+│   ├── info
+│   │   └── exclude
+│   ├── config
+│   └── refs
+│       ├── tags
+│       ├── heads
+│       │   └── dev-fix-indentation
+│       └── remotes
+│           └── origin
+│               └── dev-fix-indentation
+├── README.md
+├── .gitignore
+├── LICENSE
+└── .github
+    ├── dependabot.yml
+    └── workflows
+        ├── ruff.yml
+        ├── write-dirtree-to-file.yml
+        └── codeql.yml
+```
+
+
+```sh
+
+2024-06-22 23:02:37.526804+00:00
+├── app
+│   └── app.py
+├── data
+│   └── dummy-dirtree-python.md
+├── .git
+│   ├── index
+│   ├── FETCH_HEAD
+│   ├── branches
+│   ├── logs
+│   │   ├── HEAD
+│   │   └── refs
+│   │       ├── heads
+│   │       │   └── dev-fix-indentation
+│   │       └── remotes
+│   │           └── origin
+│   │               └── dev-fix-indentation
+│   ├── hooks
+│   │   ├── pre-commit.sample
+│   │   ├── commit-msg.sample
+│   │   ├── pre-rebase.sample
+│   │   ├── prepare-commit-msg.sample
+│   │   ├── pre-applypatch.sample
+│   │   ├── sendemail-validate.sample
+│   │   ├── applypatch-msg.sample
+│   │   ├── pre-push.sample
+│   │   ├── fsmonitor-watchman.sample
+│   │   ├── push-to-checkout.sample
+│   │   ├── pre-merge-commit.sample
+│   │   ├── post-update.sample
+│   │   ├── pre-receive.sample
+│   │   └── update.sample
+│   ├── shallow
+│   ├── config.worktree
+│   ├── description
+│   ├── objects
+│   │   ├── fb
+│   │   │   └── 218d045732190ad1c1a6b3080cbd06f5ea9361
+│   │   ├── 5c
+│   │   │   └── 3ac6ad0fbcc0afb05f0878c44b0b3ca2d73de6
+│   │   ├── 82
+│   │   │   └── dae2eada06d3a9bb2b12f8305aa98c42b81310
+│   │   ├── 1e
+│   │   │   └── 42197a6bebfbea1bd8519b5f074bffdcfc3fe0
+│   │   ├── 3e
+│   │   │   └── 705cbf7e9a4c56e4b473c26d9376f91f74aa80
+│   │   ├── 64
+│   │   │   └── a61e5a9de18697c0a45d4eb0921915581c5f44
+│   │   ├── 1f
+│   │   │   └── 23ae9f3ee3bc305f62d38e03caaced58248572
+│   │   ├── bb
+│   │   │   └── 55fb78c615843b30ab7e9a0eeb8fed03014564
+│   │   ├── 9d
+│   │   │   └── fc8918d44e552d44f681f1e51f765136a64683
+│   │   ├── 67
+│   │   │   └── 80911b7b769532898191b01b9a3e39f6949988
+│   │   ├── 6e
+│   │   │   └── f9af305dc26e5633a58461e0d861e43e093cb0
+│   │   ├── a3
+│   │   │   └── 4c305af72ac2bceb4e75cea88a146997f5ee65
+│   │   ├── 48
+│   │   │   └── ee3efd4624f7fd06c196061199250a6ad0eb00
+│   │   ├── info
+│   │   ├── pack
+│   │   ├── 3f
+│   │   │   └── c8efe24ab2fc025034ed5c140bcd63f51679fd
+│   │   └── f6
+│   │       └── 33616df7adf746a4e710989d1e144c93406596
+│   ├── HEAD
+│   ├── info
+│   │   └── exclude
+│   ├── config
+│   └── refs
+│       ├── tags
+│       ├── heads
+│       │   └── dev-fix-indentation
+│       └── remotes
+│           └── origin
+│               └── dev-fix-indentation
+├── README.md
+├── .gitignore
+├── LICENSE
+└── .github
+    ├── dependabot.yml
+    └── workflows
+        ├── ruff.yml
+        ├── write-dirtree-to-file.yml
+        └── codeql.yml
+```
+
+
+```sh
+
+2024-06-22 23:07:37.832145+00:00
+├── app
+│   └── app.py
+├── data
+│   └── dummy-dirtree-python.md
+├── .git
+├── README.md
+├── .gitignore
+├── LICENSE
+└── .github
+    ├── dependabot.yml
+    └── workflows
+        ├── ruff.yml
+        ├── write-dirtree-to-file.yml
+        └── codeql.yml
+```
+
+
+```sh
+
+2024-06-22 23:43:55.795630+00:00
+├── app
+│   ├── utils.py
+│   ├── __pycache__
+│   │   └── utils.cpython-310.pyc
+│   │   └── app.py
+│   ├── data
+│   │   └── dummy-dirtree-python.md
+│   │   ├── .git
+│   │   │   ├── README.md
+│   │   │   ├── .gitignore
+│   │   │   ├── LICENSE
+│   │   │   └── .github
+│   │   │       ├── dependabot.yml
+│   │   │       └── workflows
+│   │   │           ├── ruff.yml
+│   │   │           ├── write-dirtree-to-file.yml
+│   │   │           └── codeql.yml
+```
+
+
+```sh
+
+2024-06-22 23:54:40.494680+00:00
+├── app
+│   ├── utils.py
+│   ├── __pycache__
+│   │   └── utils.cpython-310.pyc
+│   └── app.py
+├── data
+│   └── dummy-dirtree-python.md
+├── .git
+├── README.md
+├── .gitignore
+├── LICENSE
+└── .github
+    ├── dependabot.yml
+    └── workflows
+        ├── ruff.yml
+        ├── write-dirtree-to-file.yml
+        └── codeql.yml
+```
+
+```sh
+
+2024-06-22 23:57:46.186412+00:00
+├── app
+│   ├── utils.py
+│   ├── __pycache__
+│   └── app.py
+├── data
+│   └── dummy-dirtree-python.md
+├── .git
+├── README.md
+├── .gitignore
+├── LICENSE
+└── .github
+    ├── dependabot.yml
+    └── workflows
+        ├── ruff.yml
+        ├── write-dirtree-to-file.yml
+        └── codeql.yml
+```
+
+```sh
+
+2024-06-23 00:03:15.599492+00:00
+├── app
+│   ├── utils.py
+│   ├── __pycache__
+│   └── app.py
+├── data
+│   └── dummy-dirtree-python.md
+├── .git
+├── README.md
+├── .gitignore
+├── LICENSE
+└── .github
+    ├── dependabot.yml
+    └── workflows
+        ├── ruff.yml
+        ├── write-dirtree-to-file.yml
+        └── codeql.yml
+```
+
+```sh
+
+2024-06-23 00:12:16.065573+00:00
+├── app
+│   ├── utils.py
+├── data
+│   └── dummy-dirtree-python.md
+```
+
+```sh
+
+2024-06-23 00:15:48.919555+00:00
+├── app
+│   ├── utils.py
+│   └── app.py
+├── data
+│   └── dummy-dirtree-python.md
+├── README.md
+├── .gitignore
+├── LICENSE
+└── .github
+    ├── dependabot.yml
+    └── workflows
+        ├── ruff.yml
+        ├── write-dirtree-to-file.yml
+        └── codeql.yml
+```
