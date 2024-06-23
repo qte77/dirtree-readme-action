@@ -24,17 +24,18 @@ def generate_tree(path: Path, exclude_list: list, prefix: str = ''):
   will yield a visual tree structure line by line
   with each line prefixed by the same characters
   '''
-  if not is_exclusion_in_path(path, exclude_list):
-    contents = list(path.iterdir())
-    # contents each get pointers that are ├── with a final └── :
-    pointers = [tee] * (len(contents) - 1) + [last]
-    for pointer, path in zip(pointers, contents):
-        yield prefix + pointer + path.name
-        if path.is_dir():
-            extension = branch if pointer == tee else space
-            yield from generate_tree(
-              path, exclude_list, prefix + extension
-            )
+  contents = list(path.iterdir())
+  # contents each get pointers that are ├── with a final └── :
+  pointers = [tee] * (len(contents) - 1) + [last]
+  for pointer, path in zip(pointers, contents):
+    if is_exclusion_in_path(path, exclude_list):
+      return None
+    yield prefix + pointer + path.name
+    if path.is_dir():
+        extension = branch if pointer == tee else space
+        yield from generate_tree(
+          path, exclude_list, prefix + extension
+        )
 
 def get_tree_output(
   startpath: Path, exclude_list: list, cmd_highlight: str
