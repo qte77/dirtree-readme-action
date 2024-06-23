@@ -12,7 +12,7 @@ Copy directory tree into README.md instead of manual effort.
 Used environment variables and their defaults.
 
 ```python
-APP ('app/app.py'')
+APP ('app/app.py')
 PY_VER ('3.10')
 OUT_FILE ('data/dummy-data.md')
 EXCLUDE ('.git|__pycache__') # separated by |
