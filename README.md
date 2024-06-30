@@ -11,11 +11,12 @@ Copy directory tree into README.md instead of manual effort.
 
 Used environment variables and their defaults.
 
-```python
-APP ('app/app.py')
-PY_VER ('3.10')
-OUT_FILE ('data/dummy-readme.md')
-EXCLUDE ('.git|__pycache__') # separated by |
-CMD_HIGHLIGHT ('sh')
-INSERT_HERE_STRING ('<!-- DIRTREE-README-ACTION-INSERT-HERE -->')
-```
+| Name | Default |
+| - | - |
+| APP | 'app/app.py' |
+| PY_VER | '3.10' |
+| OUT_FILE | 'data/dummy-readme.md' |
+| EXCLUDE | '.git\|\_\_pycache\_\_' # separated by \| |
+| CMD_HIGHLIGHT | 'sh' |
+| INSERT_HERE_START_STRING | '<\!-- DIRTREE-README-ACTION-INSERT-HERE-START -->' |
+| INSERT_HERE_END_STRING | '<\!-- DIRTREE-README-ACTION-INSERT-HERE-END -->' |
