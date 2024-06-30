@@ -2,7 +2,7 @@ from os import getenv
 from pathlib import Path
 from utils import get_tree_output
 
-OUT_FILE = str(getenv("OUT_FILE", 'data/dummy-readme.md'))
+OUT_FILE = str(getenv("OUT_FILE", 'README.md'))
 EXCLUDE = str(getenv("EXCLUDE", '.git|__pycache__')) # string separated by |
 CMD_HIGHLIGHT = str(getenv("CMD_HIGHLIGHT", 'sh'))
 INSERT_HERE_STRING = str(getenv("INSERT_HERE_STRING", '<!-- DIRTREE-README-ACTION-INSERT-HERE -->'))
