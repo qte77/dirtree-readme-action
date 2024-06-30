@@ -35,11 +35,12 @@ with open(outfpath, 'w+') as f:
     elif INSERT_END_HERE_STRING in line and sdx and edx is None:
       edx = index
       break
+  print(f"{sdx=}, {edx=}, {dirtree[0]=}, {dirtree[-1]=}")
+  f.seek(0)
   for index, line in enumerate(f):
     if index <= sdx or index >= edx:
       f.write(line)    
     elif not printed:
-      print(f"{sdx=}, {edx=}, {dirtree[0]=}, {dirtree[-1]=}")
       for o in dirtree:
         f.write(o)
       printed = True
