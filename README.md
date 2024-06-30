@@ -12,9 +12,11 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 | Name | Default |
 | - | - |
 | APP | 'app/app.py' |
-| PY_VER | '3.10' |
-| OUT_FILE | 'data/dummy-readme.md' |
-| EXCLUDE | '.git\|\_\_pycache\_\_' # separated by \| |
 | CMD_HIGHLIGHT | 'sh' |
+| EXCLUDE | '.git\|\_\_pycache\_\_' # separated by \| |
+| GH_EMAIL | 'action@github.com' |
+| GH_NAME | 'GitHub Action' |
 | INSERT_HERE_START_STRING | '<\!-- DIRTREE-README-ACTION-INSERT-HERE-START -->' |
 | INSERT_HERE_END_STRING | '<\!-- DIRTREE-README-ACTION-INSERT-HERE-END -->' |
+| OUT_FILE | 'data/dummy-readme.md' |
+| PY_VER | '3.10' |
