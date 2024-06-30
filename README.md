@@ -14,7 +14,8 @@ Used environment variables and their defaults.
 ```python
 APP ('app/app.py')
 PY_VER ('3.10')
-OUT_FILE ('data/dummy-data.md')
+OUT_FILE ('data/dummy-readme.md')
 EXCLUDE ('.git|__pycache__') # separated by |
 CMD_HIGHLIGHT ('sh')
+INSERT_HERE_STRING ('<!-- DIRTREE-README-ACTION-INSERT-HERE -->')
 ```
