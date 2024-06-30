@@ -6,7 +6,9 @@ This project is not very cool not
 
 App structure should apear below
 
-<!-- DIRTREE-README-ACTION-INSERT-HERE -->
+<!-- DIRTREE-README-ACTION-INSERT-START-HERE -->
+this has to go
+<!-- DIRTREE-README-ACTION-INSERT-END-HERE -->
 
 ## Other stuff
 
