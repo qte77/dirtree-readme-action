@@ -26,18 +26,16 @@ dirtree = get_tree_output(startpath, exclude_list, CMD_HIGHLIGHT)
 
 with open(outfpath, 'r+') as f:
   # TODO remove redundant line loop
-  # TODO 
   # will not insert, if no match and will only insert after first match
   # will delete content between START and END
   sdx, edx = None, None
   for index, line in enumerate(f):
-    print(f"{index=}, {line=}")
     if INSERT_START_HERE_STRING in line and sdx is None:
       sdx = index
-      print(f"{sdx}, {dirtree[0]=}, {contents[index + 1]=}")
+      print(f"{sdx}, {dirtree[0]=}")
     elif INSERT_END_HERE_STRING in line and sdx and edx is None:
       edx = index
-      print(f"{edx=}, {dirtree[0]=}, {contents[index + 1]=}")
+      print(f"{sdx}, {dirtree[0]=}")
       break
   for index, line in enumerate(f):
     if index <= sdx or index >= edx:
