@@ -25,21 +25,22 @@ if not outfpath.parent.exists():
 # try except
 dirtree = get_tree_output(startpath, exclude_list, CMD_HIGHLIGHT)
 
-with open(outfpath, 'w+') as f:
+with open(outfpath, 'r+') as f:
   # TODO remove redundant line loop if possible
   # will replace content between indices of first START and END
   # will only insert between START and END
   # will not insert if no match of START and END
   sdx, edx, printed = None, None, False
   for index, line in enumerate(f):
-    if line.startswith(INSERT_HERE_START_STRING):
+    print(f"{sdx=}, {edx=}, {index=}, {line=}")
+    if line.startswith(INSERT_HERE_START_STRING) and sdx is None:
       sdx = index
       print(f"{sdx=}")
     elif line.startswith(INSERT_HERE_END_STRING) and sdx and edx is None:
       edx = index
       print(f"{edx=}")
       break
-  print(f"{sdx=}, {edx=}, {dirtree[0]=}, {dirtree[-1]=}")
+  f.seek(0)
   if sdx and edx:
     for index, line in enumerate(f):
       if index <= sdx or index >= edx:
