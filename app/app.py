@@ -18,15 +18,16 @@ if not outfpath.parent.exists():
   outfpath.parent.mkdir(parents=True, exist_ok=True)
 
 dirtree = get_tree_output(startpath, exclude_list, CMD_HIGHLIGHT)
+print(dirtree)
 
 with open(outfpath, 'r+') as f:
   contents = f.readlines()
   # will not insert, if no match of INSERT_HERE_STRING
   # will only insert after first match
   for index, line in enumerate(contents):
+    print(f"{index=}, {line=}")
     if INSERT_HERE_STRING in line: # and dirtree[0] not in contents[index + 1]:
-      print(dirtree)
-      print(f"{dirtree[0]}, {contents[index + 1]}")
+      print(f"{dirtree[0]=}, {contents[index + 1]=}")
       contents.insert(index + 1, dirtree)
       break
   f.seek(0)
