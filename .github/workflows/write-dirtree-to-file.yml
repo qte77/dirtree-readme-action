@@ -9,6 +9,8 @@ env:
   OUT_FILE: 'data/dummy-dirtree-python.md'
   PY_VER: '3.10'
   APP: 'app/app.py'
+  GH_EMAIL: "action@github.com"
+  GH_NAME: "GitHub Action"
 jobs:
   writeDirtreeToFile:
     runs-on: ubuntu-latest
@@ -25,10 +27,10 @@ jobs:
           python-version: ${{ env.PY_VER }}
       - name: Run ${{ env.APP }}
         run: python ${{ env.APP }}
-      - name: Push updated file back to main branch
+      - name: Push ${{ env.OUT_FILE }} to ${{ github.ref_name }}
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email $GH_EMAIL
+          git config --local user.name $GH_NAME
           git add "$OUT_FILE"
           git commit -m "Updated $OUT_FILE"
           git push
