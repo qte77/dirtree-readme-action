@@ -5,11 +5,11 @@ from utils import get_tree_output
 OUT_FILE = str(getenv("OUT_FILE", 'README.md'))
 EXCLUDE = str(getenv("EXCLUDE", '.git|__pycache__')) # string separated by |
 CMD_HIGHLIGHT = str(getenv("CMD_HIGHLIGHT", 'sh'))
-INSERT_START_HERE_STRING = str(getenv(
-  "INSERT_START_HERE_STRING", '<!-- DIRTREE-README-ACTION-INSERT-START-HERE -->'
+INSERT_HERE_START_STRING = str(getenv(
+  "INSERT_HERE_START_STRING", '<!-- DIRTREE-README-ACTION-INSERT-HERE-START -->'
 ))
-INSERT_END_HERE_STRING = str(getenv(
-  "INSERT_END_HERE_STRING", '<!-- DIRTREE-README-ACTION-INSERT-END-HERE -->'
+INSERT_HERE_END_STRING = str(getenv(
+  "INSERT_HERE_END_STRING", '<!-- DIRTREE-README-ACTION-INSERT-HERE-END -->'
 ))
 
 startpath = Path('.')
@@ -22,23 +22,27 @@ if not outfpath.parent.exists():
   # folder needs to exist before open() context
   outfpath.parent.mkdir(parents=True, exist_ok=True)
 
+# try except
 dirtree = get_tree_output(startpath, exclude_list, CMD_HIGHLIGHT)
 
 with open(outfpath, 'w+') as f:
   # TODO remove redundant line loop if possible
-  # will not insert, if no match and will only insert after first match
-  # will replace content between indices of START and END: sdx < line < edx
+  # will replace content between indices of first START and END
+  # will only insert between first START and END
+  # will not insert if no match of START and END
   sdx, edx, printed = None, None, False
   for index, line in enumerate(f):
-    if INSERT_START_HERE_STRING in line and sdx is None:
+    if line.startswith(INSERT_HERE_START_STRING) and sdx is None:
       sdx = index
-    elif INSERT_END_HERE_STRING in line and sdx and edx is None:
+      print(f"{sdx=}")
+    elif line.startswith(INSERT_HERE_END_STRING) and sdx and edx is None:
       edx = index
+      print(f"{edx=}")
       break
   print(f"{sdx=}, {edx=}, {dirtree[0]=}, {dirtree[-1]=}")
-  f.seek(0)
   for index, line in enumerate(f):
-    if index <= sdx or index >= edx:
+    if ( sdx is None or edx is None ) \
+      or ( index <= sdx or index >= edx ):
       f.write(line)    
     elif not printed:
       for o in dirtree:
