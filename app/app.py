@@ -28,11 +28,11 @@ dirtree = get_tree_output(startpath, exclude_list, CMD_HIGHLIGHT)
 with open(outfpath, 'w+') as f:
   # TODO remove redundant line loop if possible
   # will replace content between indices of first START and END
-  # will only insert between first START and END
+  # will only insert between START and END
   # will not insert if no match of START and END
   sdx, edx, printed = None, None, False
   for index, line in enumerate(f):
-    if line.startswith(INSERT_HERE_START_STRING) and sdx is None:
+    if line.startswith(INSERT_HERE_START_STRING):
       sdx = index
       print(f"{sdx=}")
     elif line.startswith(INSERT_HERE_END_STRING) and sdx and edx is None:
@@ -40,11 +40,11 @@ with open(outfpath, 'w+') as f:
       print(f"{edx=}")
       break
   print(f"{sdx=}, {edx=}, {dirtree[0]=}, {dirtree[-1]=}")
-  for index, line in enumerate(f):
-    if ( sdx is None or edx is None ) \
-      or ( index <= sdx or index >= edx ):
-      f.write(line)    
-    elif not printed:
-      for o in dirtree:
-        f.write(o)
-      printed = True
+  if sdx and edx:
+    for index, line in enumerate(f):
+      if index <= sdx or index >= edx:
+        f.write(line)    
+      elif not printed:
+        for o in dirtree:
+          f.write(o)
+        printed = True
