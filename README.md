@@ -7,9 +7,7 @@ Copy directory tree into README.md instead of manual effort.
 [![CodeQL](https://github.com/qte77/dirtree-readme-action/actions/workflows/codeql.yml/badge.svg)](https://github.com/qte77/dirtree-readme-action/actions/workflows/codeql.yml)
 [![CodeFactor](https://www.codefactor.io/repository/github/qte77/dirtree-readme-action/badge)](https://www.codefactor.io/repository/github/qte77/dirtree-readme-action)
 
-## Environment Variables
-
-Used environment variables and their defaults.
+## Action Environment Variables 
 
 | Name | Default |
 | - | - |
