@@ -25,7 +25,7 @@ if not outfpath.parent.exists():
 # try except
 dirtree = get_tree_output(startpath, exclude_list, CMD_HIGHLIGHT)
 
-with open(outfpath, 'r+') as f:
+with open(outfpath, 'w+') as f:
   # TODO remove redundant line loop if possible
   # will replace content between indices of first consecutive START and END
   # will only insert between START and END
