@@ -30,6 +30,10 @@ assert outfpath.exists(), f"{outfpath} not found. Aborting"
 assert startpath.exists(), f"{startpath} not found. Aborting"
 
 
+print(INSERT_HERE_START_STRING)
+print(INSERT_HERE_END_STRING)
+
+
 start_index, end_index = get_write_positions_in_file(
   outfpath, INSERT_HERE_START_STRING, INSERT_HERE_END_STRING
 )
