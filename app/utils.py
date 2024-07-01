@@ -85,9 +85,8 @@ def get_write_positions_in_file(
   outfpath: Path, start_string: str, end_string: str
 ) -> tuple:
   '''
-  Returns position of first consecutive start_string and
-  end_string. 
-  if no match of START and END
+  Returns position of first consecutive start_string
+  and end_string.
   '''
   sdx, edx = None, None
   print(f"{start_string=}, {end_string=}")
@@ -96,8 +95,10 @@ def get_write_positions_in_file(
       print(f"{index=}, {line=}")
       if line.startswith(start_string):
         sdx = index
+        print(sdx)
       elif line.startswith(end_string) and sdx:
         edx = index
+        print(edx)
         break
   return sdx, edx
 
