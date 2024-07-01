@@ -118,6 +118,11 @@ def write_to_file(
             for o in dirtree:
               f_out.write(o)
             printed = True
+      else:
+        print(
+          f"Could not print because of missing indices: "
+          f"START {sdx=}, END {edx=}, {printed=}"
+        )
   if sdx and edx:
     outfpath.unlink() # missing_ok=True
     outfpath_temp.rename(outfpath)
