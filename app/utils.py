@@ -13,9 +13,9 @@ def _get_tree_theme(theme: str) -> tuple:
   if theme == 'cmd':
     return '   ', '│  ', '├──', '└──'
   if theme == 'slash':
-    return '    ', '│   ', '\── ', '\── '
+    return '    ', '│   ', '│── ', '\── '
   if theme == 'elli':
-    return '    ', '⋮   ', '⋱⋯⋯ ', '∵⋯⋯ '
+    return '    ', '︙   ', '⋱⋯ ', '∵⋯ '
   if theme == 'null':
     return '    ', '    ', '    ', '    '
   else: 
