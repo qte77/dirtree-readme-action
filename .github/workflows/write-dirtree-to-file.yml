@@ -9,14 +9,21 @@ env:
   APP: 'app/app.py'
   GH_EMAIL: 'action@github.com'
   GH_NAME: 'GitHub Action'
-  OUT_FILE: 'README.md'
   PY_VER: '3.10'
+  TREE_THEME: 'elli'
+  # CMD_HIGHLIGHT: 'sh'
+  # EXCLUDE: ''
+  # INSERT_HERE_START_STRING: ''
+  # INSERT_HERE_END_STRING: ''
+  # OUT_FILE: 'README.md'
 jobs:
-  writeDirtreeToFile:
+  writeDirTreeToFile:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
+      - name: Set $OUT_FILE for action
+        run: echo "OUT_FILE=${OUT_FILE:-README.md}" >> $GITHUB_ENV
       - name: Checkout full branch
         uses: actions/checkout@v4
        # with:
@@ -35,7 +42,7 @@ jobs:
           git diff --cached --quiet && \
             echo "No changes added. Nothing to do." || \
             echo "changed=true" >> $GITHUB_OUTPUT
-      - name: Commit and push if changes
+      - name: Commit and push $OUT_FILE if changed
         if: steps.diff_check_changed.outputs.changed == 'true'
         run: |
           git config --local user.email $GH_EMAIL
