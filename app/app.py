@@ -3,6 +3,7 @@ from pathlib import Path
 from utils import get_tree_output
 
 CMD_HIGHLIGHT = str(getenv("CMD_HIGHLIGHT", 'sh'))
+TREE_THEME = str(getenv("TREE_THEME", 'sh'))
 EXCLUDE = str(getenv("EXCLUDE", '.git|__pycache__')) # string separated by |
 INSERT_HERE_START_STRING = str(getenv(
   "INSERT_HERE_START_STRING", '<!-- DIRTREE-README-ACTION-INSERT-HERE-START -->'
@@ -25,7 +26,10 @@ if not outfpath.parent.exists():
   outfpath.parent.mkdir(parents=True, exist_ok=True)
   
 # TODO try except dirtree
-dirtree = get_tree_output(startpath, exclude_list, CMD_HIGHLIGHT)
+dirtree = get_tree_output(
+  startpath, exclude_list,
+  CMD_HIGHLIGHT, 
+)
 
 # TODO read and write while avoiding copying to memory
 # TODO remove redundant line loop if possible
