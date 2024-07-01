@@ -10,6 +10,7 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 ## Sample output using this project
 
 <!-- DIRTREE-README-ACTION-INSERT-HERE-START -->
+
 <!-- DIRTREE-README-ACTION-INSERT-HERE-END -->
 
 ## Action environment variables
