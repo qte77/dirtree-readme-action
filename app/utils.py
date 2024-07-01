@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 def _get_tree_theme(theme: str) -> tuple:
-  f'''
+  '''
   Returns tuple of tree indicator themes: space, branch, tee, last.
   Offers 'cmd', 'slash', 'elli', 'null', 'sh'. Defaults to 'sh'.
   '''
