@@ -7,8 +7,9 @@ on:
   workflow_dispatch:
 env:
   APP: 'app/app.py'
-  GH_EMAIL: "action@github.com"
-  GH_NAME: "GitHub Action"
+  GH_EMAIL: 'action@github.com'
+  GH_NAME: 'GitHub Action'
+  OUT_FILE: 'README.md'
   PY_VER: '3.10'
 jobs:
   writeDirtreeToFile:
