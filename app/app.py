@@ -41,18 +41,15 @@ with open(outfpath, 'r') as f_in:
         edx = index
         break
     f_in.seek(0)
-    print(f"{sdx=}, {edx=}")
     if sdx and edx:
       for index, line in enumerate(f_in):
-        print(f"{index=}, {line=}")
         if index <= sdx or index >= edx:
           f_out.write(line)
         elif not printed:
-          print(f"{printed=}")
           for o in dirtree:
             f_out.write(o)
           printed = True
-          # f_in.seek(edx)
+          f_in.seek(edx)
 
 if sdx and edx:
   outfpath.unlink() # missing_ok=True
