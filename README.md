@@ -11,19 +11,7 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 
 <!-- DIRTREE-README-ACTION-INSERT-HERE-START -->
 ```sh
-2024-07-01 22:35:04.621396+00:00
-├── app
-│   ├── utils.py
-│   └── app.py
-├── README.md
-├── .gitignore
-├── LICENSE
-└── .github
-    ├── dependabot.yml
-    └── workflows
-        ├── ruff.yml
-        ├── write-dirtree-to-file.yml
-        └── codeql.yml
+2024-07-01 22:52:01.671959+00:00
 ```
 <!-- DIRTREE-README-ACTION-INSERT-HERE-END -->
 
