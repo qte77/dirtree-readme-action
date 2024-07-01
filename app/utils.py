@@ -63,19 +63,23 @@ def _generate_tree(
           )
 
 
-def get_tree_output(
+def get_formatted_tree_output(
   startpath: Path, exclude_list: list,
   cmd_highlight: str, tree_theme: str
 ) -> list:
-  '''Returns a list of startpath and its children'''
+  '''
+  Returns a list of startpath and its children. cmd_highlight has
+  to be one of Github's native syntax highlighting languages.
+  https://github.com/github-linguist/linguist/blob/master/lib/linguist/languages.yml
+  '''
   space, branch, tee, last = _get_tree_theme(tree_theme)
+  dirtree = _generate_tree(
+    startpath, exclude_list, space, branch, tee, last
+  )
   out = []
   out.append(f"```{cmd_highlight}\n")
   out.append(f"{datetime.now(timezone.utc)}\n")
-  for line in _generate_tree(
-    startpath, exclude_list,
-    space, branch, tee, last
-  ):
+  for line in dirtree:
       out.append(f"{line}\n")
   out.append("```\n")
   return out
