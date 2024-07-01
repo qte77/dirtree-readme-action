@@ -11,7 +11,7 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 
 <!-- DIRTREE-README-ACTION-INSERT-HERE-START -->
 ```sh
-2024-07-01 02:27:11.968021+00:00
+2024-07-01 14:47:20.310741+00:00
 ├── app
 │   ├── utils.py
 │   └── app.py
@@ -35,7 +35,7 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 | Name | Default |
 | - | - |
 | APP | 'app/app.py' |
-| CMD_HIGHLIGHT | 'sh' |
+| CMD_HIGHLIGHT | 'sh' # All Github supported for code blocks |
 | EXCLUDE | '.git\|\_\_pycache\_\_' # separated by \| |
 | GH_EMAIL | 'action@github.com' |
 | GH_NAME | 'GitHub Action' |
@@ -43,3 +43,4 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 | INSERT_HERE_END_STRING | '<\!-- DIRTREE-README-ACTION-INSERT-HERE-END -->' |
 | OUT_FILE | 'data/dummy-readme.md' |
 | PY_VER | '3.10' |
+| TREE_THEME | 'sh' # ['cmd', 'slash', 'elli', 'null', 'sh'] |
