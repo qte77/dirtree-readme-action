@@ -38,12 +38,13 @@ with open(outfpath, 'r+') as f:
       edx = index
       break
   f.seek(0)
-  print(f"{sdx=}, {edx=}")
   if sdx and edx:
+    print(f"{sdx=}, {edx=}")
     for index, line in enumerate(f):
       if index <= sdx or index >= edx:
-        f.write(line)    
+        f.write(line)
       elif not printed:
+        print(f"{printed=}")
         for o in dirtree:
           f.write(o)
         printed = True
