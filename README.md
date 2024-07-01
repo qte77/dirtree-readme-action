@@ -11,7 +11,7 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 
 <!-- DIRTREE-README-ACTION-INSERT-HERE-START -->
 ```sh
-2024-07-01 02:05:54.235801+00:00
+2024-07-01 02:09:05.659710+00:00
 ├── app
 │   ├── utils.py
 │   └── app.py
@@ -29,7 +29,6 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
         └── codeql.yml
 ```
 <!-- DIRTREE-README-ACTION-INSERT-HERE-END -->
-
 ## Action environment variables
 
 App environment variables can be set in the action but not vice-versa.
