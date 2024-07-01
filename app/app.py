@@ -43,12 +43,13 @@ with open(outfpath, 'r') as f_in:
     f_in.seek(0)
     if sdx and edx:
       for index, line in enumerate(f_in):
-        if index <= sdx or index > edx:
+        if index < sdx or index > edx:
           f_out.write(line)
         elif not printed:
+          f_out.write(f"\n{INSERT_HERE_START_STRING}")
           for o in dirtree:
             f_out.write(o)
-          f_out.write(INSERT_HERE_END_STRING)
+          f_out.write(f"{INSERT_HERE_END_STRING}\n")
           printed = True
 
 if sdx and edx:
