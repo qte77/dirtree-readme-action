@@ -49,7 +49,6 @@ with open(outfpath, 'r') as f_in:
           for o in dirtree:
             f_out.write(o)
           printed = True
-          f_in.seek(edx)
 
 if sdx and edx:
   outfpath.unlink() # missing_ok=True
