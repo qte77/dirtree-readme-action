@@ -107,10 +107,8 @@ def write_to_file(
   '''Replaces content between indices start_index and end_index'''
   outfpath_temp = outfpath.with_suffix(".temp_outfile_ghact")
   printed = False
-  assert start_index >= 0 and end_index >= 0,
-    f"Can not insert: start_index and end_index must be >=0"
-  assert start_index > end_index, \
-    f"Can not insert: {start_index} > {end_index}"
+  assert start_index >= 0 and end_index >= 1, \
+    f"Can not insert: {start_index=}, {end_index=}"
   with open(outfpath, 'r') as f_in:
     with open(outfpath_temp, 'w') as f_out:
       for index, line in enumerate(f_in):
