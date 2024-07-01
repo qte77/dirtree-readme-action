@@ -11,13 +11,10 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 
 <!-- DIRTREE-README-ACTION-INSERT-HERE-START -->
 ```sh
-2024-07-01 14:47:20.310741+00:00
+2024-07-01 22:35:04.621396+00:00
 ├── app
 │   ├── utils.py
 │   └── app.py
-├── data
-│   ├── dummy-dirtree-python.md
-│   └── dummy-readme.md
 ├── README.md
 ├── .gitignore
 ├── LICENSE
