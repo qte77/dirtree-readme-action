@@ -6,11 +6,10 @@ on:
     #- cron: "0 0 * * *"
   workflow_dispatch:
 env:
-  OUT_FILE: 'data/dummy-readme.md'
-  PY_VER: '3.10'
   APP: 'app/app.py'
   GH_EMAIL: "action@github.com"
   GH_NAME: "GitHub Action"
+  PY_VER: '3.10'
 jobs:
   writeDirtreeToFile:
     runs-on: ubuntu-latest
