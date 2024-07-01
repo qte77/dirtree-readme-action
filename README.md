@@ -11,22 +11,22 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 
 <!-- DIRTREE-README-ACTION-INSERT-HERE-START -->
 ```sh
-2024-07-01 14:40:34.462054+00:00
-⋱⋯ app
-︙   ⋱⋯ utils.py
-︙   ∵⋯ app.py
-⋱⋯ data
-︙   ⋱⋯ dummy-dirtree-python.md
-︙   ∵⋯ dummy-readme.md
-⋱⋯ README.md
-⋱⋯ .gitignore
-⋱⋯ LICENSE
-∵⋯ .github
-    ⋱⋯ dependabot.yml
-    ∵⋯ workflows
-        ⋱⋯ ruff.yml
-        ⋱⋯ write-dirtree-to-file.yml
-        ∵⋯ codeql.yml
+2024-07-01 14:44:03.887273+00:00
+︙··· app
+︙   ︙··· utils.py
+︙   ···· app.py
+︙··· data
+︙   ︙··· dummy-dirtree-python.md
+︙   ···· dummy-readme.md
+︙··· README.md
+︙··· .gitignore
+︙··· LICENSE
+···· .github
+    ︙··· dependabot.yml
+    ···· workflows
+        ︙··· ruff.yml
+        ︙··· write-dirtree-to-file.yml
+        ···· codeql.yml
 ```
 <!-- DIRTREE-README-ACTION-INSERT-HERE-END -->
 
