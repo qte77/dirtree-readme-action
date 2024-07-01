@@ -1,16 +1,19 @@
 '''Contains utility functions for Github dirtree-readme-action'''
 
+
 from datetime import datetime, timezone
 from pathlib import Path
 
 
 CMD_HIGHLIGHT = 'sh'
+TREE_THEME = 'sh'
 
 
-def get_tree_theme(theme: str = CMD_HIGHLIGHT) -> tuple:
+def get_tree_theme(theme: str = TREE_THEME) -> tuple:
   f'''
-  Returns tuple of tree indicator themes: space, branch, tee, last.
-  Offers 'cmd', 'slash', 'elli', 'null', 'sh'. Defaults to {CMD_HIGHLIGHT}
+  Returns tuple of tree indicator themes:space, branch, tee, last.
+  Offers 'cmd', 'slash', 'elli', 'null', 'sh'.
+  Defaults to {TREE_THEME}
   '''
   if theme == 'cmd':
     return '   ', '│  ', '├──', '└──'
@@ -24,7 +27,9 @@ def get_tree_theme(theme: str = CMD_HIGHLIGHT) -> tuple:
     return '    ', '│   ', '├── ', '└── '
 
 
-def is_path_in_exclude(path: Path, exclude_list: list) -> bool:
+def is_path_in_exclude(
+  path: Path, exclude_list: list
+) -> bool:
   '''Return True if any of exclude_list in path, else False'''
   assert isinstance(path, Path)
   assert isinstance(exclude_list, list)
@@ -34,10 +39,11 @@ def is_path_in_exclude(path: Path, exclude_list: list) -> bool:
   return False
 
 
-# https://stackoverflow.com/questions/9727673/list-directory-tree-structure-in-python/59109706
+# list-directory-tree-structure-in-python:
+# https://stackoverflow.com/a/59109706
 def generate_tree(
   path: Path, exclude_list: list,
-  cmd_highlight: str = CMD_HIGHLIGHT,
+  tree_theme: str = TREE_THEME,
   prefix: str = ''
 ) -> str:
   '''
@@ -48,7 +54,7 @@ def generate_tree(
   and hierarchical indicators.
   '''
   contents = list(path.iterdir())
-  space, branch, tee, last = get_tree_theme(cmd_highlight)
+  space, branch, tee, last = get_tree_theme(tree_theme)
   # contents each get pointers that are 'tee' with a final 'last'
   pointers = [tee] * (len(contents) - 1) + [last]
   for pointer, path in zip(pointers, contents):
@@ -63,13 +69,16 @@ def generate_tree(
 
 def get_tree_output(
   startpath: Path, exclude_list: list,
-  cmd_highlight: str = CMD_HIGHLIGHT
+  cmd_highlight: str = CMD_HIGHLIGHT,
+  tree_theme: str = TREE_THEME
 ) -> list:
   '''Returns a list of startpath and its children'''
   out = []
   out.append(f"```{cmd_highlight}\n")
   out.append(f"{datetime.now(timezone.utc)}\n")
-  for line in generate_tree(startpath, exclude_list, cmd_highlight):
+  for line in generate_tree(
+    startpath, exclude_list, tree_theme
+  ):
       out.append(f"{line}\n")
   out.append("```\n")
   return out
