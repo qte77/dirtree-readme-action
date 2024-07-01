@@ -12,10 +12,9 @@ INSERT_HERE_END_STRING = str(getenv(
   "INSERT_HERE_END_STRING", '<!-- DIRTREE-README-ACTION-INSERT-HERE-END -->'
 ))
 
-temp_ext = ".temp"
 startpath = Path('.')
 outfpath = Path(OUT_FILE)
-outfpath_temp = outfpath + temp_ext
+outfpath_temp = outfpath.with_suffix(".temp")
 exclude_list = EXCLUDE.split('|')
 sdx, edx, printed = None, None, False
 
@@ -54,6 +53,6 @@ with open(outfpath, 'r') as f_in:
           printed = True
           # f.seek(edx)
 
-# if sdx and edx:
-  # outfpath.unlink() # missing_ok=True
-  # outfpath_temp.rename(outfpath)
+if sdx and edx:
+  outfpath.unlink() # missing_ok=True
+  outfpath_temp.rename(outfpath)
