@@ -41,7 +41,7 @@ with open(outfpath, 'r') as f_in:
       elif line.startswith(INSERT_HERE_END_STRING) and sdx:
         edx = index
         break
-    print(f"{sdx=}, {edx=}, {type(s)=}")
+    print(f"{sdx=}, {edx=}")
     if sdx and edx:
       for index, line in enumerate(f_in):
         print(f"{index=}, {line=}")
@@ -54,6 +54,6 @@ with open(outfpath, 'r') as f_in:
           printed = True
           # f.seek(edx)
 
-if sdx and edx:
+# if sdx and edx:
   # outfpath.unlink() # missing_ok=True
   # outfpath_temp.rename(outfpath)
