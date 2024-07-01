@@ -67,7 +67,7 @@ def _generate_tree(
 def get_formatted_tree_output(
   startpath: Path, exclude_list: list,
   cmd_highlight: str, tree_theme: str
-) -> list:
+) -> deque:
   '''
   Returns a list of startpath and its children. cmd_highlight has
   to be one of Github's native syntax highlighting languages.
@@ -106,31 +106,19 @@ def get_write_positions_in_file(
 
 
 def write_to_file(
-  outfpath: Path, dirtree: list,
+  outfpath: Path, dirtree: deque,
   start_index: int, end_index: int
 ) -> None:
   '''Replaces content between indices start_index and end_index'''
   outfpath_temp = outfpath.with_suffix(".temp_outfile_ghact")
-  printed = False
   assert start_index >= 0 and end_index >= 1, \
     f"Can not insert: {start_index=}, {end_index=}"
-  with open(outfpath, 'r') as f_in:
-    with open(outfpath_temp, 'w') as f_out:
-      print(f"{type(f_in)}")
-      print(f"{type(f_out)}")
-
   f_in = (line for line in open(outfpath, 'r'))
   f_out = (line for line in open(outfpath_temp, 'w'))
-  
-  print(f"{type(f_in)}")
-  print(f"{type(f_out)}")
-  
   for index, line in enumerate(f_in):
     if index <= start_index or index >= end_index:
-      f_out.write(line)
-    elif not printed:
-      for o in dirtree:
-        f_out.write(o)
-      printed = True
+      next(f_out).write(line)
+    elif index == start_index + 1:
+      next(f_out).writelines(dirtree)
   outfpath.unlink() # missing_ok=True
   outfpath_temp.rename(outfpath)
