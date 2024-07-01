@@ -50,4 +50,3 @@ with open(outfpath, 'r') as f_in:
         for o in dirtree:
           f_out.write(o)
         printed = True
-    print(f"{index=}, {line=}")
