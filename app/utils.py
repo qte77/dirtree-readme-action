@@ -58,7 +58,7 @@ def _generate_tree(
   contents = list(path.iterdir())
   space, branch, tee, last = _get_tree_theme(tree_theme)
   print(_get_tree_theme(tree_theme))
-  print(type(_get_tree_theme(tree_theme))
+  print(type(_get_tree_theme(tree_theme)))
   # contents each get pointers that are 'tee' with a final 'last'
   pointers = [tee] * (len(contents) - 1) + [last]
   for pointer, path in zip(pointers, contents):
