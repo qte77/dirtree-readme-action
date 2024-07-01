@@ -41,9 +41,9 @@ def get_tree_output(
 ) -> list:
   '''Returns a list of startpath and its children'''
   out = []
-  out.append(f"```{cmd_highlight}\n")
+  out.append(f"\n```{cmd_highlight}\n")
   out.append(f"\n{datetime.now(timezone.utc)}\n")
   for line in generate_tree(startpath, exclude_list):
       out.append(f"{line}\n")
-  out.append("```")
+  out.append("```\n")
   return out
