@@ -1,5 +1,5 @@
 from os import getenv
-from pathlib import Path, unlink
+from pathlib import Path
 from utils import get_tree_output
 
 OUT_FILE = str(getenv("OUT_FILE", 'README.md'))
