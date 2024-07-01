@@ -1,8 +1,9 @@
 from os import getenv
 from pathlib import Path
 from utils import (
-  get_tree_output, write_to_file,
-  get_write_positions_in_file  
+  get_formatted_tree_output,
+  get_write_positions_in_file,
+  write_to_file
 )
 
 
@@ -36,7 +37,7 @@ start_index, end_index = get_write_positions_in_file(
 if isinstance(start_index, int) \
   and isinstance(end_index, int) \
   and start_index>= 0 and end_index >= 1:
-  dirtree = get_tree_output(
+  dirtree = get_formatted_tree_output(
     startpath, exclude_list, CMD_HIGHLIGHT, TREE_THEME
   )
   write_to_file(
