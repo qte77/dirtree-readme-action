@@ -90,8 +90,10 @@ def get_write_positions_in_file(
   if no match of START and END
   '''
   sdx, edx = None, None
+  print(f"{start_string=}, {end_string=}")
   with open(outfpath, 'r') as f_in:
     for index, line in enumerate(f_in):
+      print(f"{index=}, {line=}")
       if line.startswith(start_string):
         sdx = index
       elif line.startswith(end_string) and sdx:
