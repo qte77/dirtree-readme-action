@@ -40,6 +40,7 @@ with open(outfpath, 'r') as f_in:
       elif line.startswith(INSERT_HERE_END_STRING) and sdx:
         edx = index
         break
+    f_in.seek(0)
     print(f"{sdx=}, {edx=}")
     if sdx and edx:
       for index, line in enumerate(f_in):
@@ -51,7 +52,7 @@ with open(outfpath, 'r') as f_in:
           for o in dirtree:
             f_out.write(o)
           printed = True
-          # f.seek(edx)
+          # f_in.seek(edx)
 
 if sdx and edx:
   outfpath.unlink() # missing_ok=True
