@@ -64,7 +64,7 @@ def _generate_tree(
 
 def get_tree_output(
   startpath: Path, exclude_list: list,
-  cmd_highlight: str, tree_theme
+  cmd_highlight: str, tree_theme: str
 ) -> list:
   '''Returns a list of startpath and its children'''
   out = []
