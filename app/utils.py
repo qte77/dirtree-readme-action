@@ -83,11 +83,7 @@ def get_formatted_tree_output(
   out = deque(dirtree)
   out.appendleft(f"{datetime.now(timezone.utc)}{suffix}")
   out.appendleft(f"```{cmd_highlight}{suffix}")
-  out.append("```{suffix}")
-  
-  print(f"{type(dirtree)}, {type(out)}")
-  print(out)
-  
+  out.append(f"```{suffix}")  
   return out
 
 
@@ -120,12 +116,21 @@ def write_to_file(
     f"Can not insert: {start_index=}, {end_index=}"
   with open(outfpath, 'r') as f_in:
     with open(outfpath_temp, 'w') as f_out:
-      for index, line in enumerate(f_in):
-        if index <= start_index or index >= end_index:
-          f_out.write(line)
-        elif not printed:
-          for o in dirtree:
-            f_out.write(o)
-          printed = True
+      print(f"{type(f_in)}")
+      print(f"{type(f_out)}")
+
+  f_in = (line for line in open(outfpath, 'r'))
+  f_out = (line for line in open(outfpath_temp, 'w'))
+  
+  print(f"{type(f_in)}")
+  print(f"{type(f_out)}")
+  
+  for index, line in enumerate(f_in):
+    if index <= start_index or index >= end_index:
+      f_out.write(line)
+    elif not printed:
+      for o in dirtree:
+        f_out.write(o)
+      printed = True
   outfpath.unlink() # missing_ok=True
   outfpath_temp.rename(outfpath)
