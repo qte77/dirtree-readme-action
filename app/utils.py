@@ -56,7 +56,7 @@ def _generate_tree(
   and hierarchical indicators.
   '''
   contents = list(path.iterdir())
-  space, branch, tee, last = _get_tree_theme(tree_theme)
+  space, branch, tee, last = *_get_tree_theme(tree_theme)
   print(_get_tree_theme(tree_theme))
   print(type(_get_tree_theme(tree_theme)))
   # contents each get pointers that are 'tee' with a final 'last'
