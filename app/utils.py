@@ -109,16 +109,19 @@ def write_to_file(
   outfpath: Path, dirtree: deque,
   start_index: int, end_index: int
 ) -> None:
-  '''Replaces content between indices start_index and end_index'''
+  '''
+  Replaces content between indices start_index and end_index.
+  At least one line between start_index and end end_index needed.
+  '''
   outfpath_temp = outfpath.with_suffix(".temp_outfile_ghact")
   assert start_index >= 0 and end_index >= 1, \
     f"Can not insert: {start_index=}, {end_index=}"
   f_in = (line for line in open(outfpath, 'r'))
-  f_out = (line for line in open(outfpath_temp, 'w'))
-  for index, line in enumerate(f_in):
-    if index <= start_index or index >= end_index:
-      next(f_out).write(line)
-    elif index == start_index + 1:
-      next(f_out).writelines(dirtree)
+  with open(outfpath_temp, 'w') as f_out:
+    for index, line in enumerate(f_in):
+      if index <= start_index or index >= end_index:
+        f_out.write(line)
+      elif index == start_index + 1:
+        f_out.writelines(dirtree)
   outfpath.unlink() # missing_ok=True
   outfpath_temp.rename(outfpath)
