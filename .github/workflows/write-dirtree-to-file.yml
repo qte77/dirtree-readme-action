@@ -10,7 +10,7 @@ env:
   GH_EMAIL: 'action@github.com'
   GH_NAME: 'GitHub Action'
   PY_VER: '3.10'
-  TREE_THEME: 'sh'
+  TREE_THEME: 'ellis'
   # CMD_HIGHLIGHT: 'sh'
   # EXCLUDE: ''
   # INSERT_HERE_START_STRING: ''
