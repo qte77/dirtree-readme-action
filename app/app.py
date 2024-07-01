@@ -32,8 +32,7 @@ dirtree = get_tree_output(
   startpath, exclude_list,
   CMD_HIGHLIGHT, 
 )
-if isinstance(dirtree, list):
-  write_to_file(
-    outfpath, outfpath_temp, dirtree,
-    INSERT_HERE_START_STRING, INSERT_HERE_END_STRING
-  )
+write_to_file(
+  outfpath, outfpath_temp, dirtree,
+  INSERT_HERE_START_STRING, INSERT_HERE_END_STRING
+)
