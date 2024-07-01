@@ -6,9 +6,10 @@ from pathlib import Path
 
 
 CMD_HIGHLIGHT = 'sh'
-TREE_THEME = 'sh'
+EXCLUDE = '.git|__pycache__'
 INSERT_HERE_START_STRING = '<!-- DIRTREE-README-ACTION-INSERT-HERE-START -->'
 INSERT_HERE_END_STRING = '<!-- DIRTREE-README-ACTION-INSERT-HERE-END -->'
+TREE_THEME = 'sh'
 
 
 def _get_tree_theme(theme: str = TREE_THEME) -> tuple:
@@ -71,12 +72,13 @@ def _generate_tree(
 
 
 def get_tree_output(
-  startpath: Path, exclude_list: list,
+  startpath: Path, exclude_str: str = EXCLUDE,
   cmd_highlight: str = CMD_HIGHLIGHT,
   tree_theme: str = TREE_THEME
 ) -> list:
   '''Returns a list of startpath and its children'''
   out = []
+  exclude_list = exclude_str.split('|')
   out.append(f"```{cmd_highlight}\n")
   out.append(f"{datetime.now(timezone.utc)}\n")
   for line in _generate_tree(
@@ -88,7 +90,7 @@ def get_tree_output(
 
 
 def write_to_file(
-  outfpath: Path, outfpath_temp: Path, dirtree: list,
+  outfpath: Path, dirtree: list,
   start_string: str = INSERT_HERE_START_STRING,
   end_string: str = INSERT_HERE_END_STRING
 ) -> None:
@@ -101,6 +103,7 @@ def write_to_file(
   # TODO remove redundant line loop if possible
   # TODO read and write while avoiding copying to memory
   sdx, edx, printed = None, None, False
+  outfpath_temp = outfpath.with_suffix(".temp")
   with open(outfpath, 'r') as f_in:
     with open(outfpath_temp, 'w') as f_out:
       for index, line in enumerate(f_in):
