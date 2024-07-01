@@ -33,7 +33,9 @@ assert startpath.exists(), f"{startpath} not found. Aborting"
 start_index, end_index = get_write_positions_in_file(
   outfpath, INSERT_HERE_START_STRING, INSERT_HERE_END_STRING
 )
-if start_index >= 0 and end_index >= 1:
+if isinstance(start_index, int) \
+  and isinstance(end_index, int) \
+  and start_index>= 0 and end_index >= 1:
   dirtree = get_tree_output(
     startpath, exclude_list, CMD_HIGHLIGHT, TREE_THEME
   )
