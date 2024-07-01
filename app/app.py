@@ -2,15 +2,15 @@ from os import getenv
 from pathlib import Path
 from utils import get_tree_output
 
-OUT_FILE = str(getenv("OUT_FILE", 'README.md'))
-EXCLUDE = str(getenv("EXCLUDE", '.git|__pycache__')) # string separated by |
 CMD_HIGHLIGHT = str(getenv("CMD_HIGHLIGHT", 'sh'))
+EXCLUDE = str(getenv("EXCLUDE", '.git|__pycache__')) # string separated by |
 INSERT_HERE_START_STRING = str(getenv(
   "INSERT_HERE_START_STRING", '<!-- DIRTREE-README-ACTION-INSERT-HERE-START -->'
 ))
 INSERT_HERE_END_STRING = str(getenv(
   "INSERT_HERE_END_STRING", '<!-- DIRTREE-README-ACTION-INSERT-HERE-END -->'
 ))
+OUT_FILE = str(getenv("OUT_FILE", 'README.md'))
 
 startpath = Path('.')
 outfpath = Path(OUT_FILE)
