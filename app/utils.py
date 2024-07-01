@@ -41,7 +41,7 @@ def _generate_tree(
   path: Path, exclude_list: list,
   space: str, branch: str, tee: str, last: str,
   prefix: str = '', suffix: str = ''
-) -> str:
+) -> generator:
   '''
   A recursive generator, given a directory Path object
   will yield a visual tree structure line by line
@@ -117,11 +117,12 @@ def write_to_file(
   assert start_index >= 0 and end_index >= 1, \
     f"Can not insert: {start_index=}, {end_index=}"
   f_in = (line for line in open(outfpath, 'r'))
-  with open(outfpath_temp, 'w') as f_out:
-    for index, line in enumerate(f_in):
-      if index <= start_index or index >= end_index:
-        f_out.write(line)
-      elif index == start_index + 1:
-        f_out.writelines(dirtree)
+  f_out = (line for line in open(outfpath, 'w'))
+  # with open(outfpath_temp, 'w') as f_out:
+  for index, line in enumerate(f_in):
+    if index <= start_index or index >= end_index:
+      next(f_out).write(line)
+    elif index == start_index + 1:
+      next(f_out).writelines(dirtree)
   outfpath.unlink() # missing_ok=True
   outfpath_temp.rename(outfpath)
