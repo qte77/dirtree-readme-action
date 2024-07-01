@@ -11,7 +11,7 @@ env:
   # INSERT_HERE_START_STRING: ''
   # INSERT_HERE_END_STRING: ''
   # OUT_FILE: 'README.md'
-  TREE_THEME: 'slash'
+  TREE_THEME: 'elli'
   APP: 'app/app.py'
   GH_EMAIL: 'action@github.com'
   GH_NAME: 'GitHub Action'
