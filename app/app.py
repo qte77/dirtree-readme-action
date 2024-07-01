@@ -31,13 +31,13 @@ if not outfpath.parent.exists():
 # will not insert if no match of START and END
 with open(outfpath, 'r') as f:
   s = f.read()
-  for index, line in enumerate(s):
+  for index, line in enumerate(f):
     if line.startswith(INSERT_HERE_START_STRING):
       sdx = index
     elif line.startswith(INSERT_HERE_END_STRING) and sdx:
       edx = index
       break
-print(f"{sdx=}, {edx=}")
+print(f"{sdx=}, {edx=}, {type(s)=}")
 if sdx and edx:
   dirtree = get_tree_output(startpath, exclude_list, CMD_HIGHLIGHT)
   with open(outfpath, 'w') as f:
