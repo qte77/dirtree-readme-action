@@ -44,5 +44,5 @@ if isinstance(start_index, int) \
   )
 else:
   print(
-    f"Could not print: {start_index=}, {end_index=}"
+    f"Could not write file. Index error: {start_index=}, {end_index=}"
   )
