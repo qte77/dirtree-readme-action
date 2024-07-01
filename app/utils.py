@@ -1,6 +1,7 @@
 '''Contains utility functions for Github dirtree-readme-action'''
 
 
+from collections import deque
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -76,6 +77,12 @@ def get_formatted_tree_output(
   dirtree = _generate_tree(
     startpath, exclude_list, space, branch, tee, last
   )
+
+  out_deq = deque(dirtree)
+  print(f"{type(dirtree)}, {type(out_deq)}")
+  print(out_deq)
+  
+  
   out = []
   out.append(f"```{cmd_highlight}\n")
   out.append(f"{datetime.now(timezone.utc)}\n")
