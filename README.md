@@ -34,7 +34,6 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 
 | Name | Default |
 | - | - |
-| - | - |
 | APP | 'app/app.py' |
 | CMD_HIGHLIGHT | 'sh' |
 | EXCLUDE | '.git\|\_\_pycache\_\_' # separated by \| |
