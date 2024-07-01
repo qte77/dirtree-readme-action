@@ -7,10 +7,9 @@ This project is not very cool not
 App structure should apear below
 
 <!-- DIRTREE-README-ACTION-INSERT-HERE-START -->
-
 ```sh
 
-2024-07-01 01:31:35.316872+00:00
+2024-07-01 01:34:25.841820+00:00
 ├── app
 │   ├── utils.py
 │   └── app.py
@@ -26,8 +25,7 @@ App structure should apear below
         ├── ruff.yml
         ├── write-dirtree-to-file.yml
         └── codeql.yml
-```
-<!-- DIRTREE-README-ACTION-INSERT-HERE-END -->
+```<!-- DIRTREE-README-ACTION-INSERT-HERE-END -->
 
 ## Other stuff
 
