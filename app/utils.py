@@ -40,7 +40,7 @@ def _is_path_in_exclude(
 def _generate_tree(
   path: Path, exclude_list: list,
   space: str, branch: str, tee: str, last: str,
-  prefix: str = ''
+  prefix: str = '', suffix: str = ''
 ) -> str:
   '''
   A recursive generator, given a directory Path object
@@ -54,13 +54,13 @@ def _generate_tree(
   pointers = [tee] * (len(contents) - 1) + [last]
   for pointer, path in zip(pointers, contents):
     if not _is_path_in_exclude(path, exclude_list):
-      yield prefix + pointer + path.name
+      yield prefix + pointer + path.name + suffix
       if path.is_dir():
           extension = branch if pointer == tee else space
           yield from _generate_tree(
             path, exclude_list,
             space, branch, tee, last,
-            prefix + extension
+            prefix + extension, suffix
           )
 
 
@@ -73,22 +73,21 @@ def get_formatted_tree_output(
   to be one of Github's native syntax highlighting languages.
   https://github.com/github-linguist/linguist/blob/master/lib/linguist/languages.yml
   '''
+  suffix = '\n'
   space, branch, tee, last = _get_tree_theme(tree_theme)
   dirtree = _generate_tree(
-    startpath, exclude_list, space, branch, tee, last
+    startpath, exclude_list,
+    space, branch, tee, last,
+    suffix = suffix
   )
-
-  out_deq = deque(dirtree)
-  print(f"{type(dirtree)}, {type(out_deq)}")
-  print(out_deq)
+  out = deque(dirtree)
+  out.appendleft(f"{datetime.now(timezone.utc)}{suffix}")
+  out.appendleft(f"```{cmd_highlight}{suffix}")
+  out.append("```{suffix}")
   
+  print(f"{type(dirtree)}, {type(out)}")
+  print(out)
   
-  out = []
-  out.append(f"```{cmd_highlight}\n")
-  out.append(f"{datetime.now(timezone.utc)}\n")
-  for line in dirtree:
-      out.append(f"{line}\n")
-  out.append("```\n")
   return out
 
 
