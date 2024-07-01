@@ -10,8 +10,25 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 ## Sample output using this project
 
 <!-- DIRTREE-README-ACTION-INSERT-HERE-START -->
+```sh
+2024-07-01 02:11:13.056251+00:00
+├── app
+│   ├── utils.py
+│   └── app.py
+├── data
+│   ├── dummy-dirtree-python.md
+│   └── dummy-readme.md
+├── README.md
+├── .gitignore
+├── LICENSE
+└── .github
+    ├── dependabot.yml
+    └── workflows
+        ├── ruff.yml
+        ├── write-dirtree-to-file.yml
+        └── codeql.yml
+```
 <!-- DIRTREE-README-ACTION-INSERT-HERE-END -->
-
 ## Action environment variables
 
 App environment variables can be set in the action but not vice-versa.
