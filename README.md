@@ -7,7 +7,13 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 [![CodeQL](https://github.com/qte77/dirtree-readme-action/actions/workflows/codeql.yml/badge.svg)](https://github.com/qte77/dirtree-readme-action/actions/workflows/codeql.yml)
 [![CodeFactor](https://www.codefactor.io/repository/github/qte77/dirtree-readme-action/badge)](https://www.codefactor.io/repository/github/qte77/dirtree-readme-action)
 
-## Action Environment Variables 
+## Sample output using this project
+
+<!-- DIRTREE-README-ACTION-INSERT-HERE-START -->
+
+<!-- DIRTREE-README-ACTION-INSERT-HERE-END -->
+
+## Action environment variables 
 
 | Name | Default |
 | - | - |
