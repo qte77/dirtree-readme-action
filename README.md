@@ -9,9 +9,9 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 
 ## Sample output using this project
 
-<!-- DIRTREE-README-ACTION-INSERT-HERE-START -->
-```sh
-2024-07-01 02:11:13.056251+00:00
+
+<!-- DIRTREE-README-ACTION-INSERT-HERE-START -->```sh
+2024-07-01 02:13:04.260362+00:00
 ├── app
 │   ├── utils.py
 │   └── app.py
