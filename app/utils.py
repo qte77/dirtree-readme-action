@@ -13,7 +13,7 @@ INSERT_HERE_END_STRING = '<!-- DIRTREE-README-ACTION-INSERT-HERE-END -->'
 
 def _get_tree_theme(theme: str = TREE_THEME) -> tuple:
   f'''
-  Returns tuple of tree indicator themes:space, branch, tee, last.
+  Returns tuple of tree indicator themes: space, branch, tee, last.
   Offers 'cmd', 'slash', 'elli', 'null', 'sh'.
   Defaults to {TREE_THEME}
   '''
@@ -57,6 +57,8 @@ def _generate_tree(
   '''
   contents = list(path.iterdir())
   space, branch, tee, last = _get_tree_theme(tree_theme)
+  print(_get_tree_theme(tree_theme))
+  print(type(_get_tree_theme(tree_theme))
   # contents each get pointers that are 'tee' with a final 'last'
   pointers = [tee] * (len(contents) - 1) + [last]
   for pointer, path in zip(pointers, contents):
