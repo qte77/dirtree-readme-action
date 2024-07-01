@@ -42,5 +42,5 @@ if start_index >= 0 and end_index >= 1:
   )
 else:
   print(
-    f"Could not print: {start_index=}, END {end_index=}"
+    f"Could not print: {start_index=}, {end_index=}"
   )
