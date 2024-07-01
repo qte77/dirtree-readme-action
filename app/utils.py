@@ -81,42 +81,44 @@ def get_tree_output(
   return out
 
 
-def write_to_file(
-  outfpath: Path, dirtree: list,
-  start_string: str, end_string: str
-) -> None:
+def get_write_positions_in_file(
+  outfpath: Path, start_string: str, end_string: str
+) -> tuple:
   '''
-  Replaces content between indices of first consecutive
-  INSERT_HERE_START_STRING and INSERT_HERE_END_STRING.
-  Will only insert between START and END and not insert
+  Returns position of first consecutive start_string and
+  end_string. 
   if no match of START and END
   '''
-  # TODO remove redundant line loop if possible
-  # TODO read and write while avoiding copying to memory
-  sdx, edx, printed = None, None, False
+  sdx, edx = None, None
+  with open(outfpath, 'r') as f_in:
+    for index, line in enumerate(f_in):
+      if line.startswith(start_string):
+        sdx = index
+      elif line.startswith(end_string) and sdx:
+        edx = index
+        break
+  return sdx, edx
+
+
+def write_to_file(
+  outfpath: Path, dirtree: list,
+  start_index: int, end_index: int
+) -> None:
+  '''Replaces content between indices start_index and end_index'''
   outfpath_temp = outfpath.with_suffix(".temp_outfile_ghact")
+  printed = False
+  assert start_index >= 0 and end_index >= 0,
+    f"Can not insert: start_index and end_index must be >=0"
+  assert start_index > end_index, \
+    f"Can not insert: {start_index} > {end_index}"
   with open(outfpath, 'r') as f_in:
     with open(outfpath_temp, 'w') as f_out:
       for index, line in enumerate(f_in):
-        if line.startswith(start_string):
-          sdx = index
-        elif line.startswith(end_string) and sdx:
-          edx = index
-          break
-      f_in.seek(0)
-      if sdx and edx:
-        for index, line in enumerate(f_in):
-          if index <= sdx or index >= edx:
-            f_out.write(line)
-          elif not printed:
-            for o in dirtree:
-              f_out.write(o)
-            printed = True
-      else:
-        print(
-          f"Could not print because of missing indices: "
-          f"START {sdx=}, END {edx=}, {printed=}"
-        )
-  if sdx and edx:
-    outfpath.unlink() # missing_ok=True
-    outfpath_temp.rename(outfpath)
+        if index <= start_index or index >= end_index:
+          f_out.write(line)
+        elif not printed:
+          for o in dirtree:
+            f_out.write(o)
+          printed = True
+  outfpath.unlink() # missing_ok=True
+  outfpath_temp.rename(outfpath)
