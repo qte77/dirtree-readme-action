@@ -99,6 +99,7 @@ def write_to_file(
   '''
   # TODO remove redundant line loop if possible
   # TODO read and write while avoiding copying to memory
+  sdx, edx, printed = None, None, False
   with open(outfpath, 'r') as f_in:
     with open(outfpath_temp, 'w') as f_out:
       for index, line in enumerate(f_in):
