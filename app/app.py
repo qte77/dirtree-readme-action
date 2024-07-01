@@ -41,6 +41,7 @@ with open(outfpath, 'r+') as f:
   if sdx and edx:
     print(f"{sdx=}, {edx=}")
     for index, line in enumerate(f):
+      print(f"{index=}, {line=}")
       if index <= sdx or index >= edx:
         f.write(line)
       elif not printed:
