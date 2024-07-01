@@ -38,7 +38,8 @@ def _is_path_in_exclude(
 # https://stackoverflow.com/a/59109706
 def _generate_tree(
   path: Path, exclude_list: list,
-  tree_theme: str, prefix: str = ''
+  space: str, branch: str, tee: str, last: str,
+  prefix: str = ''
 ) -> str:
   '''
   A recursive generator, given a directory Path object
@@ -48,7 +49,6 @@ def _generate_tree(
   and hierarchical indicators.
   '''
   contents = list(path.iterdir())
-  space, branch, tee, last = _get_tree_theme(tree_theme)
   # contents each get pointers that are 'tee' with a final 'last'
   pointers = [tee] * (len(contents) - 1) + [last]
   for pointer, path in zip(pointers, contents):
@@ -58,7 +58,8 @@ def _generate_tree(
           extension = branch if pointer == tee else space
           yield from _generate_tree(
             path, exclude_list,
-            tree_theme, prefix + extension
+            space, branch, tee, last,
+            prefix + extension
           )
 
 
@@ -67,11 +68,13 @@ def get_tree_output(
   cmd_highlight: str, tree_theme: str
 ) -> list:
   '''Returns a list of startpath and its children'''
+  space, branch, tee, last = _get_tree_theme(tree_theme)
   out = []
   out.append(f"```{cmd_highlight}\n")
   out.append(f"{datetime.now(timezone.utc)}\n")
   for line in _generate_tree(
-    startpath, exclude_list, tree_theme
+    startpath, exclude_list,
+    space, branch, tee, last
   ):
       out.append(f"{line}\n")
   out.append("```\n")
