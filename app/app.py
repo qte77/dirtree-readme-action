@@ -27,7 +27,7 @@ if not outfpath.parent.exists():
 
 
 dirtree = get_tree_output(
-  startpath, exclude_list, CMD_HIGHLIGHT, 
+  startpath, EXCLUDE, CMD_HIGHLIGHT
 )
 write_to_file(
   outfpath, dirtree,
