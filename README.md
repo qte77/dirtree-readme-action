@@ -43,3 +43,4 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 | INSERT_HERE_END_STRING | '<\!-- DIRTREE-README-ACTION-INSERT-HERE-END -->' |
 | OUT_FILE | 'data/dummy-readme.md' |
 | PY_VER | '3.10' |
+| TREE_THEME | 'sh' |
