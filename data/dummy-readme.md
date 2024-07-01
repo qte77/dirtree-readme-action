@@ -7,10 +7,8 @@ This project is not very cool not
 App structure should apear below
 
 <!-- DIRTREE-README-ACTION-INSERT-HERE-START -->
-
 ```sh
-
-2024-07-01 01:42:18.183361+00:00
+2024-07-01 01:44:23.469229+00:00
 ├── app
 │   ├── utils.py
 │   └── app.py
