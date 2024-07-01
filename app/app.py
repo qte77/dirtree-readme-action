@@ -37,7 +37,7 @@ with open(outfpath, 'r+') as f:
     elif line.startswith(INSERT_HERE_END_STRING) and sdx:
       edx = index
       break
-  f.seek(0)
+  # f.seek(0)
   if sdx and edx:
     print(f"{sdx=}, {edx=}")
     for index, line in enumerate(f):
@@ -49,4 +49,5 @@ with open(outfpath, 'r+') as f:
         for o in dirtree:
           f.write(o)
         printed = True
-    f.truncate()
+    print(f"{index=}, {line=}")
+    # f.truncate()
