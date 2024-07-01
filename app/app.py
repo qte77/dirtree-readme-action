@@ -20,7 +20,6 @@ startpath = Path('.')
 outfpath = Path(OUT_FILE)
 outfpath_temp = outfpath.with_suffix(".temp")
 exclude_list = EXCLUDE.split('|')
-sdx, edx, printed = None, None, False
 
 
 assert startpath.exists(), f"{startpath} not found. Aborting"
