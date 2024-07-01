@@ -31,7 +31,7 @@ jobs:
         id: diff_check_changed
         run: |
           set +e
-          git add $OUT_DIR
+          git add $OUT_FILE
           git diff --cached --quiet && \
             echo "No changes added. Nothing to do." || \
             echo "changed=true" >> $GITHUB_OUTPUT
