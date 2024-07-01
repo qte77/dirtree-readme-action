@@ -13,7 +13,9 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 
 <!-- DIRTREE-README-ACTION-INSERT-HERE-END -->
 
-## Action environment variables 
+## Action environment variables
+
+App environment variables can be set in the action but not vice-versa.
 
 ### App
 
