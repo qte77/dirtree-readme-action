@@ -120,12 +120,13 @@ def write_to_file(
   assert start_index >= 0 and end_index >= 1, \
     f"Can not insert: {start_index=}, {end_index=}"
   f_in = (line for line in open(outfpath, 'r'))
-  f_out = (line for line in open(outfpath, 'w'))
-  # with open(outfpath_temp, 'w') as f_out:
-  for index, line in enumerate(f_in):
-    if index <= start_index or index >= end_index:
-      next(f_out).write(line)
-    elif index == start_index + 1:
-      next(f_out).writelines(dirtree)
+  # TODO write lines with generator
+  # f_out = (line for line in open(outfpath, 'w'))
+  with open(outfpath_temp, 'w') as f_out:
+    for index, line in enumerate(f_in):
+      if index <= start_index or index >= end_index:
+        f_out.write(line)
+      elif index == start_index + 1:
+        f_out.writelines(dirtree)
   outfpath.unlink() # missing_ok=True
   outfpath_temp.rename(outfpath)
