@@ -4,23 +4,26 @@
 from collections import deque
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Iterator, Tuple
 
 
-def _get_tree_theme(theme: str) -> tuple:
+def _get_tree_theme(theme: str = 'sh') -> Tuple[str, str, str, str]:
   '''
   Returns tuple of tree indicator themes: space, branch, tee, last.
   Offers 'cmd', 'slash', 'elli', 'null', 'sh'. Defaults to 'sh'.
   '''
   if theme == 'cmd':
     return '   ', '│  ', '├──', '└──'
-  if theme == 'slash':
+  elif theme == 'slash':
     return '    ', '│   ', '│── ', '\── '
-  if theme == 'elli':
+  elif theme == 'elli':
     return '    ', '︙   ', '︙··· ', ' ···· '
-  if theme == 'null':
+  elif theme == 'null':
     return '    ', '    ', '    ', '    '
-  else: 
+  elif theme == 'sh': 
     return '    ', '│   ', '├── ', '└── '
+  else:
+    raise NotImplementedError
 
 
 def _is_path_in_exclude(
@@ -41,7 +44,7 @@ def _generate_tree(
   path: Path, exclude_list: list,
   space: str, branch: str, tee: str, last: str,
   prefix: str = '', suffix: str = ''
-) -> generator:
+) -> Iterator[str]:
   '''
   A recursive generator, given a directory Path object
   will yield a visual tree structure line by line
@@ -67,7 +70,7 @@ def _generate_tree(
 def get_formatted_tree_output(
   startpath: Path, exclude_list: list,
   cmd_highlight: str, tree_theme: str
-) -> deque:
+) -> deque[str]:
   '''
   Returns a list of startpath and its children. cmd_highlight has
   to be one of Github's native syntax highlighting languages.
@@ -89,7 +92,7 @@ def get_formatted_tree_output(
 
 def get_write_positions_in_file(
   outfpath: Path, start_string: str, end_string: str
-) -> tuple:
+) -> Tuple[int, int]:
   '''
   Returns position of first consecutive start_string
   and end_string.
