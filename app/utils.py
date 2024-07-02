@@ -1,25 +1,29 @@
 '''Contains utility functions for Github dirtree-readme-action'''
 
 
+from collections import deque
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Iterator, Tuple
 
 
-def _get_tree_theme(theme: str) -> tuple:
+def _get_tree_theme(theme: str = 'sh') -> Tuple[str, str, str, str]:
   '''
   Returns tuple of tree indicator themes: space, branch, tee, last.
   Offers 'cmd', 'slash', 'elli', 'null', 'sh'. Defaults to 'sh'.
   '''
   if theme == 'cmd':
     return '   ', '│  ', '├──', '└──'
-  if theme == 'slash':
+  elif theme == 'slash':
     return '    ', '│   ', '│── ', '\── '
-  if theme == 'elli':
+  elif theme == 'elli':
     return '    ', '︙   ', '︙··· ', ' ···· '
-  if theme == 'null':
+  elif theme == 'null':
     return '    ', '    ', '    ', '    '
-  else: 
+  elif theme == 'sh': 
     return '    ', '│   ', '├── ', '└── '
+  else:
+    raise NotImplementedError
 
 
 def _is_path_in_exclude(
@@ -39,8 +43,8 @@ def _is_path_in_exclude(
 def _generate_tree(
   path: Path, exclude_list: list,
   space: str, branch: str, tee: str, last: str,
-  prefix: str = ''
-) -> str:
+  prefix: str = '', suffix: str = ''
+) -> Iterator[str]:
   '''
   A recursive generator, given a directory Path object
   will yield a visual tree structure line by line
@@ -53,73 +57,76 @@ def _generate_tree(
   pointers = [tee] * (len(contents) - 1) + [last]
   for pointer, path in zip(pointers, contents):
     if not _is_path_in_exclude(path, exclude_list):
-      yield prefix + pointer + path.name
+      yield prefix + pointer + path.name + suffix
       if path.is_dir():
           extension = branch if pointer == tee else space
           yield from _generate_tree(
             path, exclude_list,
             space, branch, tee, last,
-            prefix + extension
+            prefix + extension, suffix
           )
 
 
 def get_formatted_tree_output(
   startpath: Path, exclude_list: list,
   cmd_highlight: str, tree_theme: str
-) -> list:
+) -> deque[str]:
   '''
   Returns a list of startpath and its children. cmd_highlight has
   to be one of Github's native syntax highlighting languages.
   https://github.com/github-linguist/linguist/blob/master/lib/linguist/languages.yml
   '''
+  suffix = '\n'
   space, branch, tee, last = _get_tree_theme(tree_theme)
   dirtree = _generate_tree(
-    startpath, exclude_list, space, branch, tee, last
+    startpath, exclude_list,
+    space, branch, tee, last,
+    suffix = suffix
   )
-  out = []
-  out.append(f"```{cmd_highlight}\n")
-  out.append(f"{datetime.now(timezone.utc)}\n")
-  for line in dirtree:
-      out.append(f"{line}\n")
-  out.append("```\n")
+  out = deque(dirtree)
+  out.appendleft(f"{datetime.now(timezone.utc)}{suffix}")
+  out.appendleft(f"```{cmd_highlight}{suffix}")
+  out.append(f"```{suffix}")  
   return out
 
 
 def get_write_positions_in_file(
   outfpath: Path, start_string: str, end_string: str
-) -> tuple:
+) -> Tuple[int, int]:
   '''
   Returns position of first consecutive start_string
   and end_string.
   '''
   sdx, edx = None, None
-  with open(outfpath, 'r') as f_in:
-    for index, line in enumerate(f_in):
-      if line.startswith(start_string):
-        sdx = index
-      elif line.startswith(end_string) and sdx:
-        edx = index
-        break
+  f_in = (line for line in open(outfpath, 'r'))
+  for index, line in enumerate(f_in):
+    if line.startswith(start_string):
+      sdx = index
+    elif line.startswith(end_string) and sdx:
+      edx = index
+      break
   return sdx, edx
 
 
 def write_to_file(
-  outfpath: Path, dirtree: list,
+  outfpath: Path, dirtree: deque,
   start_index: int, end_index: int
 ) -> None:
-  '''Replaces content between indices start_index and end_index'''
+  '''
+  Replaces content between indices start_index and end_index.
+  At least one line between start_index and end end_index needed.
+  '''
   outfpath_temp = outfpath.with_suffix(".temp_outfile_ghact")
-  printed = False
   assert start_index >= 0 and end_index >= 1, \
     f"Can not insert: {start_index=}, {end_index=}"
-  with open(outfpath, 'r') as f_in:
-    with open(outfpath_temp, 'w') as f_out:
-      for index, line in enumerate(f_in):
-        if index <= start_index or index >= end_index:
-          f_out.write(line)
-        elif not printed:
-          for o in dirtree:
-            f_out.write(o)
-          printed = True
+  f_in = (line for line in open(outfpath, 'r'))
+  # TODO write lines with generator
+  # f_out = (line for line in open(outfpath, 'w'))
+  with open(outfpath_temp, 'w') as f_out:
+    for index, line in enumerate(f_in):
+      if index <= start_index or index >= end_index:
+        f_out.write(line)
+      elif index == start_index + 1:
+        f_out.writelines(dirtree)
   outfpath.unlink() # missing_ok=True
   outfpath_temp.rename(outfpath)
