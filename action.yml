@@ -1,0 +1,11 @@
+# https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-docker-container-action
+# https://github.com/athul/waka-readme/blob/master/action.yml
+name: "Dirtree-to-Readme"
+author: "qte77"
+description: " Copy directory tree into Readme."
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: "corner-down-right"
+  color: "white"
