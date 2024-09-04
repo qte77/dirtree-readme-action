@@ -34,13 +34,12 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 
 | Name | Default |
 | - | - |
-| APP | 'app/app.py' |
-| CMD_HIGHLIGHT | 'sh' # All Github supported for code blocks |
-| EXCLUDE | '.git\|\_\_pycache\_\_' # separated by \| |
-| GH_EMAIL | 'action@github.com' |
-| GH_NAME | 'GitHub Action' |
-| INSERT_HERE_START_STRING | '<\!-- DIRTREE-README-ACTION-INSERT-HERE-START -->' |
-| INSERT_HERE_END_STRING | '<\!-- DIRTREE-README-ACTION-INSERT-HERE-END -->' |
-| OUT_FILE | 'data/dummy-readme.md' |
-| PY_VER | '3.10' |
-| TREE_THEME | 'sh' # ['cmd', 'slash', 'elli', 'null', 'sh'] |
+| `APP` | `app/app.py` |
+| `CMD_HIGHLIGHT` | `sh` |
+| `EXCLUDE` | `.git\|__pycache__ # separated by \|` |
+| `GH_EMAIL` | `action@github.com` |
+| `GH_NAME` | `GitHub Action` |
+| `INSERT_HERE_START_STRING` | `<!-- DIRTREE-README-ACTION-INSERT-HERE-START -->` |
+| `INSERT_HERE_END_STRING` | `<!-- DIRTREE-README-ACTION-INSERT-HERE-END -->` |
+| `OUT_FILE` | `data/dummy-readme.md` |
+| `PY_VER` | `3.10` |
