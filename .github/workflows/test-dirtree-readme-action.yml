@@ -1,0 +1,10 @@
+name: 'dirtree-readme-action'
+on: 
+  # [push, pull_request]
+  workflow_dispatch:
+jobs:
+  dirtree:
+    runs-on: ubuntu-latest
+    name: 'Get and save dirtree to README.md'
+    steps:
+      - uses: qte77/dirtree-readme-action@0.1.0
