@@ -10,6 +10,8 @@ ENV PATH="${PATH}:/root/.local/bin" \
     # PIP_DISABLE_PIP_VERSION_CHECK=1 \
     # PIP_NO_CACHE_DIR=1 \
     # PIP_DEFAULT_TIMEOUT=100
-COPY --chown=root:root ./app/app.py ./app/utils.py /app/
+USER app
+WORKDIR /app
+COPY --chown=app:app . .
 # RUN python -m pip install /app/
-CMD python /app/app.py
+CMD python app.py
