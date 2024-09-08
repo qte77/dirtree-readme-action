@@ -17,4 +17,4 @@ RUN groupadd $USER && \
     useradd --no-log-init -g $USER $USER
 COPY --chown=$USER:$USER --chmod=0755 $WD $WD
 USER $USER
-CMD "python", $ENTRY
+ENTRYPOINT ["python", "/app/app.py"]
