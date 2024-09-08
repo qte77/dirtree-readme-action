@@ -7,4 +7,4 @@ jobs:
     runs-on: ubuntu-latest
     name: 'Get and save dirtree to README.md'
     steps:
-      - uses: qte77/dirtree-readme-action@v0.1.18-dev
+      - uses: qte77/dirtree-readme-action@v0.1.19-dev
