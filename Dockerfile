@@ -14,12 +14,7 @@ ARG user=app
 ARG wd=/app
 RUN groupadd $user && \
     useradd --no-log-init -g $user -ms /bin/bash $user
-WORKDIR $wd
-COPY --chown=$user:$user $wd .
+COPY --chown=$user:$user $wd $wd
 USER $user
 # RUN python -m pip install .
-# CMD python app.py
-RUN echo $PWD
-RUN dir
-RUN dir $wd
-RUN dir /
+CMD python $wd/app.py
