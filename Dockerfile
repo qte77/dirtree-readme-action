@@ -17,7 +17,4 @@ RUN groupadd $USER && \
     useradd --no-log-init -g $USER $USER
 COPY --chown=$USER:$USER --chmod=0755 $WD $WD
 USER $USER
-RUN ls $ENTRY && ls $WD
-# RUN python -m pip install .
-# CMD ["python", ${wd}/app.py]
-ENTRYPOINT ["python", $ENTRY]
+CMD ["python", "${ENTRY}"]
