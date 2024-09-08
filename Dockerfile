@@ -17,7 +17,6 @@ RUN groupadd $user && \
 COPY --chown=$user:$user $wd $wd
 USER $user
 # RUN python -m pip install .
-RUN dir "${wd}"
-RUN dir -s "${wd}/app.py"
 # CMD python "${wd}/app.py"
-ENTRYPOINT ["${wd}/app.py"]
+# CMD ["python", "app.py"]
+ENTRYPOINT ["python", "${wd}/app.py"]
