@@ -17,4 +17,4 @@ RUN groupadd $user && \
 COPY --chown=$user:$user $wd $wd
 USER $user
 # RUN python -m pip install .
-CMD python $wd/app.py
+CMD python "${wd}/app.py"
