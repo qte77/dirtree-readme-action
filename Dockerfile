@@ -19,7 +19,7 @@ COPY --chown=$user:$user $wd .
 USER $user
 # RUN python -m pip install .
 # CMD python app.py
-RUN $PWD
+RUN echo $PWD
 RUN dir
 RUN dir $wd
 RUN dir /
