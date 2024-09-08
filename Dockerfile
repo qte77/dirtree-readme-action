@@ -2,7 +2,7 @@
 FROM docker.io/python:3-slim
 ENV WD="./app" \
     ENTRY="./app/app.py" \
-    USER="app"
+    USER="app" \
     # python
     # PATH="${PATH}:/root/.local/bin" \
     PYTHONFAULTHANDLER=1 \
