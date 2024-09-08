@@ -11,10 +11,11 @@ ENV PATH="${PATH}:/root/.local/bin" \
     # PIP_NO_CACHE_DIR=1 \
     # PIP_DEFAULT_TIMEOUT=100
 ARG user=app
+ARG wd=/app
 RUN groupadd $user && \
     useradd --no-log-init -g $user -ms /bin/bash $user
-WORKDIR /app
-COPY --chown=$user:$user . .
+WORKDIR $wd
+COPY --chown=$user:$user $wd .
 USER $user
 # RUN python -m pip install .
 CMD python app.py
