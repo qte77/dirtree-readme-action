@@ -2,7 +2,8 @@
 FROM docker.io/python:3-slim
 ENV USER="app" \
     WD="/app" \
-    ENTRY="/app/app.py" \
+    ENTRY="app.py" \
+    TAR="README.md" \
     # python
     # PATH="${PATH}:/root/.local/bin" \
     PYTHONFAULTHANDLER=1 \
@@ -15,6 +16,8 @@ ENV USER="app" \
     PIP_DEFAULT_TIMEOUT=100
 RUN groupadd $USER && \
     useradd --no-log-init -g $USER $USER
+COPY --chown=$USER:$USER --chmod=0755 "${WD}/${TAR}" $WD
 COPY --chown=$USER:$USER --chmod=0755 $WD $WD
 USER $USER
+# "${WD}/${ENTRY}"
 ENTRYPOINT ["python", "/app/app.py"]
