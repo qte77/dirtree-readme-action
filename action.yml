@@ -3,6 +3,13 @@
 name: "Dirtree-to-Readme"
 author: "qte77"
 description: " Copy directory tree into Readme."
+inputs:
+  GH_TOKEN:
+    default: ${{ github.token }}
+    required: true
+  REPOSITORY:
+    default: ${{ github.repository }}
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
