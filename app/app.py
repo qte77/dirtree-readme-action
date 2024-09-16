@@ -1,11 +1,11 @@
 from os import getenv
 from pathlib import Path
+
 from utils import (
   get_formatted_tree_output,
   get_write_positions_in_file,
   write_to_file
 )
-
 
 CMD_HIGHLIGHT = str(getenv("CMD_HIGHLIGHT", 'sh'))
 # EXCLUDE string separated by |
@@ -21,29 +21,29 @@ INSERT_HERE_END_STRING = str(getenv(
 OUT_FILE = str(getenv("OUT_FILE", 'README.md'))
 TREE_THEME = str(getenv("TREE_THEME", 'sh'))
 
+GH_TOKEN: str | None = str(getenv("INPUT_GH_TOKEN"))
+REPOSITORY: str | None = str(getenv("INPUT_REPOSITORY"))
 
 exclude_list = EXCLUDE.split('|')
 outfpath = Path(OUT_FILE)
 startpath = Path('.')
 
-
-assert outfpath.exists(), f"{outfpath} not found. Aborting"
-assert startpath.exists(), f"{startpath} not found. Aborting"
-
-
-start_index, end_index = get_write_positions_in_file(
-  outfpath, INSERT_HERE_START_STRING, INSERT_HERE_END_STRING
-)
-if isinstance(start_index, int) \
-  and isinstance(end_index, int) \
-  and start_index>= 0 and end_index >= 1:
-  dirtree = get_formatted_tree_output(
-    startpath, exclude_list, CMD_HIGHLIGHT, TREE_THEME
+if __name__ == "__main__":
+  assert outfpath.exists(), f"{outfpath} not found. Aborting"
+  assert startpath.exists(), f"{startpath} not found. Aborting"
+  start_index, end_index = get_write_positions_in_file(
+    outfpath, INSERT_HERE_START_STRING, INSERT_HERE_END_STRING
   )
-  write_to_file(
-    outfpath, dirtree, start_index, end_index
-  )
-else:
-  print(
-    f"Could not write file. Index error: {start_index=}, {end_index=}"
-  )
+  if isinstance(start_index, int) \
+    and isinstance(end_index, int) \
+    and start_index>= 0 and end_index >= 1:
+    dirtree = get_formatted_tree_output(
+      startpath, exclude_list, CMD_HIGHLIGHT, TREE_THEME
+    )
+    write_to_file(
+      outfpath, dirtree, start_index, end_index
+    )
+  else:
+    print(
+      f"Could not write file. Index error: {start_index=}, {end_index=}"
+    )
