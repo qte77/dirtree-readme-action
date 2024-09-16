@@ -1,6 +1,5 @@
 from os import getenv
 from pathlib import Path
-
 from utils import (
   get_formatted_tree_output,
   get_write_positions_in_file,
@@ -23,6 +22,8 @@ TREE_THEME = str(getenv("TREE_THEME", 'sh'))
 
 GH_TOKEN: str | None = str(getenv("INPUT_GH_TOKEN"))
 REPOSITORY: str | None = str(getenv("INPUT_REPOSITORY"))
+COMMITTER_NAME: str = str(getenv("INPUT_COMMITTER_NAME", "NOT_SET"))
+COMMITTER_EMAIL: str = str(getenv("INPUT_COMMITTER_EMAIL", "NOT_SET"))
 
 exclude_list = EXCLUDE.split('|')
 outfpath = Path(OUT_FILE)
