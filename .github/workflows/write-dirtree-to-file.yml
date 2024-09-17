@@ -16,6 +16,7 @@ env:
   GH_EMAIL: 'action@github.com'
   GH_NAME: 'GitHub Action'
   PY_VER: '3.10'
+  USE_FROM_LOCAL_ACTION: 'YES'
 jobs:
   writeDirTreeToFile:
     runs-on: ubuntu-latest
