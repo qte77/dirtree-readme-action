@@ -5,6 +5,8 @@ author: "qte77"
 description: " Copy directory tree into Readme."
 inputs:
   GH_TOKEN:
+    #TODO use auto gen token
+    # ${{ secrets.GITHUB_TOKEN }}
     default: ${{ github.token }}
     required: true
   REPOSITORY:
