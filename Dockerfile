@@ -16,8 +16,9 @@ ENV USER="app" \
     PIP_DEFAULT_TIMEOUT=100
 RUN groupadd $USER && \
     useradd --no-log-init -g $USER $USER
-COPY --chown=$USER:$USER --chmod=0755 "${WD}/${TAR}" $WD
+COPY --chown=$USER:$USER --chmod=0755 "./${TAR}" .
 COPY --chown=$USER:$USER --chmod=0755 $WD $WD
+RUN python -m pip install -r requirements.txt
 USER $USER
 # "${WD}/${ENTRY}"
 ENTRYPOINT ["python", "/app/app.py"]
