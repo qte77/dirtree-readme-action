@@ -16,6 +16,10 @@ Types of changes:
 
 ## [Unreleased]
 
+---
+
+## [0.2.0] - 2025-01-01
+
 ### Added
 
 - Push and PR
