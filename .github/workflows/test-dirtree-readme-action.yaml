@@ -6,13 +6,13 @@ on:
 jobs:
   dirtree:
     runs-on: ubuntu-latest
-    name: 'Get and save dirtree to README.md'
+    name: 'Get and save dirtree to `README.md`'
     steps:
       - name: checkout repo
         uses: actions/checkout@v4.2.2
         with:
           repository: qte77/dirtree-readme-action
-          token: ${{ secrets.PRIVATE_REPO_ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Call action
         uses: ./
