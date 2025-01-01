@@ -11,6 +11,8 @@ env:
   DOCSTRINGS_FILE: "docstrings.md"
   DOC_DIR: "docs"
   SRC_DIR: "src"
+  SITE_DIR: "site"
+  IMG_DIR: "assets/images"
 
 jobs:
   build-and-deploy:
@@ -90,8 +92,11 @@ jobs:
       run: |
         # copy images, mkdocs does not by default
         # mkdocs also overwrites pre-made directories
-        mkdir -p site/assets/images
-        cp assets/images/* site/assets/images
+        dir="${{ env.SITE_DIR }}/${{ env.IMG_DIR }}"
+        if [ -d "${{ env.IMG_DIR }}" ]; then
+          mkdir -p "${dir}"
+          cp "${{ env.IMG_DIR }}/*" "${dir}"
+        fi
 
 #    - name: Push to gh-pages
 #      run: uv run mkdocs gh-deploy --force
@@ -99,7 +104,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v2
       with:
-        path: ./site
+        path: "${{ env.SITE_DIR }}"
 
     - name: Deploy to GitHub Pages
       id: deployment
