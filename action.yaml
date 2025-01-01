@@ -7,22 +7,27 @@ description: "Copy directory tree into file, e.g. README.md, instead of manual e
 inputs:
   OUT_FILE:
     default: README.md
+    type: string
     required: true
   GH_TOKEN:
     default: ${{ github.token }}
     type: string
+    required: true
   REPOSITORY:
     default: ${{ github.repository }}
     type: string
+    required: true
   COMMITTER_NAME:
     default: 'DirTreeToReadme-GHA'
     type: string
+    required: true
   COMMITTER_EMAIL:
     default: 'dirtree@gha'
     type: string
+    required: true
   CREATE_PR:
-    default: false
     type: boolean
+    default: false
 permissions:
   actions: read
   contents: write
