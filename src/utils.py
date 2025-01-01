@@ -3,7 +3,7 @@
 from collections import deque
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterator, Tuple
+from typing import Iterator, List, Tuple
 
 def _get_tree_theme(theme: str = 'sh') -> Tuple[str, str, str, str]:
     if theme == 'cmd':
@@ -31,7 +31,7 @@ def _is_path_in_exclude(path: Path, exclude_list: list) -> bool:
 # list-directory-tree-structure-in-python:
 # https://stackoverflow.com/a/59109706
 def _generate_tree(
-    path: Path, exclude_list: list,
+    path: Path, exclude_list: List[str],
     space: str, branch: str, tee: str, last: str,
     prefix: str = '', suffix: str = ''
 ) -> Iterator[str]:
@@ -42,7 +42,17 @@ def _generate_tree(
     Returns a string of the current folder or file 
     and hierarchical indicators. 
     '''
-    contents = list(path.iterdir())
+    gitignore_path = path / '.gitignore'
+    if gitignore_path.exists():
+        with open(gitignore_path, 'r') as gitignore_file:
+            exclude_list.extend(
+                line.strip() for line in gitignore_file
+                if line.strip() and not line.startswith('#')
+            )
+    contents = sorted(
+        path.iterdir(),
+        key=lambda p: (not p.is_dir(), p.name.lower())
+    )
     # contents each get pointers that are 'tee' with a final 'last'
     pointers = [tee] * (len(contents) - 1) + [last]
     for pointer, path in zip(pointers, contents):
@@ -74,7 +84,7 @@ def get_formatted_tree_output(
     )
     out = deque(dirtree)
     out.appendleft(f"{datetime.now(timezone.utc)}{suffix}")
-    out.appendleft(f"```
+    out.appendleft(f"```{cmd_highlight}{suffix}")
     out.append(f"```{suffix}")
     return out
 
@@ -115,4 +125,3 @@ def write_to_file(
                 f_out.writelines(dirtree)
     outfpath.unlink() # missing_ok=True
     outfpath_temp.rename(outfpath)
-
