@@ -5,7 +5,7 @@ Copy directory tree into file, e.g. README.md, instead of manual effort.
 ![Version](https://img.shields.io/badge/version-0.2.1-8A2BE2)
 [![CodeQL](https://github.com/qte77/dirtree-readme-action/actions/workflows/codeql.yaml/badge.svg)](https://github.com/qte77/dirtree-readme-action/actions/workflows/codeql.yaml)
 [![CodeFactor](https://www.codefactor.io/repository/github/qte77/dirtree-readme-action/badge)](https://www.codefactor.io/repository/github/qte77/dirtree-readme-action)
-[![write-dirtree-to-file](https://github.com/qte77/dirtree-readme-action/actions/workflows/write-dirtree-to-file.yaml/badge.svg)](https://github.com/qte77/dirtree-readme-action/actions/workflows/write-dirtree-to-file.yaml)
+[![test-dirtree-readme-action](https://github.com/qte77/dirtree-readme-action/actions/workflows/test-dirtree-readme-action.yaml/badge.svg)](https://github.com/qte77/dirtree-readme-action/actions/workflows/test-dirtree-readme-action.yaml)
 [![ruff](https://github.com/qte77/dirtree-readme-action/actions/workflows/ruff.yaml/badge.svg)](https://github.com/qte77/dirtree-readme-action/actions/workflows/ruff.yaml)
 <!--
 [![pytest](https://github.com/qte77/dirtree-readme-action/actions/workflows/pytest.yaml/badge.svg)](https://github.com/qte77/dirtree-readme-action/actions/workflows/pytest.yaml)
