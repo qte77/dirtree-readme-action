@@ -29,10 +29,8 @@ Main Execution:
 - Checks for the existence of the output file and start path.
 - Generates and writes the directory tree to the specified file.
 - Pushes changes to GitHub if not running locally.
-
-Error Handling:
-- Uses logging to capture and report errors during execution.
 """
+
 from logging import (
     basicConfig,
     getLogger,
@@ -49,11 +47,9 @@ from utils import (
     write_to_file
 )
 
-# Configure logging
 basicConfig(level=INFO)
 logger = getLogger(__name__)
 
-# Environment variables
 CMD_HIGHLIGHT: str = str(getenv("CMD_HIGHLIGHT", 'sh'))
 EXCLUDE: str = str(getenv("EXCLUDE", '.git|.github|.gitignore|.gitmessage'))
 INSERT_HERE_START_STRING: str = str(getenv(
@@ -67,7 +63,6 @@ INSERT_HERE_END_STRING: str = str(getenv(
 OUT_FILE: str = str(getenv("OUT_FILE", 'README.md'))
 TREE_THEME: str = str(getenv("TREE_THEME", 'sh'))
 USE_FROM_LOCAL_ACTION: str = str(getenv("USE_FROM_LOCAL_ACTION", "NO"))
-
 GH_TOKEN: Optional[str] = str(getenv("INPUT_GH_TOKEN"))
 REPOSITORY: Optional[str] = str(getenv("INPUT_REPOSITORY"))
 COMMITTER_NAME: str = str(getenv("INPUT_COMMITTER_NAME", "NOT_SET"))
@@ -77,9 +72,6 @@ COMMIT_MESSAGE: str = f"Added dirtree to {OUT_FILE}"
 exclude_list: list[str] = EXCLUDE.split('|')
 outfpath: Path = Path(OUT_FILE)
 startpath: Path = Path('.')
-
-# TODO use built-in runner git instead of gh-cli
-# TODO commit, push, pr, tag, delete former if failure() 
 
 if __name__ == "__main__":
     """
