@@ -70,9 +70,8 @@ jobs:
     - name: Copy text files to be included
       run: |
         # TODO copy only files in nav of mkdocs.yaml
-        cp README.md ${DOC_DIR}/index.md
-        cp {CHANGELOG,LICENSE}.md ${DOC_DIR}
-        # copy images, mkdocstrings does not by default
+        cp README.md "${DOC_DIR}/index.md"
+        cp {CHANGELOG,LICENSE}.md "${DOC_DIR}"
 
     - name: Generate code docstrings concat file
       run: |
