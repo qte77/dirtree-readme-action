@@ -11,7 +11,7 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v4.2.2
         with:
-          repository: pdq21/dev-dirtree-action-temp
+          repository: qte77/dirtree-readme-action
           token: ${{ secrets.PRIVATE_REPO_ACCESS_TOKEN }}
 
       - name: Call action
