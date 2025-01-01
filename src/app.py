@@ -40,16 +40,9 @@ from logging import (
     error,
     exception
 )
-from github import (
-    ContentFile,
-    Github,
-    GithubException,
-    InputGitAuthor,
-    Repository
-)
 from os import getenv
 from pathlib import Path
-from typing import Optional, Union
+from typing import Optional
 from utils import (
     get_formatted_tree_output,
     get_write_positions_in_file,
@@ -62,7 +55,7 @@ logger = getLogger(__name__)
 
 # Environment variables
 CMD_HIGHLIGHT: str = str(getenv("CMD_HIGHLIGHT", 'sh'))
-EXCLUDE: str = str(getenv("EXCLUDE", '.git|__pycache__'))
+EXCLUDE: str = str(getenv("EXCLUDE", '.git|.github|.gitignore|.gitmessage'))
 INSERT_HERE_START_STRING: str = str(getenv(
     "INSERT_HERE_START_STRING",
     '<!-- DIRTREE-README-ACTION-INSERT-HERE-START -->'
@@ -87,27 +80,6 @@ startpath: Path = Path('.')
 
 # TODO use built-in runner git instead of gh-cli
 # TODO commit, push, pr, tag, delete former if failure() 
-def push_file_to_github(files: Union[str, Path]) -> None:
-    """
-    Push the updated file to GitHub repository.
-
-    :param files: Path to the file to be pushed.
-    :raises GithubException: If there's an error with the GitHub API.
-    """
-    try:
-        gh_connect = Github(GH_TOKEN)
-        gh_repo: Repository = gh_connect.get_repo(REPOSITORY)
-        gh_tree = gh_repo.get_git_tree(sha)
-
-        if COMMITTER_NAME != "NOT_SET" and COMMITTER_EMAIL != "NOT_SET":
-            committer: InputGitAuthor = InputGitAuthor(name=COMMITTER_NAME, email=COMMITTER_EMAIL)
-        else:
-            committer = None
-
-        gh_repo.create_git_commit(COMMIT_MESSAGE, gh_tree, [], committer=committer)
-        gh_repo.push()
-    except GithubException as e:
-        error(f"GitHub API error: {e}")
 
 if __name__ == "__main__":
     """
@@ -135,12 +107,9 @@ if __name__ == "__main__":
             write_to_file(
                 outfpath, dirtree, start_index, end_index
             )
-            if USE_FROM_LOCAL_ACTION == "NO":
-                push_file_to_github(outfpath)
         else:
             error(
             	f"Could not write file. Index error: {start_index=}, {end_index=}"
             )
     except Exception as e:
         exception(f"An error occurred: {e}")
-

@@ -1,4 +1,5 @@
-name: 'dirtree-readme-action'
+---
+name: 'test-dirtree-readme-action'
 on: 
   # [push, pull_request]
   workflow_dispatch:
@@ -7,4 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     name: 'Get and save dirtree to README.md'
     steps:
-      - uses: qte77/dirtree-readme-action@0.1.0
+      - name: checkout repo
+        uses: actions/checkout@v4.2.2
+        with:
+          repository: pdq21/dev-dirtree-action-temp
+          token: ${{ secrets.PRIVATE_REPO_ACCESS_TOKEN }}
+
+      - name: Call action
+        uses: ./
+...
