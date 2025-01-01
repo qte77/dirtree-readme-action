@@ -29,9 +29,6 @@ Main Execution:
 - Checks for the existence of the output file and start path.
 - Generates and writes the directory tree to the specified file.
 - Pushes changes to GitHub if not running locally.
-
-Error Handling:
-- Uses logging to capture and report errors during execution.
 """
 
 from logging import (
