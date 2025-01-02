@@ -17,7 +17,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          export "PYTHONPATH=${PYTHONPATH}:./src"
+          echo "PYTHONPATH=${PYTHONPATH}:./src" >> $GITHUB_ENV
           python -m pip install --upgrade pip
           pip install pytest
 
