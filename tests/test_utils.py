@@ -1,6 +1,6 @@
 import pytest
 from pathlib import Path
-from utils import (
+from src.utils import (
     _get_tree_theme,
     _is_path_in_exclude,
     _generate_tree,
