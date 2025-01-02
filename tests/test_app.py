@@ -1,5 +1,5 @@
 import pytest
-from src.app import app
+import src.app
 
 @pytest.fixture
 def mock_env(monkeypatch):
