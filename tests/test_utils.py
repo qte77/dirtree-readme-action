@@ -1,5 +1,6 @@
 import pytest
 from pathlib import Path
+from collections import deque
 from src.utils import (
     _get_tree_theme,
     _is_path_in_exclude,
@@ -14,7 +15,7 @@ def test_get_tree_theme():
     assert _get_tree_theme('slash') == (' ', '│ ', '│── ', '\── ')
     assert _get_tree_theme('elli') == (' ', '︙ ', '︙··· ', ' ···· ')
     assert _get_tree_theme('null') == (' ', ' ', ' ', ' ')
-    assert _get_tree_theme('sh') == (' ', '│ ', '├── ', '└──')
+    assert _get_tree_theme('sh') == (' ', '│ ', '├── ', '└── ')
     with pytest.raises(NotImplementedError):
         _get_tree_theme('invalid_theme')
 
@@ -43,7 +44,7 @@ def test_generate_tree(tmp_path):
     (tmp_path / 'file3.txt').touch()
     
     exclude_list = ['.git', '__pycache__']
-    tree = list(_generate_tree(tmp_path, exclude_list, ' ', '│ ', '├── ', '└── '))
+    tree = list(_generate_tree(tmp_path, exclude_list, ' ', '│ ', '├──', '└──'))
     expected = [
         '├── dir1',
         '│ ├── dir2',
@@ -60,13 +61,21 @@ def test_get_formatted_tree_output(tmp_path):
     (tmp_path / 'file3.txt').touch()
     
     exclude_list = ['.git', '__pycache__']
-    tree_output = get_formatted_tree_output(tmp_path, exclude_list, 'sh', 'sh')
-    assert isinstance(tree_output, list)
+    cmd_highlight = 'sh'
+    tree_output = get_formatted_tree_output(
+        tmp_path, exclude_list,
+        cmd_highlight, cmd_highlight)
+    assert isinstance(tree_output, deque)
+    # assert all(isinstance(item, str) for item in tree_output)
     assert len(tree_output) > 0
-    assert tree_output[0].startswith('```')
+    assert tree_output[0].startswith(f"```{cmd_highlight}")
     assert tree_output[-1].startswith('```')
 
-def test_get_write_positions_in_file(tmp_path):
+def test_get_write_positions_in_file(
+        tmp_path,
+        '<!-- DIRTREE-README-ACTION-INSERT-HERE-START -->',
+        '<!-- DIRTREE-README-ACTION-INSERT-HERE-END -->'
+    ):
     test_file = tmp_path / 'test.md'
     test_file.write_text('''
     Some content
@@ -90,12 +99,17 @@ def test_write_to_file(tmp_path):
     <!-- DIRTREE-README-ACTION-INSERT-HERE-END -->
     More content
     ''')
-    dirtree = ['``````']
+    dirtree = [
+        '├── dir1',
+        '│ ├── dir2',
+        '│ │ └── file2.txt',
+        '│ └── file1.txt',
+        '└── file3.txt'
+    ]
     write_to_file(test_file, dirtree, 2, 3)
     with open(test_file, 'r') as f:
         content = f.read()
-    assert '```'
+    assert '```' in content
     assert '├── dir1' in content
     assert '│ └── file1.txt' in content
     assert '└── file3.txt' in content
-    assert '```' in content
