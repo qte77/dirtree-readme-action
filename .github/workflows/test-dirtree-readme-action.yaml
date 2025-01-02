@@ -1,5 +1,5 @@
 ---
-name: 'test-dirtree-readme-action'
+name: 'test-action'
 on: 
   # [push, pull_request]
   workflow_dispatch:
