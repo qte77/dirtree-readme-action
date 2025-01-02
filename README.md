@@ -39,6 +39,8 @@ For version history have a look at the [CHANGELOG](CHANGELOG.md).
 
 ## Action environment variables
 
+The action ingests `.gitignore` and adds the entries to `EXCLUDE`.
+
 | Name | Default |
 | - | - |
 | `APP` | `app/app.py` |
@@ -46,8 +48,7 @@ For version history have a look at the [CHANGELOG](CHANGELOG.md).
 | `EXCLUDE` | `.git\|.github\|.gitignore\|.gitmessage # separated by \|` |
 | `GH_EMAIL` | `action@github.com` |
 | `GH_NAME` | `GitHub Action` |
-| `INSERT_HERE_START_STRING` | `<!-- <!-- DIRTREE-README-ACTION-INSERT-HERE-START -->` |
-| `INSERT_HERE_END_STRING` | `<!-- <!-- DIRTREE-README-ACTION-INSERT-HEREEND -->` |
+| `INSERT_HERE_START_STRING` | `<!-- DIRTREE-README-ACTION-INSERT-HERE-START -->` |
+| `INSERT_HERE_END_STRING` | `<!-- DIRTREE-README-ACTION-INSERT-HERE-END -->` |
 | `OUT_FILE` | `README.md` |
 | `PY_VER` | `3.12` |
-
