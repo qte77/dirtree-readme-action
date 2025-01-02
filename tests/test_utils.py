@@ -20,12 +20,12 @@ def test_get_tree_theme():
 
 def test_is_path_in_exclude():
     exclude_list = ['.git', '__pycache__']
-    assert _is_path_in_exclude(Path('.git'), exclude_list) == True
-    assert _is_path_in_exclude(Path('__pycache__'), exclude_list) == True
-    assert _is_path_in_exclude(Path('src/utils.py'), exclude_list) == False
-    assert _is_path_in_exclude(
+    assert if _is_path_in_exclude(Path('.git'), exclude_list):
+    assert if _is_path_in_exclude(Path('__pycache__'), exclude_list):
+    assert if _is_path_in_exclude(Path('src/utils.py'), exclude_list):
+    assert if _is_path_in_exclude(
         Path('src/__pycache__/utils.cpython-312.pyc'), exclude_list
-    ) == True
+    ):
 
 def test_generate_tree(tmp_path):
     # Create a temporary directory structure
