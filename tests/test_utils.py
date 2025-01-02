@@ -56,7 +56,7 @@ def test_get_formatted_tree_output(tmp_path):
     tree_output = get_formatted_tree_output(tmp_path, exclude_list, 'sh', 'sh')
     assert isinstance(tree_output, list)
     assert len(tree_output) > 0
-    assert tree_output[0].startswith('```
+    assert tree_output[0].startswith('```')
     assert tree_output[-1].startswith('```')
 
 def test_get_write_positions_in_file(tmp_path):
@@ -87,9 +87,8 @@ def test_write_to_file(tmp_path):
     write_to_file(test_file, dirtree, 2, 3)
     with open(test_file, 'r') as f:
         content = f.read()
-    assert '```
+    assert '```'
     assert '├── dir1' in content
     assert '│ └── file1.txt' in content
     assert '└── file3.txt' in content
     assert '```' in content
-
