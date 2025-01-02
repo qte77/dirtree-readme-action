@@ -1,5 +1,4 @@
 import pytest
-from pathlib import Path
 from app import app
 
 @pytest.fixture
@@ -18,7 +17,7 @@ def mock_env(monkeypatch):
     monkeypatch.setenv('TREE_THEME', 'sh')
 
 def test_main_execution(mock_env, tmp_path):
-    # Setup
+    # Setup by writing a dummy file
     (tmp_path / 'README.md').write_text('''
         # README
         <!-- DIRTREE-README-ACTION-INSERT-HERE-START -->
@@ -29,13 +28,16 @@ def test_main_execution(mock_env, tmp_path):
     (tmp_path / 'src' / 'app.py').touch()
     
     # Run the main function
-    with pytest.raises(SystemExit) as e:
+    try:
         app.main()
-    
-    # Check if the README was updated
+    except SystemExit as e:
+        pytest.fail(f"SystemExit was raised with code {e.code}")
+
+    # Check if the README was updated with some code block
     with open(tmp_path / 'README.md', 'r') as f:
         content = f.read()
-    assert '```'
+
+    assert '```sh' in content
     assert '├── src' in content
     assert '│ ├── utils.py' in content
     assert '│ └── app.py' in content
