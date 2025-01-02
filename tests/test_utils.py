@@ -18,14 +18,21 @@ def test_get_tree_theme():
     with pytest.raises(NotImplementedError):
         _get_tree_theme('invalid_theme')
 
-def test_is_path_in_exclude():
+@pytest.mark.parametrize(
+    "path, expected",
+    [
+        (Path('.git'), True),
+        (Path('__pycache__'), True),
+        (Path('src/utils.py'), False),
+        (Path('src/__pycache__/utils.cpython-312.pyc'), True),
+    ]
+)
+def test_is_path_in_exclude(path, expected):
     exclude_list = ['.git', '__pycache__']
-    assert if _is_path_in_exclude(Path('.git'), exclude_list):
-    assert if _is_path_in_exclude(Path('__pycache__'), exclude_list):
-    assert if _is_path_in_exclude(Path('src/utils.py'), exclude_list):
-    assert if _is_path_in_exclude(
-        Path('src/__pycache__/utils.cpython-312.pyc'), exclude_list
-    ):
+    if expected:
+        assert _is_path_in_exclude(path, exclude_list)
+    else:
+        assert not _is_path_in_exclude(path, exclude_list)
 
 def test_generate_tree(tmp_path):
     # Create a temporary directory structure
