@@ -1,9 +1,22 @@
----
 # https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-docker-container-action
 # https://github.com/athul/waka-readme/blob/master/action.yml
 name: "TEST-Dirtree-to-Readme"
-author: "qte77"
 description: "Copy directory tree into file, e.g. README.md, instead of manual effort."
+author: "qte77"
+repo: "https://github.com/qte77/dirtree-readme-action/"
+branding:
+  icon: "file-text"
+  color: "white"
+keywords:
+  [
+    'readme',
+    'README.md',
+    'repo',
+    'structure',
+    'directory',
+    'folder',
+    'tree'
+  ]
 inputs:
   OUT_FILE:
     default: README.md
@@ -126,8 +139,3 @@ runs:
 #      with:
 #        branch_to_summarize: ${{ env.BRANCH_NEW }}
 #        summary_data: ${{ steps.set_summary.outputs.summary_data }}
-
-branding:
-  icon: "file-text"
-  color: "white"
-...
