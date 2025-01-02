@@ -43,7 +43,7 @@ runs:
         echo "BRANCH_NEW=dirtree-readme-${{ github.run_number }}-${{ github.ref_name }}" >> $GITHUB_ENV
         echo "OUT_FILE=${{ inputs.OUT_FILE }}" >> $GITHUB_ENV # for app.py
         echo "PY_VER=3.12" >> $GITHUB_ENV
-        echo "SCRIPT_PATH=.github/scripts" >> $GITHUB_ENV
+        echo "SCRIPT_PATH=${{ github.action_path }}/.github/scripts" >> $GITHUB_ENV
         echo "SKIP_PR_HINT=[dirtree to readme gha]" >> $GITHUB_ENV
 
     - name: Checkout repository
@@ -63,7 +63,7 @@ runs:
       with:
         python-version: ${{ env.PY_VER }}
 
-    - name: Run ${{ env.APP }}
+    - name: Run '${{ env.APP }}'
       shell: bash
       run: python -B ${{ env.APP }}
 
@@ -84,7 +84,7 @@ runs:
         git commit -m "Updated '${{ inputs.OUT_FILE }}'"
         git push --set-upstream origin "${{ env.BRANCH_NEW }}"
 
-    - name: "Create PR '${{ env.BRANCH_NEW }}'"
+    - name: Create PR '${{ env.BRANCH_NEW }}'
       if: ${{ inputs.CREATE_PR == true &&
         steps.diff_check_changed.outputs.changed == 'true' }}
       shell: bash
