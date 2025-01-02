@@ -71,11 +71,7 @@ def test_get_formatted_tree_output(tmp_path):
     assert tree_output[0].startswith(f"```{cmd_highlight}")
     assert tree_output[-1].startswith('```')
 
-def test_get_write_positions_in_file(
-        tmp_path,
-        '<!-- DIRTREE-README-ACTION-INSERT-HERE-START -->',
-        '<!-- DIRTREE-README-ACTION-INSERT-HERE-END -->'
-    ):
+def test_get_write_positions_in_file(tmp_path):
     test_file = tmp_path / 'test.md'
     test_file.write_text('''
     Some content
