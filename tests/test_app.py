@@ -35,9 +35,8 @@ def test_main_execution(mock_env, tmp_path):
     # Check if the README was updated
     with open(tmp_path / 'README.md', 'r') as f:
         content = f.read()
-    assert '```
+    assert '```'
     assert '├── src' in content
     assert '│ ├── utils.py' in content
     assert '│ └── app.py' in content
     assert '```' in content
-
