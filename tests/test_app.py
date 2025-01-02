@@ -1,4 +1,5 @@
 import pytest
+import runpy
 import src.app
 
 @pytest.fixture
@@ -29,7 +30,7 @@ def test_main_execution(mock_env, tmp_path):
     
     # Run the main function
     try:
-        main()
+        runpy.run_module('src.app', run_name='__main__')
     except SystemExit as e:
         pytest.fail(f"SystemExit was raised with code {e.code}")
 
