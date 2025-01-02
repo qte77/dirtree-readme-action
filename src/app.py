@@ -73,6 +73,7 @@ exclude_list: list[str] = EXCLUDE.split('|')
 outfpath: Path = Path(OUT_FILE)
 startpath: Path = Path('.')
 
+
 if __name__ == "__main__":
     """
     Main execution block to generate and write directory tree to README.md.
@@ -83,6 +84,7 @@ if __name__ == "__main__":
     - Writes the tree to the specified file.
     - Optionally pushes the updated file to GitHub.
     """
+
     try:
         assert outfpath.exists(), f"{outfpath} not found. Aborting"
         assert startpath.exists(), f"{startpath} not found. Aborting"
