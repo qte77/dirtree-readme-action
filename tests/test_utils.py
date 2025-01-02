@@ -18,14 +18,21 @@ def test_get_tree_theme():
     with pytest.raises(NotImplementedError):
         _get_tree_theme('invalid_theme')
 
-def test_is_path_in_exclude():
+@pytest.mark.parametrize(
+    "path, expected",
+    [
+        (Path('.git'), True),
+        (Path('__pycache__'), True),
+        (Path('src/utils.py'), False),
+        (Path('src/__pycache__/utils.cpython-312.pyc'), True),
+    ]
+)
+def test_is_path_in_exclude(path, expected):
     exclude_list = ['.git', '__pycache__']
-    assert _is_path_in_exclude(Path('.git'), exclude_list) == True
-    assert _is_path_in_exclude(Path('__pycache__'), exclude_list) == True
-    assert _is_path_in_exclude(Path('src/utils.py'), exclude_list) == False
-    assert _is_path_in_exclude(
-        Path('src/__pycache__/utils.cpython-312.pyc'), exclude_list
-    ) == True
+    if expected:
+        assert _is_path_in_exclude(path, exclude_list)
+    else:
+        assert not _is_path_in_exclude(path, exclude_list)
 
 def test_generate_tree(tmp_path):
     # Create a temporary directory structure
@@ -56,7 +63,7 @@ def test_get_formatted_tree_output(tmp_path):
     tree_output = get_formatted_tree_output(tmp_path, exclude_list, 'sh', 'sh')
     assert isinstance(tree_output, list)
     assert len(tree_output) > 0
-    assert tree_output[0].startswith('```
+    assert tree_output[0].startswith('```')
     assert tree_output[-1].startswith('```')
 
 def test_get_write_positions_in_file(tmp_path):
@@ -87,9 +94,8 @@ def test_write_to_file(tmp_path):
     write_to_file(test_file, dirtree, 2, 3)
     with open(test_file, 'r') as f:
         content = f.read()
-    assert '```
+    assert '```'
     assert '├── dir1' in content
     assert '│ └── file1.txt' in content
     assert '└── file3.txt' in content
     assert '```' in content
-

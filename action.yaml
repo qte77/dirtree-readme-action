@@ -1,9 +1,22 @@
----
 # https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-docker-container-action
 # https://github.com/athul/waka-readme/blob/master/action.yml
 name: "TEST-Dirtree-to-Readme"
-author: "qte77"
 description: "Copy directory tree into file, e.g. README.md, instead of manual effort."
+author: "qte77"
+repo: "https://github.com/qte77/dirtree-readme-action/"
+branding:
+  icon: "file-text"
+  color: "white"
+keywords:
+  [
+    'readme',
+    'README.md',
+    'repo',
+    'structure',
+    'directory',
+    'folder',
+    'tree'
+  ]
 inputs:
   OUT_FILE:
     default: README.md
@@ -43,7 +56,7 @@ runs:
         echo "BRANCH_NEW=dirtree-readme-${{ github.run_number }}-${{ github.ref_name }}" >> $GITHUB_ENV
         echo "OUT_FILE=${{ inputs.OUT_FILE }}" >> $GITHUB_ENV # for app.py
         echo "PY_VER=3.12" >> $GITHUB_ENV
-        echo "SCRIPT_PATH=.github/scripts" >> $GITHUB_ENV
+        echo "SCRIPT_PATH=${{ github.action_path }}/.github/scripts" >> $GITHUB_ENV
         echo "SKIP_PR_HINT=[dirtree to readme gha]" >> $GITHUB_ENV
 
     - name: Checkout repository
@@ -63,7 +76,7 @@ runs:
       with:
         python-version: ${{ env.PY_VER }}
 
-    - name: Run ${{ env.APP }}
+    - name: Run '${{ env.APP }}'
       shell: bash
       run: python -B ${{ env.APP }}
 
@@ -84,7 +97,7 @@ runs:
         git commit -m "Updated '${{ inputs.OUT_FILE }}'"
         git push --set-upstream origin "${{ env.BRANCH_NEW }}"
 
-    - name: "Create PR '${{ env.BRANCH_NEW }}'"
+    - name: Create PR '${{ env.BRANCH_NEW }}'
       if: ${{ inputs.CREATE_PR == true &&
         steps.diff_check_changed.outputs.changed == 'true' }}
       shell: bash
@@ -126,8 +139,3 @@ runs:
 #      with:
 #        branch_to_summarize: ${{ env.BRANCH_NEW }}
 #        summary_data: ${{ steps.set_summary.outputs.summary_data }}
-
-branding:
-  icon: "file-text"
-  color: "white"
-...
