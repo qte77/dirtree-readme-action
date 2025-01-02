@@ -16,6 +16,10 @@ Types of changes:
 
 ## [Unreleased]
 
+---
+
+## [0.2.2] - 2025-01-02
+
 ### Added
 
 - Basic tests for all functions

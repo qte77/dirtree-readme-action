@@ -2,7 +2,7 @@
 
 Copy directory tree into file, e.g. README.md, instead of manual effort.
 
-![Version](https://img.shields.io/badge/version-0.2.1-8A2BE2)
+![Version](https://img.shields.io/badge/version-0.2.2-8A2BE2)
 [![pytest](https://github.com/qte77/dirtree-readme-action/actions/workflows/pytest.yaml/badge.svg)](https://github.com/qte77/dirtree-readme-action/actions/workflows/pytest.yaml)
 [![test-action](https://github.com/qte77/dirtree-readme-action/actions/workflows/test-dirtree-readme-action.yaml/badge.svg)](https://github.com/qte77/dirtree-readme-action/actions/workflows/test-dirtree-readme-action.yaml)
 [![CodeQL](https://github.com/qte77/dirtree-readme-action/actions/workflows/codeql.yaml/badge.svg)](https://github.com/qte77/dirtree-readme-action/actions/workflows/codeql.yaml)
