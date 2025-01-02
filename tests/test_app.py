@@ -29,7 +29,7 @@ def test_main_execution(mock_env, tmp_path):
     
     # Run the main function
     try:
-        app.main()
+        main()
     except SystemExit as e:
         pytest.fail(f"SystemExit was raised with code {e.code}")
 
